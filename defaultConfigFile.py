@@ -1,5 +1,4 @@
-defaultConfigFile =\
-"""
+defaultConfigFile = """
 # Reference
 # Script, Category, Subcategory, value, referenceGlyph, filter
 
