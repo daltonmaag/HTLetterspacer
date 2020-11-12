@@ -8,9 +8,11 @@ license = "GPL3"
 [tool.poetry.dependencies]
 python = "^3.6"
 numpy = "^1.19.4"
+glyphsLib = "^5.2.0"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
+pytest = "^6.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
