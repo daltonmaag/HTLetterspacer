@@ -409,7 +409,7 @@ def marginList(layer: Glyph) -> Tuple[List[Any], List[Any]]:
 
 
 # TODO: skia pathops also has a SegmentPenIterator
-def segments(contour: List[Point]) -> Any:
+def segments(contour: List[Point]) -> List[List[Point]]:
     if not contour:
         return []
     segments = [[]]
@@ -431,8 +431,10 @@ def segments(contour: List[Point]) -> Any:
     return segments
 
 
-def intersections(layer: Glyph, startPoint: NSPoint, endPoint: NSPoint) -> List[Any]:
-    intersections = []
+def intersections(
+    layer: Glyph, startPoint: NSPoint, endPoint: NSPoint
+) -> List[Tuple[float, float]]:
+    intersections: List[Tuple[float, float]] = []
     x1, y1, x2, y2 = startPoint.x, startPoint.y, endPoint.x, endPoint.y
     for contour in layer.contours:
         for segment_pair in arrayTools.pairwise(segments(contour.points)):
@@ -446,18 +448,27 @@ def intersections(layer: Glyph, startPoint: NSPoint, endPoint: NSPoint) -> List[
                 i = curveIntersections(
                     x1, y1, x2, y2, last[-1], curr[0], curr[1], curr[2]
                 )
-                if i is not None:
+                if i:
                     intersections.extend(i)
             elif curr_type == "qcurve":
                 i = qcurveIntersections(x1, y1, x2, y2, last[-1], *curr)
-                if i is not None:
+                if i:
                     intersections.extend(i)
             else:
                 raise ValueError(f"Cannot deal with segment type {curr_type}")
     return intersections
 
 
-def curveIntersections(x1, y1, x2, y2, p1, p2, p3, p4):
+def curveIntersections(
+    x1: float,
+    y1: float,
+    x2: float,
+    y2: float,
+    p1: Point,
+    p2: Point,
+    p3: Point,
+    p4: Point,
+) -> List[Tuple[float, float]]:
     """
     Computes intersection between a line and a cubic curve.
     Adapted from: https://www.particleincell.com/2013/cubic-line-intersection/
@@ -493,7 +504,9 @@ def curveIntersections(x1, y1, x2, y2, p1, p2, p3, p4):
     return sol
 
 
-def qcurveIntersections(x1, y1, x2, y2, *pts) -> List[Tuple[int, int, int, int]]:
+def qcurveIntersections(
+    x1: float, y1: float, x2: float, y2: float, *pts: Point
+) -> List[Tuple[float, float]]:
     """
     Computes intersection between a quadratic spline and a line segment.
     Adapted from curveIntersections(). Takes four scalars describing line and an
@@ -538,7 +551,9 @@ def qcurveIntersections(x1, y1, x2, y2, *pts) -> List[Tuple[int, int, int, int]]
     return sol
 
 
-def lineIntersection(x1, y1, x2, y2, p3, p4):
+def lineIntersection(
+    x1: float, y1: float, x2: float, y2: float, p3: Point, p4: Point
+) -> Optional[Tuple[float, float]]:
     """
     Computes intersection between two lines.
     Adapted from Andre LaMothe, "Tricks of the Windows Game Programming Gurus".
