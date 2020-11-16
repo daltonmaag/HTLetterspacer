@@ -367,12 +367,11 @@ def area(points):
 
 
 # get margins in Glyphs
-def getMargins(layer: Glyph, y: float) -> Tuple[Optional[float], Optional[float]]:
-    startPoint = NSMakePoint(NSMinX(layer.getBounds()), y)
-    endPoint = NSMakePoint(NSMaxX(layer.getBounds()), y)
-
+def getMargins(
+    layer: Glyph, measurement_line: Tuple[float, float, float, float]
+) -> Tuple[Optional[float], Optional[float]]:
     # TODO: intersection returns a reversed list?
-    result = sorted(intersections(layer, startPoint, endPoint))
+    result = sorted(intersections(layer, measurement_line))
     if not result:
         return (None, None)
 
@@ -384,14 +383,15 @@ def getMargins(layer: Glyph, y: float) -> Tuple[Optional[float], Optional[float]
 
 # a list of margins
 def marginList(layer: Glyph) -> Tuple[List[Any], List[Any]]:
-    y = NSMinY(layer.getBounds())
+    layer_bounds = layer.getBounds()
+    assert layer_bounds is not None
+    y = layer_bounds.yMin
     listL = []
     listR = []
     # works over glyph copy
-    # cleanLayer = layer.copyDecomposedLayer()
-    while y <= NSMaxY(layer.getBounds()):
-        # lpos, rpos = getMargins(cleanLayer, y)
-        lpos, rpos = getMargins(layer, y)
+    while y <= layer_bounds.yMax:
+        measurement_line = layer_bounds.xMin, y, layer_bounds.xMax, y
+        lpos, rpos = getMargins(layer, measurement_line)
         if lpos is not None:
             listL.append(NSMakePoint(lpos, y))
         if rpos is not None:
@@ -426,10 +426,10 @@ def segments(contour: List[Point]) -> List[List[Point]]:
 
 
 def intersections(
-    layer: Glyph, startPoint: NSPoint, endPoint: NSPoint
+    layer: Glyph, measurement_line: Tuple[float, float, float, float]
 ) -> List[Tuple[float, float]]:
     intersections: List[Tuple[float, float]] = []
-    x1, y1, x2, y2 = startPoint.x, startPoint.y, endPoint.x, endPoint.y
+    x1, y1, x2, y2 = measurement_line
     for contour in layer.contours:
         for segment_pair in arrayTools.pairwise(segments(contour.points)):
             last, curr = segment_pair
