@@ -150,6 +150,7 @@ class HTLetterspacerLib:
 
     # close counters at 45 degrees
     def diagonize(self, marginsL, marginsR):
+        # TODO: Use https://github.com/huertatipografica/HTLetterspacer/issues/45
         total = len(marginsL) - 1
 
         valueFreq = paramFreq * 1.5
@@ -376,10 +377,12 @@ def getMargins(layer: Glyph, y: float) -> Tuple[Optional[float], Optional[float]
     startPoint = NSMakePoint(NSMinX(layer.getBounds()), y)
     endPoint = NSMakePoint(NSMaxX(layer.getBounds()), y)
 
+    # TODO: intersection returns a reversed list?
     result = sorted(intersections(layer, startPoint, endPoint))
     if not result:
         return (None, None)
 
+    # Only take the outermost hits.
     left = 0
     right = -1
     return (result[left][0], result[right][0])
@@ -395,8 +398,6 @@ def marginList(layer: Glyph) -> Tuple[List[Any], List[Any]]:
     while y <= NSMaxY(layer.getBounds()):
         # lpos, rpos = getMargins(cleanLayer, y)
         lpos, rpos = getMargins(layer, y)
-        if y <= 0:
-            print(lpos, rpos)
         if lpos is not None:
             listL.append(NSMakePoint(lpos, y))
         if rpos is not None:
@@ -408,7 +409,6 @@ def marginList(layer: Glyph) -> Tuple[List[Any], List[Any]]:
 ####
 
 
-# TODO: skia pathops also has a SegmentPenIterator
 def segments(contour: List[Point]) -> List[List[Point]]:
     if not contour:
         return []
@@ -527,6 +527,8 @@ def qcurveIntersections(
     # p1 is the anchor, p2 the control handle, p3 the (implied) on-curve point in the
     # subsegment.
     p1 = points[0]
+    # TODO: skia pathops also has a SegmentPenIterator
+    # https://github.com/googlefonts/nanoemoji/blob/9adfff414b1ba32a816d722936421c52d4827d8a/src/nanoemoji/svg_path.py#L98-L101
     for index, (p2, p3) in enumerate(basePen.decomposeQuadraticSegment(points[1:])):
         (ax, ay), (bx, by), (cx, cy) = bezierTools.calcQuadraticParameters(p1, p2, p3)
         p1 = p3  # prepare for next turn
