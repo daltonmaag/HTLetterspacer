@@ -1,14 +1,17 @@
+import logging
 import math
 from dataclasses import dataclass
 from typing import Any, List, Optional, Tuple
 
-import fontTools.misc.bezierTools as bezierTools
 import fontTools.misc.arrayTools as arrayTools
+import fontTools.misc.bezierTools as bezierTools
 import fontTools.pens.basePen as basePen
 import numpy as np
 from ufoLib2.objects import Glyph
 from ufoLib2.objects.misc import BoundingBox
 from ufoLib2.objects.point import Point
+
+LOGGER = logging.Logger(__name__)
 
 # Default parameters
 paramArea = 400  # white area in thousand units
@@ -32,30 +35,6 @@ class NSPoint:
 
 def NSMakePoint(x: float, y: float) -> NSPoint:
     return NSPoint(x, y)
-
-
-def NSMinX(r: Optional[BoundingBox]) -> float:
-    if r is None:
-        raise ValueError("`r` is None!")
-    return r.xMin
-
-
-def NSMinY(r: Optional[BoundingBox]) -> float:
-    if r is None:
-        raise ValueError("`r` is None!")
-    return r.yMin
-
-
-def NSMaxX(r: Optional[BoundingBox]) -> float:
-    if r is None:
-        raise ValueError("`r` is None!")
-    return r.xMax
-
-
-def NSMaxY(r: Optional[BoundingBox]) -> float:
-    if r is None:
-        raise ValueError("`r` is None!")
-    return r.yMax
 
 
 class HTLetterspacerLib:
@@ -215,15 +194,14 @@ class HTLetterspacerLib:
         valor = propArea - area(polygon)
         return valor / amplitudeY
 
-    def setSpace(
-        self, layer: Glyph, referenceLayer: Glyph
-    ) -> Tuple[List[NSPoint], List[NSPoint]]:
+    def setSpace(self, layer: Glyph, referenceLayer: Glyph) -> None:
         # get reference glyph maximum points
         overshoot = self.overshoot()
 
         # store min and max y
-        self.minYref = NSMinY(referenceLayer.getBounds()) - overshoot
-        self.maxYref = NSMaxY(referenceLayer.getBounds()) + overshoot
+        reference_layer_bounds = referenceLayer.getBounds()
+        self.minYref = reference_layer_bounds.yMin - overshoot
+        self.maxYref = reference_layer_bounds.yMax + overshoot
 
         # bounds
         lFullMargin, rFullMargin = marginList(layer)
@@ -240,10 +218,11 @@ class HTLetterspacerLib:
         rFullMargin = self.deSlant(rFullMargin)
 
         # get extreme points deitalized
+        layer_bounds = layer.getBounds()
         lFullExtreme, rFullExtreme = self.maxPoints(
             lFullMargin + rFullMargin,
-            NSMinY(layer.getBounds()),
-            NSMaxY(layer.getBounds()),
+            layer_bounds.yMin,
+            layer_bounds.yMax,
         )
         # get zone extreme points
         lExtreme, rExtreme = self.maxPoints(
@@ -273,10 +252,10 @@ class HTLetterspacerLib:
             self.newR += widthDiff
             self.newWidth = self.layerWidth
 
-            self.output += (
-                layer.name
-                + " is tabular and adjusted at width = "
-                + str(self.layerWidth)
+            LOGGER.warning(
+                "%s is tabular and adjusted at width = %s",
+                layer.name,
+                str(self.layerWidth),
             )
         # end tabVersion
 
@@ -284,23 +263,17 @@ class HTLetterspacerLib:
         else:
             if layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None or self.LSB == False:
                 self.newL = layer.getLeftMargin()
-
             if layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None or self.RSB == False:
                 self.newR = layer.getRightMargin()
-        return lPolygon, rPolygon
 
-    def spaceMain(
-        self, layer: Glyph, referenceLayer: Glyph
-    ) -> Tuple[Optional[List[NSPoint]], Optional[List[NSPoint]]]:
+    def spaceMain(self, layer: Glyph, referenceLayer: Glyph) -> None:
         # TODO: decompose glyphs
         assert not layer.components
 
-        lp, rp = None, None
-        self.output = ""
         if not layer.name:
-            self.output += "Something went wrong!"
+            LOGGER.warning("Glyph has no name.")
         elif len(layer.contours) < 1 and len(layer.components) < 1:
-            self.output += "No paths in glyph " + layer.name + "\n"
+            LOGGER.warning("No paths in glyph %s.", layer.name)
         # both sidebearings with metric keys
         # elif layer.hasAlignedWidth():
         #     self.output += (
@@ -312,27 +285,18 @@ class HTLetterspacerLib:
             layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None
             and layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None
         ):
-            self.output += (
-                "Glyph " + layer.name + " has metric keys. Spacing not set.\n"
-            )
+            LOGGER.warning("Glyph %s has metric keys. Spacing not set.", layer.name)
         # if it is tabular
         elif ".tosf" in layer.name or ".tf" in layer.name:
-            self.output += "Glyph " + layer.name + " se supone tabular.." + "\n"
+            LOGGER.warning("Glyph %s is supposed to be tabular.", layer.name)
         # if it is fraction / silly condition
         elif "fraction" in layer.name:
-            self.output += (
-                "Glyph " + layer.name + ": should be checked and done manually.\n"
-            )
+            LOGGER.warning("Glyph %s should be checked and done manually.", layer.name)
         # if not...
         else:
-            lp, rp = self.setSpace(layer, referenceLayer)
+            self.setSpace(layer, referenceLayer)
             # store values in a list
             setSidebearings(layer, self.newL, self.newR, self.newWidth, color)
-
-        print(self.output)
-        self.output = ""
-
-        return lp, rp
 
 
 #  Functions
