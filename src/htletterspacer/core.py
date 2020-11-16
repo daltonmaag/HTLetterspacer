@@ -314,13 +314,13 @@ class HTLetterspacerLib:
         #         + layer.name
         #         + " has automatic alignment. Spacing not set.\n"
         #     )
-        # elif (
-        #     layer.parent.leftMetricsKey is not None
-        #     and layer.parent.rightMetricsKey is not None
-        # ):
-        #     self.output += (
-        #         "Glyph " + layer.name + " has metric keys. Spacing not set.\n"
-        #     )
+        elif (
+            layer.lib.get("com.schriftgestaltung.Glyphs.glyph.leftMetricsKey") is not None
+            and layer.lib.get("com.schriftgestaltung.Glyphs.glyph.rightMetricsKey") is not None
+        ):
+            self.output += (
+                "Glyph " + layer.name + " has metric keys. Spacing not set.\n"
+            )
         # if it is tabular
         # elif '.tosf' in layer.name or '.tf' in layer.name:
         # self.output+='Glyph '+layer.name +' se supone tabular..'+"\n"

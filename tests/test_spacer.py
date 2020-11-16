@@ -41,17 +41,13 @@ def test_spacer_full(datadir):
 
     for glyph, glyph_ref, factor in (
         ("A", "H", 1.25),
-        # ("Aacute", "H", 1.25),  # "Automatic Alignment, space not set."
         ("acute", "acute", 1.0),
-        ("Adieresis", "H", 1.25),
         ("arrowdown", "arrowdown", 1.5),
         ("arrowleft", "arrowleft", 1.5),
         ("arrowright", "arrowright", 1.5),
         ("arrowup", "arrowup", 1.5),
         ("B", "H", 1.25),
         ("C", "H", 1.25),
-        ("colon", "colon", 1.4),
-        ("comma", "comma", 1.4),
         ("D", "H", 1.25),
         ("dieresis", "dieresis", 1.0),
         ("dot", "dot", 1.5),
@@ -71,23 +67,28 @@ def test_spacer_full(datadir):
         ("O", "H", 1.25),
         ("P", "H", 1.25),
         ("period", "period", 1.4),
-        ("Q", "H", 1.25),
-        ("quotedblbase", "quotedblbase", 1.2),
-        ("quotedblleft", "quotedblleft", 1.2),
-        ("quotedblright", "quotedblright", 1.2),
-        ("quotesinglbase", "quotesinglbase", 1.2),
         ("R", "H", 1.25),
         ("S.closed", "H", 1.25),
         ("S", "H", 1.25),
-        ("semicolon", "semicolon", 1.4),
         ("space", "space", 1.25),
         ("T", "H", 1.25),
-        ("", "H", 1.25),
+        ("U", "H", 1.25),
         ("V", "H", 1.25),
         ("W", "H", 1.25),
         ("X", "H", 1.25),
         ("Y", "H", 1.25),
         ("Z", "H", 1.25),
+        # Composites come last because their spacing depends on their components.
+        # ("Aacute", "H", 1.25),  # "Automatic Alignment, space not set."
+        ("Adieresis", "H", 1.25),
+        ("colon", "colon", 1.4),
+        ("comma", "comma", 1.4),
+        ("Q", "H", 1.25),
+        ("quotedblbase", "quotedblbase", 1.2),
+        ("quotedblleft", "quotedblleft", 1.2),
+        ("quotedblright", "quotedblright", 1.2),
+        ("quotesinglbase", "quotesinglbase", 1.2),
+        ("semicolon", "semicolon", 1.4),
     ):
         glyph_orig = ufo_orig[glyph]
         if glyph_orig.components:
