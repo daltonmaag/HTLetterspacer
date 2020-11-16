@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="Chedieresis-cy" format="1">
+  <advance width="1296"/>
+  <unicode hex="04F4"/>
+  <outline>
+    <component base="Che-cy"/>
+    <component base="dieresiscomb.case" xOffset="319"/>
+    <contour>
+      <point x="591" y="-166" type="move" name="btm"/>
+    </contour>
+    <contour>
+      <point x="565" y="1660" type="move" name="top"/>
+    </contour>
+  </outline>
+</glyph>

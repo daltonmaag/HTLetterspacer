@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="Gstroke" format="1">
+  <advance width="1338"/>
+  <unicode hex="01E4"/>
+  <outline>
+    <component base="G"/>
+    <component base="strokeshortcomb" xOffset="693" yOffset="-173"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>G</string>
+    </dict>
+  </lib>
+</glyph>

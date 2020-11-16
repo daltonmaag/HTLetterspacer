@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="eltail-cy.sc" format="1">
+  <advance width="1305"/>
+  <outline>
+    <component base="el-cy.sc"/>
+    <component base="rtail_part." xOffset="664"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>RMXScaler</key>
+      <dict>
+        <key>source</key>
+        <string>Eltail-cy</string>
+      </dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>el-cy.sc</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>de-cy.sc</string>
+    </dict>
+  </lib>
+</glyph>

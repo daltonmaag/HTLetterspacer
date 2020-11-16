@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="lefttooth_part." format="1">
+  <advance width="457"/>
+  <outline>
+    <contour>
+      <point x="-14" y="-360" type="curve"/>
+      <point x="82" y="-360" type="line"/>
+      <point x="102" y="-303"/>
+      <point x="188" y="-53"/>
+      <point x="206" y="0" type="curve"/>
+      <point x="284" y="106" type="line"/>
+      <point x="75" y="106" type="line"/>
+      <point x="49" y="-31"/>
+      <point x="12" y="-215"/>
+    </contour>
+    <contour>
+      <point x="57" y="0" type="move" name="_bottomleft"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.Export</key>
+      <false/>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>=period</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>=period</string>
+    </dict>
+  </lib>
+</glyph>

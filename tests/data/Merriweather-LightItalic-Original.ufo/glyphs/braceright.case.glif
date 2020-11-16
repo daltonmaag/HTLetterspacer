@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="braceright.case" format="1">
+  <advance width="937"/>
+  <outline>
+    <component base="braceright" xOffset="8" yOffset="60"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>RMXScaler</key>
+      <dict>
+        <key>source</key>
+        <string>braceright</string>
+      </dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>braceright</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>braceright</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="secondtonechinese" format="1">
+  <advance width="395"/>
+  <unicode hex="02CA"/>
+  <outline>
+    <component base="acutecomb"/>
+    <contour>
+      <point x="78" y="1110" type="move" name="_top"/>
+    </contour>
+  </outline>
+</glyph>

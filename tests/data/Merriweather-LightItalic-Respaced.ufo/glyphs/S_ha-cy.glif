@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="Sha-cy" format="1">
+  <advance width="2010"/>
+  <unicode hex="0428"/>
+  <outline>
+    <contour>
+      <point x="1" y="0" type="line"/>
+      <point x="1859" y="0" type="line"/>
+      <point x="1867" y="69" type="line"/>
+      <point x="1722" y="104" type="line"/>
+      <point x="1893" y="1386" type="line"/>
+      <point x="2030" y="1406" type="line"/>
+      <point x="2039" y="1486" type="line"/>
+      <point x="1604" y="1486" type="line"/>
+      <point x="1593" y="1406" type="line"/>
+      <point x="1740" y="1386" type="line"/>
+      <point x="1569" y="104" type="line"/>
+      <point x="1016" y="104" type="line"/>
+      <point x="1189" y="1384" type="line"/>
+      <point x="1350" y="1406" type="line"/>
+      <point x="1358" y="1486" type="line"/>
+      <point x="899" y="1486" type="line"/>
+      <point x="891" y="1406" type="line"/>
+      <point x="1036" y="1384" type="line"/>
+      <point x="863" y="104" type="line"/>
+      <point x="308" y="104" type="line"/>
+      <point x="485" y="1384" type="line"/>
+      <point x="651" y="1406" type="line"/>
+      <point x="661" y="1486" type="line"/>
+      <point x="217" y="1487" type="line"/>
+      <point x="209" y="1407" type="line"/>
+      <point x="330" y="1378" type="line"/>
+      <point x="153" y="95" type="line"/>
+      <point x="9" y="70" type="line"/>
+    </contour>
+    <contour>
+      <point x="1865" y="0" type="move" name="bottomright"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>=Pe-cy+2</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>=Pe-cy+2</string>
+    </dict>
+  </lib>
+</glyph>

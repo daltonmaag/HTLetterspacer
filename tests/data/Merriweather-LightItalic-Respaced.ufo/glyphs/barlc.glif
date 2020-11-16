@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="barlc" format="1">
+  <advance width="909"/>
+  <outline>
+    <contour>
+      <point x="177" y="532" type="line"/>
+      <point x="725" y="532" type="line"/>
+      <point x="738" y="626" type="line"/>
+      <point x="191" y="626" type="line"/>
+    </contour>
+    <contour>
+      <point x="451" y="555" type="move" name="_bar"/>
+    </contour>
+    <contour>
+      <point x="371" y="580" type="move" name="_tbar"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.Export</key>
+      <false/>
+    </dict>
+  </lib>
+</glyph>

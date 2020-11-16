@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="Enghe-cy" format="1">
+  <advance width="1863"/>
+  <unicode hex="04A4"/>
+  <outline>
+    <contour>
+      <point x="9" y="0" type="line"/>
+      <point x="467" y="0" type="line"/>
+      <point x="473" y="70" type="line"/>
+      <point x="321" y="94" type="line"/>
+      <point x="397" y="706" type="line"/>
+      <point x="1095" y="706" type="line"/>
+      <point x="1021" y="94" type="line"/>
+      <point x="861" y="70" type="line"/>
+      <point x="855" y="0" type="line"/>
+      <point x="1327" y="0" type="line"/>
+      <point x="1335" y="70" type="line"/>
+      <point x="1177" y="94" type="line"/>
+      <point x="1341" y="1402" type="line"/>
+      <point x="1743" y="1392" type="line"/>
+      <point x="1751" y="1024" type="line"/>
+      <point x="1857" y="1024" type="line"/>
+      <point x="1895" y="1486" type="line"/>
+      <point x="1043" y="1486" type="line"/>
+      <point x="1035" y="1406" type="line"/>
+      <point x="1181" y="1386" type="line"/>
+      <point x="1109" y="810" type="line"/>
+      <point x="411" y="810" type="line"/>
+      <point x="485" y="1386" type="line"/>
+      <point x="631" y="1406" type="line"/>
+      <point x="641" y="1486" type="line"/>
+      <point x="201" y="1486" type="line"/>
+      <point x="191" y="1406" type="line"/>
+      <point x="325" y="1386" type="line"/>
+      <point x="163" y="94" type="line"/>
+      <point x="17" y="70" type="line"/>
+    </contour>
+    <contour>
+      <point x="705" y="-166" type="move" name="btm"/>
+    </contour>
+    <contour>
+      <point x="719" y="1660" type="move" name="top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>Pe-cy</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>Te-cy</string>
+    </dict>
+  </lib>
+</glyph>

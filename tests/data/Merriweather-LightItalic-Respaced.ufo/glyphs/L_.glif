@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="L" format="1">
+  <advance width="1128"/>
+  <unicode hex="004C"/>
+  <outline>
+    <contour>
+      <point x="-9" y="0" type="line"/>
+      <point x="947" y="0" type="line"/>
+      <point x="1045" y="428" type="line"/>
+      <point x="953" y="446" type="line"/>
+      <point x="821" y="102" type="line"/>
+      <point x="301" y="94" type="line"/>
+      <point x="477" y="1386" type="line"/>
+      <point x="651" y="1406" type="line"/>
+      <point x="657" y="1486" type="line"/>
+      <point x="195" y="1486" type="line"/>
+      <point x="185" y="1406" type="line"/>
+      <point x="319" y="1386" type="line"/>
+      <point x="143" y="94" type="line"/>
+      <point x="-3" y="70" type="line"/>
+    </contour>
+    <contour>
+      <point x="519" y="0" type="move" name="bottom"/>
+    </contour>
+    <contour>
+      <point x="817" y="1110" type="move" name="car"/>
+    </contour>
+    <contour>
+      <point x="875" y="1618" type="move" name="caron"/>
+    </contour>
+    <contour>
+      <point x="331" y="743" type="move" name="center"/>
+    </contour>
+    <contour>
+      <point x="418" y="1486" type="move" name="top"/>
+    </contour>
+    <contour>
+      <point x="1244" y="1486" type="move" name="topright"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>H</string>
+    </dict>
+  </lib>
+</glyph>

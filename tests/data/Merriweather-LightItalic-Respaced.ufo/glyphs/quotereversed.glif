@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="quotereversed" format="1">
+  <advance width="683"/>
+  <unicode hex="201B"/>
+  <outline>
+    <component base="quoteleft" xScale="0.8988" xyScale="-0.4384" yScale="-0.8988" yxScale="-0.4384" xOffset="606" yOffset="2662"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>quoteleft</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>quoteleft</string>
+    </dict>
+  </lib>
+</glyph>

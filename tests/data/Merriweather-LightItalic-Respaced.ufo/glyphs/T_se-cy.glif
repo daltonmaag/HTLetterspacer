@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="Tse-cy" format="1">
+  <advance width="1385"/>
+  <unicode hex="0426"/>
+  <outline>
+    <contour>
+      <point x="1079" y="-360" type="curve"/>
+      <point x="1179" y="-360" type="line"/>
+      <point x="1202" y="-288"/>
+      <point x="1256" y="-98"/>
+      <point x="1295" y="106" type="curve"/>
+      <point x="1115" y="106" type="line"/>
+      <point x="1285" y="1385" type="line"/>
+      <point x="1421" y="1406" type="line"/>
+      <point x="1432" y="1486" type="line"/>
+      <point x="1000" y="1486" type="line"/>
+      <point x="991" y="1406" type="line"/>
+      <point x="1130" y="1386" type="line"/>
+      <point x="959" y="104" type="line"/>
+      <point x="311" y="104" type="line"/>
+      <point x="484" y="1386" type="line"/>
+      <point x="626" y="1406" type="line"/>
+      <point x="632" y="1486" type="line"/>
+      <point x="214" y="1486" type="line"/>
+      <point x="207" y="1406" type="line"/>
+      <point x="328" y="1386" type="line"/>
+      <point x="154" y="94" type="line"/>
+      <point x="7" y="71" type="line"/>
+      <point x="-3" y="0" type="line"/>
+      <point x="1128" y="0" type="line"/>
+      <point x="1112" y="-120"/>
+      <point x="1095" y="-240"/>
+    </contour>
+    <contour>
+      <point x="835" y="1486" type="move" name="top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>Pe-cy</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>De-cy</string>
+    </dict>
+  </lib>
+</glyph>

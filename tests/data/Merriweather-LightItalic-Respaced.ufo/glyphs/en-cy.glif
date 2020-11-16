@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="en-cy" format="1">
+  <advance width="1116"/>
+  <unicode hex="043D"/>
+  <outline>
+    <contour>
+      <point x="910" y="158" type="curve" smooth="yes"/>
+      <point x="1027" y="1109" type="line"/>
+      <point x="876" y="1109" type="line"/>
+      <point x="814" y="621" type="line"/>
+      <point x="320" y="621" type="line"/>
+      <point x="384" y="1110" type="line"/>
+      <point x="342" y="1132" type="line"/>
+      <point x="136" y="1090" type="line"/>
+      <point x="122" y="1019" type="line"/>
+      <point x="214" y="972" type="line"/>
+      <point x="84" y="0" type="line"/>
+      <point x="237" y="0" type="line"/>
+      <point x="307" y="524" type="line"/>
+      <point x="801" y="524" type="line"/>
+      <point x="743" y="99" type="line" smooth="yes"/>
+      <point x="731" y="14"/>
+      <point x="781" y="-20"/>
+      <point x="849" y="-20" type="curve" smooth="yes"/>
+      <point x="949" y="-20"/>
+      <point x="1032" y="71"/>
+      <point x="1048" y="94" type="curve"/>
+      <point x="1023" y="139" type="line"/>
+      <point x="986" y="101"/>
+      <point x="956" y="88"/>
+      <point x="932" y="88" type="curve" smooth="yes"/>
+      <point x="917" y="88"/>
+      <point x="904" y="110"/>
+    </contour>
+    <contour>
+      <point x="953" y="0" type="move" name="bottomright"/>
+    </contour>
+    <contour>
+      <point x="606" y="1110" type="move" name="top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>pe-cy</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>ii-cy</string>
+    </dict>
+  </lib>
+</glyph>

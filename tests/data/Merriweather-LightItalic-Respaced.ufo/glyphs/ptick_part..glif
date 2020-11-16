@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="ptick_part." format="1">
+  <advance width="526"/>
+  <outline>
+    <contour>
+      <point x="462" y="364" type="line"/>
+      <point x="132" y="832" type="line"/>
+      <point x="70" y="790" type="line"/>
+      <point x="400" y="322" type="line"/>
+    </contour>
+    <contour>
+      <point x="268" y="576" type="move" name="_tick"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.Export</key>
+      <false/>
+    </dict>
+  </lib>
+</glyph>

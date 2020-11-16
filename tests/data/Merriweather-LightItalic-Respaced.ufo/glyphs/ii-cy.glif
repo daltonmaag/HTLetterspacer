@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="ii-cy" format="1">
+  <advance width="1099"/>
+  <unicode hex="0438"/>
+  <outline>
+    <component base="u"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>=u+5</string>
+    </dict>
+  </lib>
+</glyph>

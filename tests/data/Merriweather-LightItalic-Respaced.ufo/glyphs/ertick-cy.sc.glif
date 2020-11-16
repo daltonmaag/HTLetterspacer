@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="ertick-cy.sc" format="1">
+  <advance width="1113"/>
+  <outline>
+    <component base="p.sc"/>
+    <component base="ptick_part." xOffset="460" yOffset="-58"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>RMXScaler</key>
+      <dict>
+        <key>source</key>
+        <string>Ertick-cy</string>
+      </dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>h.sc</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>p.sc</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="strokeshortcomb" format="1">
+  <advance width="662"/>
+  <unicode hex="0335"/>
+  <outline>
+    <contour>
+      <point x="4" y="515" type="line"/>
+      <point x="647" y="515" type="line"/>
+      <point x="660" y="609" type="line"/>
+      <point x="17" y="609" type="line"/>
+    </contour>
+    <contour>
+      <point x="209" y="558" type="move" name="_bar"/>
+    </contour>
+    <contour>
+      <point x="328" y="556" type="move" name="_center"/>
+    </contour>
+  </outline>
+</glyph>

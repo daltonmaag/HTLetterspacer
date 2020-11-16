@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="commaturnedmod" format="1">
+  <advance width="418"/>
+  <unicode hex="02BB"/>
+  <outline>
+    <component base="commaturnedabovecomb"/>
+    <contour>
+      <point x="76" y="1110" type="move" name="_top"/>
+    </contour>
+  </outline>
+</glyph>

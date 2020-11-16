@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="lslash.sc" format="1">
+  <advance width="1110"/>
+  <outline>
+    <component base="l.sc"/>
+    <component base="slashshortcomb" xOffset="39" yOffset="-200"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>=l.sc+10</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>l.sc</string>
+    </dict>
+  </lib>
+</glyph>

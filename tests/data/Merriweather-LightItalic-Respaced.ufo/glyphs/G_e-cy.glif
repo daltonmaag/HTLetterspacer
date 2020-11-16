@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="Ge-cy" format="1">
+  <advance width="1114"/>
+  <unicode hex="0413"/>
+  <outline>
+    <contour>
+      <point x="28" y="0" type="line"/>
+      <point x="555" y="0" type="line"/>
+      <point x="562" y="70" type="line"/>
+      <point x="332" y="94" type="line"/>
+      <point x="512" y="1402" type="line"/>
+      <point x="1022" y="1385" type="line"/>
+      <point x="1023" y="1040" type="line"/>
+      <point x="1111" y="1042" type="line"/>
+      <point x="1155" y="1486" type="line"/>
+      <point x="201" y="1486" type="line"/>
+      <point x="191" y="1408" type="line"/>
+      <point x="351" y="1384" type="line"/>
+      <point x="173" y="94" type="line"/>
+      <point x="37" y="70" type="line"/>
+    </contour>
+    <contour>
+      <point x="562" y="0" type="move" name="bottomright"/>
+    </contour>
+    <contour>
+      <point x="735" y="1486" type="move" name="top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>Pe-cy</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>Te-cy</string>
+    </dict>
+  </lib>
+</glyph>

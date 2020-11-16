@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="Ka-cy" format="1">
+  <advance width="1328"/>
+  <unicode hex="041A"/>
+  <outline>
+    <contour>
+      <point x="1015" y="0" type="curve" smooth="yes"/>
+      <point x="1213" y="0" type="line"/>
+      <point x="1221" y="80" type="line"/>
+      <point x="1134" y="102" type="line"/>
+      <point x="1083" y="118"/>
+      <point x="989" y="326"/>
+      <point x="888" y="506" type="curve" smooth="yes"/>
+      <point x="814" y="640"/>
+      <point x="735" y="760"/>
+      <point x="667" y="775" type="curve"/>
+      <point x="648" y="706" type="line"/>
+      <point x="1207" y="1384" type="line"/>
+      <point x="1356" y="1406" type="line"/>
+      <point x="1366" y="1486" type="line"/>
+      <point x="933" y="1486" type="line"/>
+      <point x="923" y="1406" type="line"/>
+      <point x="1082" y="1382" type="line"/>
+      <point x="596" y="776" type="line"/>
+      <point x="367" y="776" type="line"/>
+      <point x="356" y="687" type="line"/>
+      <point x="559" y="687" type="line" smooth="yes"/>
+      <point x="699" y="687"/>
+      <point x="908" y="0"/>
+    </contour>
+    <contour>
+      <point x="10" y="0" type="line"/>
+      <point x="466" y="0" type="line"/>
+      <point x="472" y="70" type="line"/>
+      <point x="319" y="94" type="line"/>
+      <point x="483" y="1386" type="line"/>
+      <point x="631" y="1406" type="line"/>
+      <point x="639" y="1486" type="line"/>
+      <point x="201" y="1486" type="line"/>
+      <point x="193" y="1406" type="line"/>
+      <point x="325" y="1386" type="line"/>
+      <point x="163" y="94" type="line"/>
+      <point x="18" y="70" type="line"/>
+    </contour>
+    <contour>
+      <point x="1219" y="0" type="move" name="bottomright"/>
+    </contour>
+    <contour>
+      <point x="340" y="1205" type="move" name="tbar"/>
+    </contour>
+    <contour>
+      <point x="786" y="1486" type="move" name="top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>Pe-cy</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>K</string>
+    </dict>
+  </lib>
+</glyph>

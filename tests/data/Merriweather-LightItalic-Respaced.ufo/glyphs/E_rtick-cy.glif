@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="Ertick-cy" format="1">
+  <advance width="1174"/>
+  <unicode hex="048E"/>
+  <outline>
+    <component base="P"/>
+    <component base="ptick_part." xOffset="526" yOffset="42"/>
+  </outline>
+</glyph>

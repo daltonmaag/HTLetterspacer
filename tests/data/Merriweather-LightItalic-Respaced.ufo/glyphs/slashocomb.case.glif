@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="slashocomb.case" format="1">
+  <advance width="922"/>
+  <outline>
+    <contour>
+      <point x="22" y="-154" type="line"/>
+      <point x="1053" y="1612" type="line"/>
+      <point x="957" y="1661" type="line"/>
+      <point x="-76" y="-103" type="line"/>
+    </contour>
+    <contour>
+      <point x="488" y="744" type="move" name="_center"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.Export</key>
+      <false/>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="tbar.sc" format="1">
+  <advance width="1192"/>
+  <outline>
+    <component base="t.sc"/>
+    <component base="strokelongcomb" xOffset="261" yOffset="90"/>
+    <contour>
+      <point x="584" y="556" type="move" name="_center"/>
+    </contour>
+  </outline>
+</glyph>

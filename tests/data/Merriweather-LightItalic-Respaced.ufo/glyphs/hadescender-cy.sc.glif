@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="hadescender-cy.sc" format="1">
+  <advance width="1285"/>
+  <outline>
+    <component base="x.sc"/>
+    <component base="righttooth_part." xOffset="903"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>RMXScaler</key>
+      <dict>
+        <key>source</key>
+        <string>Hadescender-cy</string>
+      </dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>x.sc</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>de-cy.sc</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="a-cy.sc" format="1">
+  <advance width="1380"/>
+  <outline>
+    <component base="a.sc"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>RMXScaler</key>
+      <dict>
+        <key>source</key>
+        <string>A-cy</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

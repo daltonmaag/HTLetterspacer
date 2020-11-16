@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="uhornacute.sc" format="1">
+  <advance width="1360"/>
+  <outline>
+    <component base="acutecomb" xOffset="525" yOffset="182"/>
+    <component base="uhorn.sc" xOffset="14"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0.97,0.9,0,1</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="chedescender-cy.sc" format="1">
+  <advance width="1172"/>
+  <outline>
+    <component base="che-cy.sc"/>
+    <component base="righttooth_part." xOffset="706"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>RMXScaler</key>
+      <dict>
+        <key>source</key>
+        <string>Chedescender-cy</string>
+      </dict>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>che-cy.sc</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>de-cy.sc</string>
+    </dict>
+  </lib>
+</glyph>

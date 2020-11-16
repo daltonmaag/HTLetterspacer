@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="n.sc" format="1">
+  <advance width="1345"/>
+  <outline>
+    <contour>
+      <point x="-22" y="0" type="line"/>
+      <point x="408" y="0" type="line"/>
+      <point x="416" y="64" type="line"/>
+      <point x="252" y="86" type="line"/>
+      <point x="387" y="1219" type="line"/>
+      <point x="351" y="1215" type="line"/>
+      <point x="454" y="950" type="line"/>
+      <point x="930" y="0" type="line"/>
+      <point x="1090" y="0" type="line"/>
+      <point x="1264" y="1202" type="line"/>
+      <point x="1406" y="1220" type="line"/>
+      <point x="1410" y="1292" type="line"/>
+      <point x="998" y="1292" type="line"/>
+      <point x="990" y="1220" type="line"/>
+      <point x="1142" y="1204" type="line"/>
+      <point x="999" y="75" type="line"/>
+      <point x="1035" y="79" type="line"/>
+      <point x="930" y="346" type="line"/>
+      <point x="460" y="1292" type="line"/>
+      <point x="156" y="1292" type="line"/>
+      <point x="144" y="1220" type="line"/>
+      <point x="274" y="1202" type="line"/>
+      <point x="122" y="84" type="line"/>
+      <point x="-14" y="64" type="line"/>
+    </contour>
+    <contour>
+      <point x="610" y="0" type="move" name="bottom"/>
+    </contour>
+    <contour>
+      <point x="755" y="1292" type="move" name="top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>RMXScaler</key>
+      <dict>
+        <key>source</key>
+        <string>N</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

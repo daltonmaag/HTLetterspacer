@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="slashshortcomb" format="1">
+  <advance width="907"/>
+  <unicode hex="0337"/>
+  <outline>
+    <contour>
+      <point x="99" y="682" type="line"/>
+      <point x="337" y="782" type="line"/>
+      <point x="407" y="811" type="line"/>
+      <point x="932" y="1032" type="line"/>
+      <point x="897" y="1128" type="line"/>
+      <point x="396" y="913" type="line"/>
+      <point x="336" y="887" type="line"/>
+      <point x="69" y="772" type="line"/>
+    </contour>
+    <contour>
+      <point x="297" y="743" type="move" name="_center"/>
+    </contour>
+  </outline>
+</glyph>
