@@ -30,7 +30,7 @@ def test_spacer(datadir):
 
 def test_spacer_full(datadir):
     ufo_orig = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed.ufo")
-    ufo_rspc = ufoLib2.Font.open(datadir / "Respaced.ufo")
+    ufo_rspc = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed-Respaced.ufo")
 
     o = htletterspacer.core.HTLetterspacerLib(
         1000, 0, ufo_orig.info.xHeight, True, True, 0.0, 0.0
