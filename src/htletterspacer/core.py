@@ -19,6 +19,9 @@ paramFreq = (
     5  # frequency of vertical measuring. Higher values are faster but less accurate
 )
 
+GLYPHS_LEFT_METRICS_KEY = "com.schriftgestaltung.Glyphs.glyph.leftMetricsKey"
+GLYPHS_RIGHT_METRICS_KEY = "com.schriftgestaltung.Glyphs.glyph.rightMetricsKey"
+
 
 @dataclass
 class NSPoint:
@@ -29,15 +32,6 @@ class NSPoint:
 
 def NSMakePoint(x: float, y: float) -> NSPoint:
     return NSPoint(x, y)
-
-
-# @dataclass
-# class NSRect:
-#     __slots__ = "x", "y", "width", "height"
-#     x: float
-#     y: float
-#     width: float
-#     height: float
 
 
 def NSMinX(r: Optional[BoundingBox]) -> float:
@@ -287,12 +281,12 @@ class HTLetterspacerLib:
         # end tabVersion
 
         # if there is a metric rule
-        # else:
-        #     if layer.parent.leftMetricsKey is not None or self.LSB == False:
-        #         self.newL = layer.LSB
+        else:
+            if layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None or self.LSB == False:
+                self.newL = layer.getLeftMargin()
 
-        #     if layer.parent.rightMetricsKey is not None or self.RSB == False:
-        #         self.newR = layer.RSB
+            if layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None or self.RSB == False:
+                self.newR = layer.getRightMargin()
         return lPolygon, rPolygon
 
     def spaceMain(
@@ -315,15 +309,15 @@ class HTLetterspacerLib:
         #         + " has automatic alignment. Spacing not set.\n"
         #     )
         elif (
-            layer.lib.get("com.schriftgestaltung.Glyphs.glyph.leftMetricsKey") is not None
-            and layer.lib.get("com.schriftgestaltung.Glyphs.glyph.rightMetricsKey") is not None
+            layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None
+            and layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None
         ):
             self.output += (
                 "Glyph " + layer.name + " has metric keys. Spacing not set.\n"
             )
         # if it is tabular
-        # elif '.tosf' in layer.name or '.tf' in layer.name:
-        # self.output+='Glyph '+layer.name +' se supone tabular..'+"\n"
+        elif ".tosf" in layer.name or ".tf" in layer.name:
+            self.output += "Glyph " + layer.name + " se supone tabular.." + "\n"
         # if it is fraction / silly condition
         elif "fraction" in layer.name:
             self.output += (
