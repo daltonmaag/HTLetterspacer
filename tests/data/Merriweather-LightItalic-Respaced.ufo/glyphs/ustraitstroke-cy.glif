@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ustraitstroke-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ustraitstroke-cy" format="2">
   <advance width="1111"/>
   <unicode hex="04B1"/>
   <outline>
     <component base="ustrait-cy"/>
     <component base="strokeshortcomb" xOffset="64" yOffset="-509"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+    </dict>
+  </lib>
 </glyph>

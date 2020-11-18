@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="gheupturn-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="gheupturn-cy" format="2">
   <advance width="760"/>
   <unicode hex="0491"/>
+  <anchor x="306" y="1110" name="top"/>
   <outline>
     <contour>
       <point x="784" y="1428" type="line"/>
@@ -15,8 +16,11 @@
       <point x="817" y="1017" type="line"/>
       <point x="874" y="1428" type="line"/>
     </contour>
-    <contour>
-      <point x="306" y="1110" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:20</string>
+    </dict>
+  </lib>
 </glyph>

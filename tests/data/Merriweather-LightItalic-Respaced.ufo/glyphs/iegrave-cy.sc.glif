@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="iegrave-cy.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="iegrave-cy.sc" format="2">
   <advance width="1159"/>
   <outline>
     <component base="ie-cy.sc"/>
     <component base="gravecomb" xOffset="237" yOffset="184"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:38</string>
+    </dict>
+  </lib>
 </glyph>

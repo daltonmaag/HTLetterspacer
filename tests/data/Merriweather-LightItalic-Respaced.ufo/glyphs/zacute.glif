@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="zacute" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zacute" format="2">
   <advance width="965"/>
   <unicode hex="017A"/>
   <outline>
     <component base="z"/>
     <component base="acutecomb" xOffset="334"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:37</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Lowercase</string>
+    </dict>
+  </lib>
 </glyph>

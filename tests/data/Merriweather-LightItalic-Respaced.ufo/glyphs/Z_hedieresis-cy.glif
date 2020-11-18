@@ -1,12 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Zhedieresis-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Zhedieresis-cy" format="2">
   <advance width="2034"/>
   <unicode hex="04DC"/>
+  <anchor x="1020" y="1660" name="top"/>
   <outline>
     <component base="Zhe-cy"/>
     <component base="dieresiscomb.case" xOffset="581"/>
-    <contour>
-      <point x="1020" y="1660" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:28</string>
+    </dict>
+  </lib>
 </glyph>

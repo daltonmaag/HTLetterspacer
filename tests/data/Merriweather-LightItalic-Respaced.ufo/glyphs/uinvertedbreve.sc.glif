@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="uinvertedbreve.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uinvertedbreve.sc" format="2">
   <advance width="1303"/>
   <outline>
     <component base="u.sc"/>
     <component base="breveinvertedcomb" xOffset="297" yOffset="178"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:42</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,17 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="tbar" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="tbar" format="2">
   <advance width="671"/>
   <unicode hex="0167"/>
   <outline>
     <component base="t"/>
-    <component base="barlc" xOffset="-129"/>
+    <component base="barlc" xOffset="-93"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>t</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>t</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Lowercase</string>
     </dict>
   </lib>
 </glyph>

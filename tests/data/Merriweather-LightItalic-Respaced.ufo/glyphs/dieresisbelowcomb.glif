@@ -1,11 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="dieresisbelowcomb" format="1">
-  <advance width="798"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dieresisbelowcomb" format="2">
   <unicode hex="0324"/>
+  <anchor x="212" y="0" name="_bottom"/>
   <outline>
     <component base="dieresisbelowcomb.case"/>
-    <contour>
-      <point x="212" y="0" type="move" name="_bottom"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>798</integer>
+    </dict>
+  </lib>
 </glyph>

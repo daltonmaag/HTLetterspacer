@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="gje-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="gje-cy" format="2">
   <advance width="806"/>
   <unicode hex="0453"/>
   <outline>
@@ -19,6 +19,8 @@
           <string>ge-cy</string>
         </dict>
       </array>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:08</string>
     </dict>
   </lib>
 </glyph>

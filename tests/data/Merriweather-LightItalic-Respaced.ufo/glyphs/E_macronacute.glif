@@ -1,10 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Emacronacute" format="1">
-  <advance width="1195"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Emacronacute" format="2">
+  <advance width="1202"/>
   <unicode hex="1E16"/>
   <outline>
     <component base="E"/>
-    <component base="macroncomb.case" xOffset="172"/>
-    <component base="acutecomb.case" xOffset="443" yOffset="315"/>
+    <component base="macroncomb.case" xOffset="179"/>
+    <component base="acutecomb.case" xOffset="450" yOffset="315"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:26</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Uppercase</string>
+    </dict>
+  </lib>
 </glyph>

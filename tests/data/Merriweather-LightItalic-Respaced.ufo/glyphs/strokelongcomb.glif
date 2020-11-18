@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="strokelongcomb" format="1">
-  <advance width="960"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="strokelongcomb" format="2">
   <unicode hex="0336"/>
+  <anchor x="346" y="556" name="_bar"/>
+  <anchor x="480" y="556" name="_center"/>
   <outline>
     <contour>
       <point x="825" y="615" type="line"/>
@@ -9,11 +10,13 @@
       <point x="137" y="508" type="line"/>
       <point x="807" y="508" type="line"/>
     </contour>
-    <contour>
-      <point x="346" y="556" type="move" name="_bar"/>
-    </contour>
-    <contour>
-      <point x="480" y="556" type="move" name="_center"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>960</integer>
+    </dict>
+  </lib>
 </glyph>

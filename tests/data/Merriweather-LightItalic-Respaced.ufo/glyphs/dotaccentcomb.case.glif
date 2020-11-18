@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="dotaccentcomb.case" format="1">
-  <advance width="461"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dotaccentcomb.case" format="2">
+  <anchor x="338" y="1486" name="_top"/>
+  <anchor x="390" y="1763" name="top"/>
   <outline>
     <contour>
       <point x="387" y="1632" type="curve" smooth="yes"/>
@@ -16,11 +17,13 @@
       <point x="289" y="1669"/>
       <point x="327" y="1632"/>
     </contour>
-    <contour>
-      <point x="338" y="1486" type="move" name="_top"/>
-    </contour>
-    <contour>
-      <point x="390" y="1763" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:28</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>461</integer>
+    </dict>
+  </lib>
 </glyph>

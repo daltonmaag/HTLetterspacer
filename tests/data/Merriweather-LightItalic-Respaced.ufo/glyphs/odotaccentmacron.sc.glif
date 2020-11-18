@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="odotaccentmacron.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="odotaccentmacron.sc" format="2">
   <advance width="1287"/>
   <outline>
     <component base="o.sc"/>
     <component base="dotaccentcomb" xOffset="443" yOffset="182"/>
     <component base="macroncomb" xOffset="326" yOffset="579"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:39</string>
+    </dict>
+  </lib>
 </glyph>

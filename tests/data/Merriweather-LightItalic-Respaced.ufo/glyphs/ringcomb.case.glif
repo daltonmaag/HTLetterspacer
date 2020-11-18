@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ringcomb.case" format="1">
-  <advance width="746"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ringcomb.case" format="2">
+  <anchor x="505" y="1486" name="_top"/>
+  <anchor x="765" y="1834" name="top"/>
   <outline>
     <contour>
       <point x="521" y="1592" type="curve" smooth="yes"/>
@@ -30,11 +31,13 @@
       <point x="707" y="1726"/>
       <point x="615" y="1677"/>
     </contour>
-    <contour>
-      <point x="505" y="1486" type="move" name="_top"/>
-    </contour>
-    <contour>
-      <point x="765" y="1834" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:26</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>746</integer>
+    </dict>
+  </lib>
 </glyph>

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="LJ" format="1">
-  <advance width="1683"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="LJ" format="2">
+  <advance width="1676"/>
   <unicode hex="01C7"/>
   <outline>
-    <component base="L" xOffset="2"/>
-    <component base="J" xOffset="1134"/>
+    <component base="L" xOffset="-5"/>
+    <component base="J" xOffset="1127"/>
   </outline>
   <lib>
     <dict>
@@ -27,6 +27,14 @@
           <string>J</string>
         </dict>
       </array>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:27</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Uppercase</string>
     </dict>
   </lib>
 </glyph>

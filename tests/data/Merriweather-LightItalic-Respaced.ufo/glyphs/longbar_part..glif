@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="longbar_part." format="1">
-  <advance width="1248"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="longbar_part." format="2">
+  <advance width="1392"/>
   <outline>
     <contour>
-      <point x="183" y="702" type="line"/>
-      <point x="1113" y="702" type="line"/>
-      <point x="1119" y="806" type="line"/>
-      <point x="189" y="806" type="line"/>
+      <point x="255" y="702" type="line"/>
+      <point x="1185" y="702" type="line"/>
+      <point x="1191" y="806" type="line"/>
+      <point x="261" y="806" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
       <key>com.schriftgestaltung.Glyphs.Export</key>
       <false/>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:17</string>
     </dict>
   </lib>
 </glyph>

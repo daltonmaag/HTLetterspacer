@@ -1,8 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ccaron.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ccaron.sc" format="2">
   <advance width="1172"/>
   <outline>
     <component base="c.sc"/>
     <component base="caroncomb" xOffset="317" yOffset="196"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:35</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Smallcaps</string>
+    </dict>
+  </lib>
 </glyph>

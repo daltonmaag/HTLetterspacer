@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="bitcoin" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="bitcoin" format="2">
   <advance width="1317"/>
   <unicode hex="20BF"/>
+  <anchor x="562" y="0" name="bottom"/>
+  <anchor x="752" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="693" y="1738" type="line"/>
@@ -84,11 +86,11 @@
       <point x="604" y="821"/>
       <point x="518" y="819"/>
     </contour>
-    <contour>
-      <point x="562" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="752" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:21</string>
+    </dict>
+  </lib>
 </glyph>

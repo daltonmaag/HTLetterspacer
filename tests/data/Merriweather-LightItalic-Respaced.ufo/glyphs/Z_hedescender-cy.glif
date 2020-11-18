@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Zhedescender-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Zhedescender-cy" format="2">
   <advance width="2034"/>
   <unicode hex="0496"/>
+  <anchor x="1020" y="1660" name="top"/>
   <outline>
     <component base="Zhe-cy"/>
-    <component base="righttooth_part." xOffset="1634"/>
-    <contour>
-      <point x="1020" y="1660" type="move" name="top"/>
-    </contour>
+    <component base="righttooth_part." xOffset="1619"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>De-cy</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:40</string>
     </dict>
   </lib>
 </glyph>

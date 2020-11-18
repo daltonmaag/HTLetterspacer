@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="M" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="M" format="2">
   <advance width="1883"/>
   <unicode hex="004D"/>
+  <anchor x="848" y="0" name="bottom"/>
+  <anchor x="1774" y="0" name="bottomright"/>
+  <anchor x="1044" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="-40" y="0" type="line"/>
@@ -36,14 +39,17 @@
       <point x="135" y="94" type="line"/>
       <point x="-32" y="70" type="line"/>
     </contour>
-    <contour>
-      <point x="848" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="1774" y="0" type="move" name="bottomright"/>
-    </contour>
-    <contour>
-      <point x="1044" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:18</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Uppercase</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Schwa-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Schwa-cy" format="2">
   <advance width="1310"/>
   <unicode hex="04D8"/>
+  <anchor x="758" y="1486" name="top"/>
   <outline>
     <component base="Schwa" xOffset="35"/>
-    <contour>
-      <point x="758" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
@@ -21,6 +19,8 @@
           <string>Schwa</string>
         </dict>
       </array>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:15</string>
     </dict>
   </lib>
 </glyph>

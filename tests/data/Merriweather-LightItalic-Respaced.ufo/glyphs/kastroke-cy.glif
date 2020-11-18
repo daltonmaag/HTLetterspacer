@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="kastroke-cy" format="1">
-  <advance width="1054"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="kastroke-cy" format="2">
+  <advance width="1093"/>
   <unicode hex="049F"/>
   <outline>
     <component base="k"/>
-    <component base="barlc" xOffset="-61" yOffset="742"/>
+    <component base="barlc" xOffset="14" yOffset="742"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+    </dict>
+  </lib>
 </glyph>

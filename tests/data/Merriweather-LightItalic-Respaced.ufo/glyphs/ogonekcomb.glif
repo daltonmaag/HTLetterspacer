@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ogonekcomb" format="1">
-  <advance width="513"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ogonekcomb" format="2">
   <unicode hex="0328"/>
+  <anchor x="228" y="0" name="_ogonek"/>
   <outline>
     <contour>
       <point x="127" y="-390" type="curve" smooth="yes"/>
@@ -26,8 +26,13 @@
       <point x="-22" y="-332"/>
       <point x="17" y="-388"/>
     </contour>
-    <contour>
-      <point x="228" y="0" type="move" name="_ogonek"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:15</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>513</integer>
+    </dict>
+  </lib>
 </glyph>

@@ -1,21 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="endescender-cy.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="endescender-cy.sc" format="2">
   <advance width="1357"/>
   <outline>
     <component base="h.sc"/>
-    <component base="righttooth_part." xOffset="955"/>
+    <component base="righttooth_part." xOffset="940"/>
   </outline>
   <lib>
     <dict>
-      <key>RMXScaler</key>
-      <dict>
-        <key>source</key>
-        <string>Endescender-cy</string>
-      </dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>pe-cy.sc</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>de-cy.sc</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:28</string>
     </dict>
   </lib>
 </glyph>

@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="threesuperior" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="threesuperior" format="2">
   <advance width="665"/>
   <unicode hex="00B3"/>
   <outline>
     <component base="three.dnom" xOffset="116" yOffset="845"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:45</string>
+    </dict>
+  </lib>
 </glyph>

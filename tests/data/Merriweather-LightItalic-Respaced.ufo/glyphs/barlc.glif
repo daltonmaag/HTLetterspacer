@@ -1,24 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="barlc" format="1">
-  <advance width="909"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="barlc" format="2">
+  <advance width="837"/>
+  <anchor x="415" y="555" name="_bar"/>
+  <anchor x="335" y="580" name="_tbar"/>
   <outline>
     <contour>
-      <point x="177" y="532" type="line"/>
-      <point x="725" y="532" type="line"/>
-      <point x="738" y="626" type="line"/>
-      <point x="191" y="626" type="line"/>
-    </contour>
-    <contour>
-      <point x="451" y="555" type="move" name="_bar"/>
-    </contour>
-    <contour>
-      <point x="371" y="580" type="move" name="_tbar"/>
+      <point x="141" y="532" type="line"/>
+      <point x="689" y="532" type="line"/>
+      <point x="702" y="626" type="line"/>
+      <point x="155" y="626" type="line"/>
     </contour>
   </outline>
   <lib>
     <dict>
       <key>com.schriftgestaltung.Glyphs.Export</key>
       <false/>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:15</string>
     </dict>
   </lib>
 </glyph>

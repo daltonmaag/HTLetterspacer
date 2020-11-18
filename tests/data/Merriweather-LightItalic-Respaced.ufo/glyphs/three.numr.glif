@@ -1,7 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="three.numr" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="three.numr" format="2">
   <advance width="665"/>
   <outline>
     <component base="three.dnom" xOffset="86" yOffset="625"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:28</string>
+    </dict>
+  </lib>
 </glyph>

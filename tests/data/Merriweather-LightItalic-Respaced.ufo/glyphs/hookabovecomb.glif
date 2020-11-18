@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="hookabovecomb" format="1">
-  <advance width="478"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="hookabovecomb" format="2">
   <unicode hex="0309"/>
+  <anchor x="287" y="1110" name="_top"/>
+  <anchor x="375" y="1724" name="top"/>
   <outline>
     <contour>
       <point x="301" y="1226" type="curve"/>
@@ -32,11 +33,13 @@
       <point x="270" y="1274"/>
       <point x="284" y="1248"/>
     </contour>
-    <contour>
-      <point x="287" y="1110" type="move" name="_top"/>
-    </contour>
-    <contour>
-      <point x="375" y="1724" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:21</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>478</integer>
+    </dict>
+  </lib>
 </glyph>

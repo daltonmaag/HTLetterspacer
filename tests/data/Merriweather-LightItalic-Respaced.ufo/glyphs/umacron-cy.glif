@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="umacron-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="umacron-cy" format="2">
   <advance width="1057"/>
   <unicode hex="04EF"/>
   <outline>
     <component base="u-cy"/>
     <component base="macroncomb" xOffset="167"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+    </dict>
+  </lib>
 </glyph>

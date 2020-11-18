@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="p" format="1">
-  <advance width="1071"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="p" format="2">
+  <advance width="1098"/>
   <unicode hex="0070"/>
+  <anchor x="650" y="92" name="tick"/>
+  <anchor x="644" y="1110" name="top"/>
   <outline>
     <contour>
       <point x="14" y="-508" type="line"/>
@@ -40,17 +42,19 @@
       <point x="357" y="78"/>
       <point x="297" y="90"/>
     </contour>
-    <contour>
-      <point x="650" y="92" type="move" name="tick"/>
-    </contour>
-    <contour>
-      <point x="644" y="1110" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>b</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Lowercase</string>
     </dict>
   </lib>
 </glyph>

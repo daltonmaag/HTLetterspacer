@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ia-cy.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ia-cy.sc" format="2">
   <advance width="1293"/>
+  <anchor x="758" y="1292" name="top"/>
   <outline>
     <contour>
       <point x="891" y="574" type="curve"/>
@@ -50,19 +51,13 @@
       <point x="850" y="1222"/>
       <point x="916" y="1205"/>
     </contour>
-    <contour>
-      <point x="758" y="1292" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>RMXScaler</key>
-      <dict>
-        <key>source</key>
-        <string>Ia-cy</string>
-      </dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>pe-cy.sc</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:24</string>
     </dict>
   </lib>
 </glyph>

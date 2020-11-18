@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="u" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="u" format="2">
   <advance width="1099"/>
   <unicode hex="0075"/>
+  <anchor x="493" y="0" name="bottom"/>
+  <anchor x="927" y="0" name="bottomright"/>
+  <anchor x="899" y="20" name="ogonek"/>
+  <anchor x="608" y="1110" name="top"/>
+  <anchor x="912" y="1122" name="topright"/>
   <outline>
     <contour>
       <point x="357" y="-20" type="curve" smooth="yes"/>
@@ -49,20 +54,17 @@
       <point x="117" y="42"/>
       <point x="213" y="-20"/>
     </contour>
-    <contour>
-      <point x="493" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="927" y="0" type="move" name="bottomright"/>
-    </contour>
-    <contour>
-      <point x="899" y="20" type="move" name="ogonek"/>
-    </contour>
-    <contour>
-      <point x="608" y="1110" type="move" name="top"/>
-    </contour>
-    <contour>
-      <point x="912" y="1122" type="move" name="topright"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:24</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Lowercase</string>
+    </dict>
+  </lib>
 </glyph>

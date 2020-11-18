@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Esdescender-cy" format="2">
+  <advance width="1239"/>
+  <unicode hex="04AA"/>
+  <outline>
+    <component base="C"/>
+    <component base="cedillacomb.case" xOffset="429"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/05/13 18:38:19</string>
+    </dict>
+  </lib>
+</glyph>

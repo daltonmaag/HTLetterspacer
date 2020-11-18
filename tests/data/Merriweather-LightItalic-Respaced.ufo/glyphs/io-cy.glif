@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="io-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="io-cy" format="2">
   <advance width="949"/>
   <unicode hex="0451"/>
   <outline>
     <component base="ie-cy"/>
     <component base="dieresiscomb" xOffset="136" yOffset="-2"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+    </dict>
+  </lib>
 </glyph>

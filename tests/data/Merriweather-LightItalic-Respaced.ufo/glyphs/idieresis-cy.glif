@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="idieresis-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="idieresis-cy" format="2">
   <advance width="1099"/>
   <unicode hex="04E5"/>
   <outline>
     <component base="ii-cy"/>
     <component base="dieresiscomb" xOffset="135"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:35</string>
+    </dict>
+  </lib>
 </glyph>

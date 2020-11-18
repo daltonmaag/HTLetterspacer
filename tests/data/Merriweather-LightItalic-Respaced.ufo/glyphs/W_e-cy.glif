@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="We-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="We-cy" format="2">
   <advance width="1952"/>
   <unicode hex="051C"/>
   <outline>
@@ -18,6 +18,8 @@
           <string>W</string>
         </dict>
       </array>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:59</string>
     </dict>
   </lib>
 </glyph>

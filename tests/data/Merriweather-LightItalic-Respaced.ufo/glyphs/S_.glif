@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="S" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="S" format="2">
   <advance width="1054"/>
   <unicode hex="0053"/>
+  <anchor x="452" y="0" name="bottom"/>
+  <anchor x="666" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="432" y="-22" type="curve" smooth="yes"/>
@@ -47,11 +49,17 @@
       <point x="82" y="28"/>
       <point x="252" y="-22"/>
     </contour>
-    <contour>
-      <point x="452" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="666" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:25</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Uppercase</string>
+    </dict>
+  </lib>
 </glyph>

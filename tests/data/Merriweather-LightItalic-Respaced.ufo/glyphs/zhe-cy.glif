@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="zhe-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zhe-cy" format="2">
   <advance width="1888"/>
   <unicode hex="0436"/>
+  <anchor x="1636" y="0" name="bottomright"/>
+  <anchor x="1007" y="1110" name="top"/>
   <outline>
     <contour>
       <point x="1287" y="617" type="curve"/>
@@ -73,11 +75,11 @@
       <point x="1525" y="1120"/>
       <point x="1351" y="886"/>
     </contour>
-    <contour>
-      <point x="1636" y="0" type="move" name="bottomright"/>
-    </contour>
-    <contour>
-      <point x="1007" y="1110" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:19</string>
+    </dict>
+  </lib>
 </glyph>

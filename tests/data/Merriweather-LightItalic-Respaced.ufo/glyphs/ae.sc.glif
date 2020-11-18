@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ae.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ae.sc" format="2">
   <advance width="1848"/>
+  <anchor x="1171" y="1292" name="top"/>
   <outline>
     <contour>
       <point x="-65" y="0" type="line"/>
@@ -38,19 +39,19 @@
       <point x="1006" y="1201" type="line"/>
       <point x="921" y="502" type="line"/>
     </contour>
-    <contour>
-      <point x="1171" y="1292" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>RMXScaler</key>
-      <dict>
-        <key>source</key>
-        <string>AE</string>
-      </dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>e.sc</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:24</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Smallcaps</string>
     </dict>
   </lib>
 </glyph>

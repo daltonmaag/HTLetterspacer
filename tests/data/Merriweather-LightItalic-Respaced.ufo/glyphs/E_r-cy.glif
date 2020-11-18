@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Er-cy" format="1">
-  <advance width="1174"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Er-cy" format="2">
+  <advance width="1181"/>
   <unicode hex="0420"/>
   <outline>
     <component base="P"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>P</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>P</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:36</string>
     </dict>
   </lib>
 </glyph>

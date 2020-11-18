@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Ii-cy.loclBGR" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ii-cy.loclBGR" format="2">
   <advance width="1401"/>
+  <anchor x="1280" y="0" name="bottomright"/>
+  <anchor x="823" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="118" y="0" type="line"/>
@@ -26,11 +28,11 @@
       <point x="183" y="1406" type="line"/>
       <point x="305" y="1386" type="line"/>
     </contour>
-    <contour>
-      <point x="1280" y="0" type="move" name="bottomright"/>
-    </contour>
-    <contour>
-      <point x="823" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:20</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Fdotaccent" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Fdotaccent" format="2">
   <advance width="1091"/>
   <unicode hex="1E1E"/>
   <outline>
-    <component base="F"/>
-    <component base="dotaccentcomb.case" xOffset="582"/>
+    <component base="F" xOffset="-7"/>
+    <component base="dotaccentcomb.case" xOffset="575"/>
   </outline>
   <lib>
     <dict>
@@ -27,6 +27,14 @@
           <string>dotaccentcomb.case</string>
         </dict>
       </array>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:22</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Uppercase</string>
     </dict>
   </lib>
 </glyph>

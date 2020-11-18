@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="gravecomb.case" format="1">
-  <advance width="496"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="gravecomb.case" format="2">
+  <anchor x="480" y="1486" name="_top"/>
   <outline>
     <contour>
       <point x="596" y="1607" type="curve"/>
@@ -10,8 +10,13 @@
       <point x="314" y="1781"/>
       <point x="454" y="1691"/>
     </contour>
-    <contour>
-      <point x="480" y="1486" type="move" name="_top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:22</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>496</integer>
+    </dict>
+  </lib>
 </glyph>

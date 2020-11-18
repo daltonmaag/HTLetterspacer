@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="iishort-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="iishort-cy" format="2">
   <advance width="1099"/>
   <unicode hex="0439"/>
   <outline>
     <component base="ii-cy"/>
     <component base="brevecomb-cy" xOffset="117"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+    </dict>
+  </lib>
 </glyph>

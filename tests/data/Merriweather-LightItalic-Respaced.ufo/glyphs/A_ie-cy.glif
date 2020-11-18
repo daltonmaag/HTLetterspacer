@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Aie-cy" format="1">
-  <advance width="1938"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Aie-cy" format="2">
+  <advance width="1926"/>
   <unicode hex="04D4"/>
   <outline>
     <component base="AE"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:39</string>
+    </dict>
+  </lib>
 </glyph>

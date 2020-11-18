@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Em-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Em-cy" format="2">
   <advance width="1883"/>
   <unicode hex="041C"/>
   <outline>
     <component base="M"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:27</string>
+    </dict>
+  </lib>
 </glyph>

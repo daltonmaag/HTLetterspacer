@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="U-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="U-cy" format="2">
   <advance width="1342"/>
   <unicode hex="0423"/>
+  <anchor x="832" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="385" y="-22" type="curve" smooth="yes"/>
@@ -36,8 +37,11 @@
       <point x="244" y="-2"/>
       <point x="338" y="-22"/>
     </contour>
-    <contour>
-      <point x="832" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:27</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ptick_part." format="2">
+  <advance width="1142"/>
+  <anchor x="795" y="576" name="_tick"/>
+  <outline>
+    <contour>
+      <point x="989" y="364" type="line"/>
+      <point x="659" y="832" type="line"/>
+      <point x="597" y="790" type="line"/>
+      <point x="927" y="322" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.Export</key>
+      <false/>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/05/13 18:38:20</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="brevecomb_tildecomb" format="1">
-  <advance width="751"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="brevecomb_tildecomb" format="2">
+  <anchor x="454" y="1110" name="_top"/>
   <outline>
     <contour>
       <point x="473" y="1292" type="curve" smooth="yes"/>
@@ -52,8 +52,13 @@
       <point x="378" y="1882"/>
       <point x="317" y="1822"/>
     </contour>
-    <contour>
-      <point x="454" y="1110" type="move" name="_top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:30</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>751</integer>
+    </dict>
+  </lib>
 </glyph>

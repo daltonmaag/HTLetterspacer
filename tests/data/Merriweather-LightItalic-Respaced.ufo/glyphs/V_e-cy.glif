@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Ve-cy" format="1">
-  <advance width="1236"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ve-cy" format="2">
+  <advance width="1243"/>
   <unicode hex="0412"/>
   <outline>
     <component base="B"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>B</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>B</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:23</string>
     </dict>
   </lib>
 </glyph>

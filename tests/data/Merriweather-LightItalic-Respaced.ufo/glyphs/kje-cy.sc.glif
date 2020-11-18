@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="kje-cy.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="kje-cy.sc" format="2">
   <advance width="1285"/>
   <outline>
     <component base="ka-cy.sc"/>
     <component base="acutecomb" xOffset="512" yOffset="182"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+    </dict>
+  </lib>
 </glyph>

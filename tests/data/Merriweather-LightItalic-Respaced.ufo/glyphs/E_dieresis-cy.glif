@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Edieresis-cy" format="1">
-  <advance width="1250"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Edieresis-cy" format="2">
+  <advance width="1233"/>
   <unicode hex="04EC"/>
   <outline>
     <component base="Ereversed-cy"/>
     <component base="dieresiscomb.case" xOffset="180"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+    </dict>
+  </lib>
 </glyph>

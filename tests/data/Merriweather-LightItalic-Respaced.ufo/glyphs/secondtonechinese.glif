@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="secondtonechinese" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="secondtonechinese" format="2">
   <advance width="467"/>
   <unicode hex="02CA"/>
+  <anchor x="78" y="1110" name="_top"/>
   <outline>
     <component base="acutecomb"/>
-    <contour>
-      <point x="78" y="1110" type="move" name="_top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:57</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="palochka-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="palochka-cy" format="2">
   <advance width="464"/>
   <unicode hex="04CF"/>
   <outline>
     <component base="l"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:43</string>
+    </dict>
+  </lib>
 </glyph>

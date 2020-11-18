@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="six.numr" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="six.numr" format="2">
   <advance width="728"/>
   <outline>
     <component base="six.dnom" xOffset="86" yOffset="625"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>six.dnom</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>six.dnom</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:39</string>
     </dict>
   </lib>
 </glyph>

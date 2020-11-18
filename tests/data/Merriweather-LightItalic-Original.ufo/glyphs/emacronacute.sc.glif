@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="emacronacute.sc" format="1">
-  <advance width="1170"/>
-  <outline>
-    <component base="e.sc"/>
-    <component base="macroncomb" xOffset="343" yOffset="182"/>
-    <component base="acutecomb" xOffset="495" yOffset="442"/>
-  </outline>
-</glyph>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="circumflexcomb_acutecomb" format="1">
-  <advance width="842"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="circumflexcomb_acutecomb" format="2">
+  <anchor x="395" y="1125" name="_top"/>
   <outline>
     <contour>
       <point x="395" y="1580" type="line"/>
@@ -23,8 +23,13 @@
       <point x="890" y="1817" type="line"/>
       <point x="673" y="1587" type="line"/>
     </contour>
-    <contour>
-      <point x="395" y="1125" type="move" name="_top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:23</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>842</integer>
+    </dict>
+  </lib>
 </glyph>

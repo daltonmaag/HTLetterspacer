@@ -1,9 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="yi-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="yi-cy" format="2">
   <advance width="486"/>
   <unicode hex="0457"/>
   <outline>
     <component base="idotless"/>
-    <component base="dieresis-cy" xOffset="-142"/>
+    <component base="dieresis-cy" xOffset="-178"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.glyph.widthMetricsKey</key>
+      <string>i</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:28</string>
+    </dict>
+  </lib>
 </glyph>

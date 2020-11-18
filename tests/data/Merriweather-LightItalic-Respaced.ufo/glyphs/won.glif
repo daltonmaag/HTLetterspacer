@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="won" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="won" format="2">
   <advance width="2200"/>
   <unicode hex="20A9"/>
+  <anchor x="1049" y="-166" name="btm"/>
+  <anchor x="1260" y="1660" name="top"/>
   <outline>
     <contour>
       <point x="608" y="-10" type="line"/>
@@ -81,11 +83,11 @@
       <point x="1775" y="1034" type="line"/>
       <point x="1607" y="634" type="line"/>
     </contour>
-    <contour>
-      <point x="1049" y="-166" type="move" name="btm"/>
-    </contour>
-    <contour>
-      <point x="1260" y="1660" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:24</string>
+    </dict>
+  </lib>
 </glyph>

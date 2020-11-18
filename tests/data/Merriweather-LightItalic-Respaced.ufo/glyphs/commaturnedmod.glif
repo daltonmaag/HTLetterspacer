@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="commaturnedmod" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="commaturnedmod" format="2">
   <advance width="418"/>
   <unicode hex="02BB"/>
+  <anchor x="76" y="1110" name="_top"/>
   <outline>
     <component base="commaturnedabovecomb"/>
-    <contour>
-      <point x="76" y="1110" type="move" name="_top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:06</string>
+    </dict>
+  </lib>
 </glyph>

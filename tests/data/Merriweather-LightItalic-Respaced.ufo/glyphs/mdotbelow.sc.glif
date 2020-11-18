@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="mdotbelow.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="mdotbelow.sc" format="2">
   <advance width="1758"/>
   <outline>
     <component base="m.sc"/>
     <component base="dotbelowcomb" xOffset="610"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:37</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Hastroke-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Hastroke-cy" format="2">
   <advance width="1345"/>
   <unicode hex="04FE"/>
+  <anchor x="794" y="1660" name="top"/>
   <outline>
     <component base="X"/>
     <component base="strokelongcomb" xOffset="199" yOffset="190"/>
-    <contour>
-      <point x="794" y="1660" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>X</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>X</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:35</string>
     </dict>
   </lib>
 </glyph>

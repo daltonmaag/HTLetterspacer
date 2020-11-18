@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Udieresis-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Udieresis-cy" format="2">
   <advance width="1342"/>
   <unicode hex="04F0"/>
+  <anchor x="638" y="-166" name="btm"/>
+  <anchor x="628" y="1660" name="top"/>
   <outline>
     <component base="U-cy"/>
     <component base="dieresiscomb.case" xOffset="295"/>
-    <contour>
-      <point x="638" y="-166" type="move" name="btm"/>
-    </contour>
-    <contour>
-      <point x="628" y="1660" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+    </dict>
+  </lib>
 </glyph>

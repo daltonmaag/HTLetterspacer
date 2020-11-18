@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ertick-cy" format="2">
+  <advance width="1113"/>
+  <unicode hex="048F"/>
+  <outline>
+    <component base="p"/>
+    <component base="ptick_part." xOffset="-130" yOffset="-484"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/05/13 18:38:19</string>
+    </dict>
+  </lib>
+</glyph>

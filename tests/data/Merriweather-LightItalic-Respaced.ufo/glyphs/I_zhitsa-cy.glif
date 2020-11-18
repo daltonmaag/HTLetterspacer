@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Izhitsa-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Izhitsa-cy" format="2">
   <advance width="1367"/>
   <unicode hex="0474"/>
+  <anchor x="728" y="-166" name="btm"/>
+  <anchor x="698" y="1660" name="top"/>
   <outline>
     <contour>
       <point x="571" y="-16" type="line"/>
@@ -31,11 +33,11 @@
       <point x="151" y="1406" type="line"/>
       <point x="287" y="1386" type="line"/>
     </contour>
-    <contour>
-      <point x="728" y="-166" type="move" name="btm"/>
-    </contour>
-    <contour>
-      <point x="698" y="1660" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:25</string>
+    </dict>
+  </lib>
 </glyph>

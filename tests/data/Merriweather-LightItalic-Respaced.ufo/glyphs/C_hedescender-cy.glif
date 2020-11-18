@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Chedescender-cy" format="1">
-  <advance width="1326"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Chedescender-cy" format="2">
+  <advance width="1333"/>
   <unicode hex="04B6"/>
   <outline>
     <component base="Che-cy"/>
-    <component base="righttooth_part." xOffset="914"/>
+    <component base="righttooth_part." xOffset="899"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>Che-cy</string>
+      <key>com.schriftgestaltung.Glyphs.glyph.widthMetricsKey</key>
+      <string>Che-cy</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:27</string>
     </dict>
   </lib>
 </glyph>

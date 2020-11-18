@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ustrait-cy.sc" format="2">
+  <advance width="1123"/>
+  <outline>
+    <component base="y.sc"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/05/13 18:38:20</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="A" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="A" format="2">
   <advance width="1472"/>
   <unicode hex="0041"/>
+  <anchor x="655" y="0" name="bottom"/>
+  <anchor x="1147" y="0" name="ogonek"/>
+  <anchor x="873" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="-43" y="0" type="line"/>
@@ -29,14 +32,17 @@
       <point x="1010" y="545" type="line"/>
       <point x="421" y="545" type="line"/>
     </contour>
-    <contour>
-      <point x="655" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="1147" y="0" type="move" name="ogonek"/>
-    </contour>
-    <contour>
-      <point x="873" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:17</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Uppercase</string>
+    </dict>
+  </lib>
 </glyph>

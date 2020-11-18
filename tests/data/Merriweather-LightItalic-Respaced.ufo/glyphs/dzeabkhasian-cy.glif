@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="dzeabkhasian-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dzeabkhasian-cy" format="2">
   <advance width="930"/>
   <unicode hex="04E1"/>
   <outline>
     <component base="ezh"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:28</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="shhadescender-cy" format="2">
+  <advance width="1211"/>
+  <unicode hex="0527"/>
+  <outline>
+    <component base="h"/>
+    <component base="desccy_part." xOffset="712"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
+      <string>n</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/05/13 18:38:19</string>
+    </dict>
+  </lib>
+</glyph>

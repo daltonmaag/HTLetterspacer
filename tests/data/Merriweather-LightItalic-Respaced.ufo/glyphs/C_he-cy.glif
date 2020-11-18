@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Che-cy" format="1">
-  <advance width="1326"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Che-cy" format="2">
+  <advance width="1333"/>
   <unicode hex="0427"/>
+  <anchor x="683" y="0" name="bottomleft"/>
+  <anchor x="1196" y="0" name="bottomright"/>
+  <anchor x="778" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="691" y="0" type="line"/>
@@ -43,20 +46,13 @@
       <point x="882" y="104" type="line"/>
       <point x="697" y="80" type="line"/>
     </contour>
-    <contour>
-      <point x="683" y="0" type="move" name="bottomleft"/>
-    </contour>
-    <contour>
-      <point x="1196" y="0" type="move" name="bottomright"/>
-    </contour>
-    <contour>
-      <point x="778" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>Pe-cy</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:23</string>
     </dict>
   </lib>
 </glyph>

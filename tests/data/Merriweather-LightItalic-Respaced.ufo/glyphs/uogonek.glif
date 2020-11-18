@@ -1,12 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="uogonek" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uogonek" format="2">
   <advance width="1099"/>
   <unicode hex="0173"/>
+  <anchor x="639" y="1110" name="top"/>
   <outline>
     <component base="u"/>
     <component base="ogonekcomb" xOffset="671" yOffset="20"/>
-    <contour>
-      <point x="639" y="1110" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Lowercase</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="yeru-cy" format="1">
-  <advance width="1514"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="yeru-cy" format="2">
+  <advance width="1552"/>
   <unicode hex="044B"/>
+  <anchor x="1212" y="0" name="bottom"/>
+  <anchor x="617" y="-166" name="btm"/>
+  <anchor x="1311" y="0" name="ogonek"/>
+  <anchor x="814" y="1110" name="top"/>
   <outline>
     <contour>
       <point x="1235" y="-20" type="curve" smooth="yes"/>
@@ -60,23 +64,13 @@
       <point x="750" y="254"/>
       <point x="636" y="68"/>
     </contour>
-    <contour>
-      <point x="1212" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="617" y="-166" type="move" name="btm"/>
-    </contour>
-    <contour>
-      <point x="1311" y="0" type="move" name="ogonek"/>
-    </contour>
-    <contour>
-      <point x="814" y="1110" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>=u+5</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:21</string>
     </dict>
   </lib>
 </glyph>

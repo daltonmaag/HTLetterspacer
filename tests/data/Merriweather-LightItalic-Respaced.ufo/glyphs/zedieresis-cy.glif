@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="zedieresis-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zedieresis-cy" format="2">
   <advance width="863"/>
   <unicode hex="04DF"/>
   <outline>
     <component base="ze-cy"/>
     <component base="dieresiscomb" xOffset="27"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:40</string>
+    </dict>
+  </lib>
 </glyph>

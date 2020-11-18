@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="dje-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dje-cy" format="2">
   <advance width="1102"/>
   <unicode hex="0452"/>
+  <anchor x="519" y="1660" name="top"/>
   <outline>
     <contour>
       <point x="339" y="853" type="curve"/>
@@ -52,8 +53,11 @@
       <point x="610" y="1136"/>
       <point x="445" y="1002"/>
     </contour>
-    <contour>
-      <point x="519" y="1660" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:22</string>
+    </dict>
+  </lib>
 </glyph>

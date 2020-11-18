@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ohorngrave.sc" format="1">
-  <advance width="1295"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ohorngrave.sc" format="2">
+  <advance width="1304"/>
   <outline>
     <component base="gravecomb" xOffset="345" yOffset="184"/>
     <component base="o.sc"/>
@@ -19,10 +19,20 @@
           <string>o.sc</string>
         </dict>
       </array>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>o.sc</string>
+      <key>com.schriftgestaltung.Glyphs.glyph.widthMetricsKey</key>
+      <string>o.sc</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Smallcaps</string>
       <key>public.markColor</key>
-      <string>0.97,0.9,0,1</string>
+      <string>0.97,1,0,1</string>
     </dict>
   </lib>
 </glyph>

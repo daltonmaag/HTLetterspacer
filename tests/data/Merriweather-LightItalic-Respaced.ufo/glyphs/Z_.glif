@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Z" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Z" format="2">
   <advance width="1202"/>
   <unicode hex="005A"/>
+  <anchor x="545" y="0" name="bottom"/>
+  <anchor x="713" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="22" y="0" type="line"/>
@@ -21,11 +23,17 @@
       <point x="845" y="1193" type="line"/>
       <point x="1" y="73" type="line"/>
     </contour>
-    <contour>
-      <point x="545" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="713" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:24</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Uppercase</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="obarred-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="obarred-cy" format="2">
   <advance width="1075"/>
   <unicode hex="04E9"/>
+  <anchor x="636.026" y="1110" name="top"/>
   <outline>
     <contour>
       <point x="872" y="537" type="line"/>
@@ -10,8 +11,11 @@
       <point x="233" y="537" type="line"/>
     </contour>
     <component base="o"/>
-    <contour>
-      <point x="636.026" y="1110" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+    </dict>
+  </lib>
 </glyph>

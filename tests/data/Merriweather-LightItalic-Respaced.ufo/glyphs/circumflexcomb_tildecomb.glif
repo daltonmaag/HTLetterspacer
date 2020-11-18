@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="circumflexcomb_tildecomb" format="1">
-  <advance width="698"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="circumflexcomb_tildecomb" format="2">
+  <anchor x="427" y="1110" name="_top"/>
   <outline>
     <contour>
       <point x="248" y="1719" type="curve"/>
@@ -37,8 +37,13 @@
       <point x="739" y="1281" type="line"/>
       <point x="551" y="1580" type="line"/>
     </contour>
-    <contour>
-      <point x="427" y="1110" type="move" name="_top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:23</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>698</integer>
+    </dict>
+  </lib>
 </glyph>

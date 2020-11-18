@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="brevecomb_acutecomb" format="1">
-  <advance width="692"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="brevecomb_acutecomb" format="2">
+  <anchor x="412" y="1110" name="_top"/>
   <outline>
     <contour>
       <point x="440" y="1292" type="curve" smooth="yes"/>
@@ -38,8 +38,13 @@
       <point x="612" y="1855" type="line"/>
       <point x="395" y="1625" type="line"/>
     </contour>
-    <contour>
-      <point x="412" y="1110" type="move" name="_top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:18</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>692</integer>
+    </dict>
+  </lib>
 </glyph>

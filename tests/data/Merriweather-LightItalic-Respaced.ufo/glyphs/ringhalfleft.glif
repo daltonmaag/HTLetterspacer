@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ringhalfleft" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ringhalfleft" format="2">
   <advance width="471"/>
   <unicode hex="02BF"/>
+  <anchor x="454" y="1110" name="_top"/>
+  <anchor x="544" y="1736" name="top"/>
   <outline>
     <contour>
       <point x="482" y="1320" type="curve"/>
@@ -19,11 +21,11 @@
       <point x="232" y="1414"/>
       <point x="322" y="1320"/>
     </contour>
-    <contour>
-      <point x="454" y="1110" type="move" name="_top"/>
-    </contour>
-    <contour>
-      <point x="544" y="1736" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:15</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="zhedieresis-cy.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zhedieresis-cy.sc" format="2">
   <advance width="1927"/>
   <outline>
     <component base="zhe-cy.sc"/>
     <component base="dieresiscomb" xOffset="578" yOffset="182"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:38</string>
+    </dict>
+  </lib>
 </glyph>

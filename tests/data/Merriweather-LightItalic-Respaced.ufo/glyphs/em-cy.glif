@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="em-cy" format="1">
-  <advance width="1593"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="em-cy" format="2">
+  <advance width="1631"/>
   <unicode hex="043C"/>
+  <anchor x="1493" y="0" name="bottomright"/>
+  <anchor x="961" y="1110" name="top"/>
   <outline>
     <contour>
       <point x="1279" y="-20" type="curve" smooth="yes"/>
@@ -53,17 +55,13 @@
       <point x="1164" y="14"/>
       <point x="1209" y="-20"/>
     </contour>
-    <contour>
-      <point x="1493" y="0" type="move" name="bottomright"/>
-    </contour>
-    <contour>
-      <point x="961" y="1110" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>ii-cy</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:21</string>
     </dict>
   </lib>
 </glyph>

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="horncomb" format="1">
-  <advance width="482"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="horncomb" format="2">
   <unicode hex="031B"/>
+  <anchor x="-11" y="0" name="_topright"/>
   <outline>
     <contour>
       <point x="180" y="214" type="line"/>
@@ -13,8 +13,13 @@
       <point x="311" y="24"/>
       <point x="321" y="214" type="curve"/>
     </contour>
-    <contour>
-      <point x="-11" y="0" type="move" name="_topright"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:23</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>482</integer>
+    </dict>
+  </lib>
 </glyph>

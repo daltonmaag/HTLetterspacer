@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Ze-cy" format="1">
-  <advance width="1131"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ze-cy" format="2">
+  <advance width="1123"/>
   <unicode hex="0417"/>
+  <anchor x="486" y="0" name="bottom"/>
+  <anchor x="654" y="1486" name="top"/>
   <outline>
     <contour>
       <point x="420" y="-16" type="curve" smooth="yes"/>
@@ -50,17 +52,13 @@
       <point x="98" y="31"/>
       <point x="238" y="-16"/>
     </contour>
-    <contour>
-      <point x="486" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="654" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>B</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:28</string>
     </dict>
   </lib>
 </glyph>

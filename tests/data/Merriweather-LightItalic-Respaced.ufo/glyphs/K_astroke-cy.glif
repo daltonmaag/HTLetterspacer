@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Kastroke-cy" format="1">
-  <advance width="1328"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Kastroke-cy" format="2">
+  <advance width="1290"/>
   <unicode hex="049E"/>
   <outline>
     <component base="Ka-cy"/>
-    <component base="barlc" xOffset="-31" yOffset="625"/>
+    <component base="barlc" xOffset="12" yOffset="625"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>Ka-cy</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:16</string>
     </dict>
   </lib>
 </glyph>

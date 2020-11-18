@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Ha-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ha-cy" format="2">
   <advance width="1345"/>
   <unicode hex="0425"/>
+  <anchor x="540" y="-166" name="btm"/>
+  <anchor x="792" y="1660" name="top"/>
   <outline>
     <component base="X"/>
-    <contour>
-      <point x="540" y="-166" type="move" name="btm"/>
-    </contour>
-    <contour>
-      <point x="792" y="1660" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:22</string>
+    </dict>
+  </lib>
 </glyph>

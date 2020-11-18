@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="esdescender-cy.loclCHU" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="esdescender-cy.loclCHU" format="2">
   <advance width="856"/>
   <outline>
     <component base="ccedilla"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>ccedilla</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>ccedilla</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:49</string>
     </dict>
   </lib>
 </glyph>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="hungarumlautcomb.case" format="1">
-  <advance width="905"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="hungarumlautcomb.case" format="2">
+  <anchor x="475" y="1488" name="_top"/>
   <outline>
     <contour>
       <point x="201" y="1656" type="line"/>
@@ -18,8 +18,13 @@
       <point x="1030" y="1877" type="curve"/>
       <point x="903" y="1964" type="line"/>
     </contour>
-    <contour>
-      <point x="475" y="1488" type="move" name="_top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>905</integer>
+    </dict>
+  </lib>
 </glyph>

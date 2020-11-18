@@ -1,10 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="omacronacute" format="1">
-  <advance width="1076"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="omacronacute" format="2">
+  <advance width="1091"/>
   <unicode hex="1E53"/>
   <outline>
     <component base="o"/>
     <component base="macroncomb" xOffset="156"/>
     <component base="acutecomb" xOffset="409" yOffset="260"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:36</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Lowercase</string>
+    </dict>
+  </lib>
 </glyph>

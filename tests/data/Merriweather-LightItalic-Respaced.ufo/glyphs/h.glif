@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="h" format="1">
-  <advance width="1133"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="h" format="2">
+  <advance width="1172"/>
   <unicode hex="0068"/>
+  <anchor x="508" y="0" name="bottom"/>
+  <anchor x="954" y="0" name="bottomright"/>
+  <anchor x="193" y="1814" name="cap"/>
+  <anchor x="310" y="1322" name="tbar"/>
+  <anchor x="351" y="1532" name="top"/>
   <outline>
     <contour>
       <point x="339" y="853" type="curve"/>
@@ -50,26 +55,19 @@
       <point x="610" y="1136"/>
       <point x="446" y="1002"/>
     </contour>
-    <contour>
-      <point x="508" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="954" y="0" type="move" name="bottomright"/>
-    </contour>
-    <contour>
-      <point x="193" y="1814" type="move" name="cap"/>
-    </contour>
-    <contour>
-      <point x="310" y="1322" type="move" name="tbar"/>
-    </contour>
-    <contour>
-      <point x="351" y="1532" type="move" name="top"/>
-    </contour>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>n</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:24</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Lowercase</string>
     </dict>
   </lib>
 </glyph>

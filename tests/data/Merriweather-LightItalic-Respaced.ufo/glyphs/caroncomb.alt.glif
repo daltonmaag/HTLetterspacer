@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="caroncomb.alt" format="1">
-  <advance width="431"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="caroncomb.alt" format="2">
+  <anchor x="312" y="1265" name="_car"/>
+  <anchor x="267" y="1618" name="_caron"/>
   <outline>
     <contour>
       <point x="337" y="1199" type="line"/>
@@ -20,11 +21,13 @@
       <point x="238" y="1212" type="curve"/>
       <point x="242" y="1200" type="line"/>
     </contour>
-    <contour>
-      <point x="312" y="1265" type="move" name="_car"/>
-    </contour>
-    <contour>
-      <point x="267" y="1618" type="move" name="_caron"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:28</string>
+      <key>com.schriftgestaltung.Glyphs.originalWidth</key>
+      <integer>431</integer>
+    </dict>
+  </lib>
 </glyph>

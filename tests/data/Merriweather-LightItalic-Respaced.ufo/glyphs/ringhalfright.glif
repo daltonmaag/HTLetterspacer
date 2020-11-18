@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="ringhalfright" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ringhalfright" format="2">
   <advance width="461"/>
   <unicode hex="02BE"/>
+  <anchor x="171" y="1110" name="_top"/>
+  <anchor x="261" y="1738" name="top"/>
   <outline>
     <contour>
       <point x="199" y="1320" type="line"/>
@@ -19,11 +21,11 @@
       <point x="298" y="1407"/>
       <point x="211" y="1407" type="curve"/>
     </contour>
-    <contour>
-      <point x="171" y="1110" type="move" name="_top"/>
-    </contour>
-    <contour>
-      <point x="261" y="1738" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+    </dict>
+  </lib>
 </glyph>

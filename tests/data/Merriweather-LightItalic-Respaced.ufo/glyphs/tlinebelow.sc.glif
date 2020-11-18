@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="tlinebelow.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="tlinebelow.sc" format="2">
   <advance width="1206"/>
   <outline>
     <component base="t.sc"/>
     <component base="macronbelowcomb" xOffset="203"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:38</string>
+    </dict>
+  </lib>
 </glyph>

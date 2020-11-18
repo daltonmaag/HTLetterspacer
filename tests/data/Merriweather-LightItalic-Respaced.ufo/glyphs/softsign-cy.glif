@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="softsign-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="softsign-cy" format="2">
   <advance width="976"/>
   <unicode hex="044C"/>
+  <anchor x="613" y="-166" name="btm"/>
+  <anchor x="537" y="1660" name="top"/>
   <outline>
     <contour>
       <point x="409" y="-22" type="curve" smooth="yes"/>
@@ -40,11 +42,11 @@
       <point x="750" y="254"/>
       <point x="636" y="68"/>
     </contour>
-    <contour>
-      <point x="613" y="-166" type="move" name="btm"/>
-    </contour>
-    <contour>
-      <point x="537" y="1660" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:17</string>
+    </dict>
+  </lib>
 </glyph>

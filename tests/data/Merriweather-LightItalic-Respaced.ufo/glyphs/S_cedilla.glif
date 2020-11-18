@@ -1,15 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Scedilla" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Scedilla" format="2">
   <advance width="1054"/>
   <unicode hex="015E"/>
+  <anchor x="471" y="0" name="bottom"/>
+  <anchor x="671" y="1486" name="top"/>
   <outline>
     <component base="S"/>
     <component base="cedillacomb.case" xOffset="202"/>
-    <contour>
-      <point x="471" y="0" type="move" name="bottom"/>
-    </contour>
-    <contour>
-      <point x="671" y="1486" type="move" name="top"/>
-    </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.category</key>
+      <string>Letter</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:30</string>
+      <key>com.schriftgestaltung.Glyphs.script</key>
+      <string>latin</string>
+      <key>com.schriftgestaltung.Glyphs.subCategory</key>
+      <string>Uppercase</string>
+    </dict>
+  </lib>
 </glyph>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="zeroinferior" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zeroinferior" format="2">
   <advance width="852"/>
   <unicode hex="2080"/>
   <outline>
@@ -7,10 +7,12 @@
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>zero</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>zero</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:45</string>
     </dict>
   </lib>
 </glyph>

@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="otildemacron.sc" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="otildemacron.sc" format="2">
   <advance width="1287"/>
   <outline>
     <component base="o.sc"/>
     <component base="tildecomb" xOffset="268" yOffset="182"/>
     <component base="macroncomb" xOffset="351" yOffset="542"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:36</string>
+    </dict>
+  </lib>
 </glyph>

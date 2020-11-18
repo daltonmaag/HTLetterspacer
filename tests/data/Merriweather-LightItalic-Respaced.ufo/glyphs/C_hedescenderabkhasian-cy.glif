@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Chedescenderabkhasian-cy" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Chedescenderabkhasian-cy" format="2">
   <advance width="1563"/>
   <unicode hex="04BE"/>
   <outline>
     <component base="Cheabkhasian-cy"/>
     <component base="cedilla" xOffset="640"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:29</string>
+    </dict>
+  </lib>
 </glyph>

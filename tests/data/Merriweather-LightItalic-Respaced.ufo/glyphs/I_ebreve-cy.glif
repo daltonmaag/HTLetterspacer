@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="Iebreve-cy" format="1">
-  <advance width="1195"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Iebreve-cy" format="2">
+  <advance width="1202"/>
   <unicode hex="04D6"/>
   <outline>
     <component base="Ie-cy"/>
     <component base="brevecomb-cy.case" xOffset="130"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:24:29</string>
+    </dict>
+  </lib>
 </glyph>

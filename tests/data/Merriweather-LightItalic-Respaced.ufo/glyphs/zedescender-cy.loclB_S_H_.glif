@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="zedescender-cy.loclBSH" format="1">
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zedescender-cy.loclBSH" format="2">
   <advance width="863"/>
   <outline>
     <component base="ze-cy"/>
-    <component base="descender" xOffset="209"/>
+    <component base="descender" xOffset="245"/>
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
       <string>ze-cy</string>
-      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
       <string>ze-cy</string>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2020/11/18 22:23:38</string>
     </dict>
   </lib>
 </glyph>
