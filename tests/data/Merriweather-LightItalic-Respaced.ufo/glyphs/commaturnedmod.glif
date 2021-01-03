@@ -6,10 +6,4 @@
   <outline>
     <component base="commaturnedabovecomb"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:24:06</string>
-    </dict>
-  </lib>
 </glyph>

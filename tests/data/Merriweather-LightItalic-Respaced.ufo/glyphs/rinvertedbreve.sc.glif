@@ -5,10 +5,4 @@
     <component base="r.sc"/>
     <component base="breveinvertedcomb" xOffset="202" yOffset="178"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:43</string>
-    </dict>
-  </lib>
 </glyph>

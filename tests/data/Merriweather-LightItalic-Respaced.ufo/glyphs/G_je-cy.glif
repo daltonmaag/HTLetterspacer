@@ -6,10 +6,4 @@
     <component base="Ge-cy"/>
     <component base="acutecomb.case" xOffset="438"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:20</string>
-    </dict>
-  </lib>
 </glyph>

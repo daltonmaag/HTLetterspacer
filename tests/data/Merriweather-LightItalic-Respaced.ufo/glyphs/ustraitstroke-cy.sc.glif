@@ -5,10 +5,4 @@
     <component base="y.sc"/>
     <component base="strokelongcomb" xOffset="169" yOffset="-87"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:39</string>
-    </dict>
-  </lib>
 </glyph>

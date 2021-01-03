@@ -4,10 +4,4 @@
   <outline>
     <component base="seven" xOffset="-26" yOffset="-260"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:28</string>
-    </dict>
-  </lib>
 </glyph>

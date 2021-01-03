@@ -6,10 +6,4 @@
     <component base="schwa-cy"/>
     <component base="dieresiscomb" xOffset="116"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:29</string>
-    </dict>
-  </lib>
 </glyph>

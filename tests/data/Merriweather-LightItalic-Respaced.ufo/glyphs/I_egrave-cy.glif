@@ -6,10 +6,4 @@
     <component base="Ie-cy"/>
     <component base="gravecomb.case" xOffset="228"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:40</string>
-    </dict>
-  </lib>
 </glyph>

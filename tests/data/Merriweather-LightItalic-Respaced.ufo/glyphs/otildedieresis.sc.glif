@@ -6,10 +6,4 @@
     <component base="tildecomb" xOffset="268" yOffset="182"/>
     <component base="dieresiscomb" xOffset="338" yOffset="542"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:41</string>
-    </dict>
-  </lib>
 </glyph>

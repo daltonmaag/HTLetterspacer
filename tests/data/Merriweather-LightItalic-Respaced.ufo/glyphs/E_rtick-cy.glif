@@ -6,10 +6,4 @@
     <component base="P"/>
     <component base="ptick_part." xOffset="547" yOffset="42"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:29</string>
-    </dict>
-  </lib>
 </glyph>

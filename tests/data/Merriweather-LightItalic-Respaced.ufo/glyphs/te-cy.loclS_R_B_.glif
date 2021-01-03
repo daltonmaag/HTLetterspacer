@@ -5,10 +5,4 @@
     <component base="sha-cy.loclBGR"/>
     <component base="macroncomb" xOffset="472"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/11/18 22:23:36</string>
-    </dict>
-  </lib>
 </glyph>
