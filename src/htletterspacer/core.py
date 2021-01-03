@@ -295,16 +295,35 @@ class HTLetterspacerLib:
         # if not...
         else:
             self.setSpace(layer, referenceLayer)
+            # if layer.name == "acutecomb.case":
+            #     breakpoint()
             # store values in a list
-            setSidebearings(layer, self.newL, self.newR, self.newWidth, color)
+            setSidebearings(
+                layer,
+                self.newL,
+                self.newR,
+                self.newWidth,
+                color,
+                self.angle,
+                self.xHeight,
+            )
 
 
 #  Functions
 def setSidebearings(
-    layer: Glyph, newL: float, newR: float, width: float, color: Any
+    layer: Glyph,
+    newL: float,
+    newR: float,
+    width: float,
+    color: Any,
+    angle: float,
+    xheight: float,
 ) -> None:
-    layer.setLeftMargin(newL)
-    layer.setRightMargin(newR)
+    if angle:
+        setSidebearingsSlanted(layer, newL, newR, angle, xheight)
+    else:
+        layer.setLeftMargin(newL)
+        layer.setRightMargin(newR)
 
     # adjusts the tabular miscalculation
     if width:
@@ -312,6 +331,58 @@ def setSidebearings(
 
     if color:
         layer.lib["public.markColor"] = color
+
+
+from fontTools.misc.transform import Identity
+from fontTools.pens.transformPen import TransformPointPen
+import math
+
+def setSidebearingsSlanted(
+    layer: Glyph, l: float, r: float, a: float, xheight: float
+) -> None:
+    bounds = layer.getControlBounds()
+    assert bounds is not None
+    left, bottom, right, top = bounds
+    origin = (left, xheight / 2)
+    m = skew_matrix((-a, 0), offset=origin)
+
+    original_width = (
+        layer.lib.get("com.schriftgestaltung.Glyphs.originalWidth") or layer.width
+    )
+
+    backslant = Glyph()
+    backslant.width = original_width
+    layer.drawPoints(TransformPointPen(backslant.getPointPen(), m))
+    backslant.setLeftMargin(l)
+    backslant.setRightMargin(r)
+
+    boundsback = backslant.getControlBounds()
+    assert boundsback is not None
+    left, bottom, right, top = boundsback
+    origin = (left, xheight / 2)
+    mf = skew_matrix((a, 0), offset=origin)
+    forwardslant = Glyph()
+    forwardslant.width = backslant.width
+    backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
+
+    if GLYPHS_LEFT_METRICS_KEY not in layer.lib:
+        layer.setLeftMargin(round(forwardslant.getLeftMargin()))
+    if GLYPHS_RIGHT_METRICS_KEY not in layer.lib:
+        layer.setRightMargin(round(forwardslant.getRightMargin()))
+
+    if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
+        layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
+        layer.width = 0
+
+
+def skew_matrix(angle, offset=(0, 0)):
+    dx, dy = offset
+    x, y = angle
+    x, y = math.radians(x), math.radians(y)
+    sT = Identity.translate(dx, dy)
+    sT = sT.skew(x, y)
+    sT = sT.translate(-dx, -dy)
+    return sT
 
 
 # shape calculations

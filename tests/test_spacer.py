@@ -1828,5 +1828,13 @@ def test_spacer_merriweather(datadir):
         o.spaceMain(glyph_orig, glyph_ref_orig)
 
         glyph_rspc = ufo_rspc[glyph]
-        assert glyph_orig.getLeftMargin() == glyph_rspc.getLeftMargin(ufo_rspc), glyph
-        assert glyph_orig.getRightMargin() == glyph_rspc.getRightMargin(ufo_rspc), glyph
+        try:
+            assert glyph_orig.getLeftMargin() == glyph_rspc.getLeftMargin(
+                ufo_rspc
+            ), glyph
+            assert glyph_orig.getRightMargin() == glyph_rspc.getRightMargin(
+                ufo_rspc
+            ), glyph
+        except:
+            ufo_orig.save("/tmp/test.ufo", overwrite=True)
+            raise
