@@ -3,7 +3,7 @@
   <advance width="1285"/>
   <outline>
     <component base="ka-cy.sc"/>
-    <component base="barlc" xOffset="15" yOffset="424"/>
+    <component base="barlc" yOffset="424"/>
   </outline>
   <lib>
     <dict>

@@ -4,7 +4,7 @@
   <unicode hex="045F"/>
   <outline>
     <component base="u"/>
-    <component base="dzhe_desc.part" xOffset="464"/>
+    <component base="dzhe_desc.part" xOffset="428"/>
   </outline>
   <lib>
     <dict>

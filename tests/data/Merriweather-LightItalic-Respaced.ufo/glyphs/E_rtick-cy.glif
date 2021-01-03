@@ -4,6 +4,6 @@
   <unicode hex="048E"/>
   <outline>
     <component base="P"/>
-    <component base="ptick_part." xOffset="547" yOffset="42"/>
+    <component base="ptick_part." xOffset="511" yOffset="42"/>
   </outline>
 </glyph>

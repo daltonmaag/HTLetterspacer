@@ -3,7 +3,7 @@
   <advance width="1113"/>
   <outline>
     <component base="p.sc"/>
-    <component base="ptick_part." xOffset="474" yOffset="-58"/>
+    <component base="ptick_part." xOffset="438" yOffset="-58"/>
   </outline>
   <lib>
     <dict>

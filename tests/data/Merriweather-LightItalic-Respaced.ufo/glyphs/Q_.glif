@@ -4,7 +4,7 @@
   <unicode hex="0051"/>
   <outline>
     <component base="O"/>
-    <component base="qtail.case" xOffset="502"/>
+    <component base="qtail.case" xOffset="480"/>
   </outline>
   <lib>
     <dict>

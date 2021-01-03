@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="ohorndotbelow.sc" format="2">
-  <advance width="1295"/>
+  <advance width="1303"/>
   <outline>
     <component base="dotbelowcomb" xOffset="540"/>
     <component base="o.sc"/>

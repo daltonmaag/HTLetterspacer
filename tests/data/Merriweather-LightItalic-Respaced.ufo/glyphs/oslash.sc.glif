@@ -4,7 +4,7 @@
   <anchor x="732" y="1292" name="top"/>
   <outline>
     <component base="o.sc"/>
-    <component base="slashocomb.sc" xOffset="269"/>
+    <component base="slashocomb.sc" xOffset="226"/>
   </outline>
   <lib>
     <dict>

@@ -1,19 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="slashocomb.sc" format="2">
-  <advance width="756"/>
-  <anchor x="386" y="648" name="_center"/>
+  <advance width="843"/>
+  <anchor x="429" y="648" name="_center"/>
   <outline>
     <contour>
-      <point x="14" y="-185" type="line"/>
-      <point x="858" y="1432" type="line"/>
-      <point x="767" y="1477" type="line"/>
-      <point x="-77" y="-140" type="line"/>
+      <point x="57" y="-185" type="line"/>
+      <point x="901" y="1432" type="line"/>
+      <point x="810" y="1477" type="line"/>
+      <point x="-34" y="-140" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.Export</key>
-      <false/>
-    </dict>
-  </lib>
 </glyph>

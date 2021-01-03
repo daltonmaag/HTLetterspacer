@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="ldot.sc" format="2">
-  <advance width="1278"/>
+  <advance width="1259"/>
   <outline>
     <component base="l.sc"/>
-    <component base="period" xOffset="1000" yOffset="651"/>
+    <component base="period" xOffset="910" yOffset="651"/>
   </outline>
   <lib>
     <dict>
