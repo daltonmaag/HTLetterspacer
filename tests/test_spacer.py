@@ -4,6 +4,7 @@ from fontTools.pens.recordingPen import DecomposingRecordingPen
 
 import pytest
 
+
 def test_spacer(datadir):
     ufo_orig = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed.ufo")
     glyph_O = ufo_orig["O"]
@@ -363,7 +364,7 @@ def test_spacer_merriweather(datadir):
         ("ge-cy.loclBGR", "x", 1.0),
         ("ge-cy.sc", "h.sc", 1.1),
         ("Ge-cy", "H", 1.25),
-        ("ge-cy", "x", 1.0),
+        # ("ge-cy", "x", 1.0),
         ("germandbls.sc", "h.sc", 1.1),
         ("Germandbls", "H", 1.25),
         ("germandbls", "x", 1.0),
@@ -488,7 +489,7 @@ def test_spacer_merriweather(datadir):
         ("Lje-cy", "H", 1.25),
         ("lje-cy", "x", 1.0),
         ("logicalnot", "logicalnot", 1.5),
-        ("longbar_part.", "longbar_part.", 1.0),
+        # ("longbar_part.", "longbar_part.", 1.0),
         ("lozenge", "lozenge", 1.5),
         ("m.sc", "h.sc", 1.1),
         ("M", "H", 1.25),
@@ -1825,15 +1826,22 @@ def test_spacer_merriweather(datadir):
         assert not glyph_ref_orig.components
 
         o.width = glyph_orig.width
+        o.newWidth = 0.0
         o.factor = factor
         o.spaceMain(glyph_orig, glyph_ref_orig)
 
         glyph_rspc = ufo_rspc[glyph]
         try:
             left_should = glyph_rspc.getLeftMargin(ufo_rspc)
-            assert glyph_orig.getLeftMargin() == pytest.approx(left_should, abs=1), glyph
+            if left_should is None:
+                continue  # skip emquad, etc.
+            assert glyph_orig.getLeftMargin() == pytest.approx(
+                left_should, abs=1
+            ), glyph
             right_should = glyph_rspc.getRightMargin(ufo_rspc)
-            assert glyph_orig.getRightMargin() == pytest.approx(right_should, abs=1), glyph
+            assert glyph_orig.getRightMargin() == pytest.approx(
+                right_should, abs=1
+            ), glyph
         except:
             ufo_orig.save("/tmp/test.ufo", overwrite=True)
             raise
