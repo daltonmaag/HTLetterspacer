@@ -295,9 +295,6 @@ class HTLetterspacerLib:
         # if not...
         else:
             self.setSpace(layer, referenceLayer)
-            # if layer.name == "acutecomb.case":
-            #     breakpoint()
-            # store values in a list
             setSidebearings(
                 layer,
                 self.newL,
@@ -337,6 +334,7 @@ from fontTools.misc.transform import Identity
 from fontTools.pens.transformPen import TransformPointPen
 import math
 
+
 def setSidebearingsSlanted(
     layer: Glyph, l: float, r: float, a: float, xheight: float
 ) -> None:
@@ -364,11 +362,13 @@ def setSidebearingsSlanted(
     forwardslant = Glyph()
     forwardslant.width = backslant.width
     backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
+    # forwardslant.width = round(forwardslant.width)
 
     if GLYPHS_LEFT_METRICS_KEY not in layer.lib:
         layer.setLeftMargin(round(forwardslant.getLeftMargin()))
     if GLYPHS_RIGHT_METRICS_KEY not in layer.lib:
         layer.setRightMargin(round(forwardslant.getRightMargin()))
+    layer.width = round(layer.width)
 
     if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
         layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
