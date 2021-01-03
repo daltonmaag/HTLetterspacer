@@ -7,8 +7,9 @@ import fontTools.misc.arrayTools as arrayTools
 import fontTools.misc.bezierTools as bezierTools
 import fontTools.pens.basePen as basePen
 import numpy as np
+from fontTools.misc.transform import Identity
+from fontTools.pens.transformPen import TransformPointPen
 from ufoLib2.objects import Glyph
-from ufoLib2.objects.misc import BoundingBox
 from ufoLib2.objects.point import Point
 
 LOGGER = logging.Logger(__name__)
@@ -287,8 +288,8 @@ class HTLetterspacerLib:
         ):
             LOGGER.warning("Glyph %s has metric keys. Spacing not set.", layer.name)
         # if it is tabular
-        elif ".tosf" in layer.name or ".tf" in layer.name:
-            LOGGER.warning("Glyph %s is supposed to be tabular.", layer.name)
+        # elif ".tosf" in layer.name or ".tf" in layer.name:
+        #     LOGGER.warning("Glyph %s is supposed to be tabular.", layer.name)
         # if it is fraction / silly condition
         elif "fraction" in layer.name:
             LOGGER.warning("Glyph %s should be checked and done manually.", layer.name)
@@ -330,17 +331,13 @@ def setSidebearings(
         layer.lib["public.markColor"] = color
 
 
-from fontTools.misc.transform import Identity
-from fontTools.pens.transformPen import TransformPointPen
-import math
-
 
 def setSidebearingsSlanted(
     layer: Glyph, l: float, r: float, a: float, xheight: float
 ) -> None:
     bounds = layer.getControlBounds()
     assert bounds is not None
-    left, bottom, right, top = bounds
+    left, _, _, _ = bounds
     origin = (left, xheight / 2)
     m = skew_matrix((-a, 0), offset=origin)
 
@@ -356,7 +353,7 @@ def setSidebearingsSlanted(
 
     boundsback = backslant.getControlBounds()
     assert boundsback is not None
-    left, bottom, right, top = boundsback
+    left, _, _, _ = boundsback
     origin = (left, xheight / 2)
     mf = skew_matrix((a, 0), offset=origin)
     forwardslant = Glyph()
