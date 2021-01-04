@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="eight" format="2">
-  <advance width="1092"/>
+  <advance width="1078"/>
   <unicode hex="0038"/>
   <outline>
     <contour>
@@ -58,10 +58,4 @@
       <point x="662" y="72"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>=|</string>
-    </dict>
-  </lib>
 </glyph>

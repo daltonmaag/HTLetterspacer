@@ -4,12 +4,4 @@
   <unicode hex="202F"/>
   <outline>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>thinspace</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.widthMetricsKey</key>
-      <string>thinspace</string>
-    </dict>
-  </lib>
 </glyph>

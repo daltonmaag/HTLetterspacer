@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="zero" format="2">
-  <advance width="1226"/>
+  <advance width="1224"/>
   <unicode hex="0030"/>
   <outline>
     <contour>
@@ -32,10 +32,4 @@
       <point x="806" y="76"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>=|</string>
-    </dict>
-  </lib>
 </glyph>

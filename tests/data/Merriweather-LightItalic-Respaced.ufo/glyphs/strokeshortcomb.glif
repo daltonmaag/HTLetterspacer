@@ -5,10 +5,10 @@
   <anchor x="464" y="556" name="_center"/>
   <outline>
     <contour>
-      <point x="140" y="515" type="line"/>
       <point x="783" y="515" type="line"/>
       <point x="796" y="609" type="line"/>
       <point x="153" y="609" type="line"/>
+      <point x="140" y="515" type="line"/>
     </contour>
   </outline>
   <lib>

@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="Endescender-cy" format="2">
-  <advance width="1451"/>
-  <unicode hex="04A2"/>
-  <outline>
-    <component base="H"/>
-    <component base="righttooth_part." xOffset="1009"/>
-  </outline>
-</glyph>

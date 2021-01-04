@@ -6,10 +6,10 @@
   <anchor x="814" y="1292" name="top"/>
   <outline>
     <contour>
-      <point x="10" y="0" type="line"/>
-      <point x="456" y="0" type="line"/>
-      <point x="464" y="64" type="line"/>
-      <point x="316" y="86" type="line"/>
+      <point x="986" y="1220" type="line"/>
+      <point x="1126" y="1202" type="line"/>
+      <point x="1058" y="706" type="line"/>
+      <point x="400" y="706" type="line"/>
       <point x="468" y="1202" type="line"/>
       <point x="610" y="1220" type="line"/>
       <point x="619" y="1292" type="line"/>
@@ -18,14 +18,14 @@
       <point x="306" y="1202" type="line"/>
       <point x="154" y="86" type="line"/>
       <point x="18" y="64" type="line"/>
-    </contour>
-    <contour>
-      <point x="352" y="612" type="line"/>
-      <point x="1105" y="612" type="line"/>
-      <point x="1105" y="706" type="line"/>
-      <point x="352" y="706" type="line"/>
-    </contour>
-    <contour>
+      <point x="10" y="0" type="line"/>
+      <point x="456" y="0" type="line"/>
+      <point x="464" y="64" type="line"/>
+      <point x="316" y="86" type="line"/>
+      <point x="388" y="612" type="line"/>
+      <point x="1046" y="612" type="line"/>
+      <point x="974" y="86" type="line"/>
+      <point x="828" y="64" type="line"/>
       <point x="820" y="0" type="line"/>
       <point x="1270" y="0" type="line"/>
       <point x="1280" y="64" type="line"/>
@@ -34,10 +34,6 @@
       <point x="1422" y="1220" type="line"/>
       <point x="1430" y="1292" type="line"/>
       <point x="994" y="1292" type="line"/>
-      <point x="986" y="1220" type="line"/>
-      <point x="1126" y="1202" type="line"/>
-      <point x="974" y="86" type="line"/>
-      <point x="828" y="64" type="line"/>
     </contour>
   </outline>
 </glyph>

@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="El-cy" format="2">
-  <advance width="1410"/>
+  <advance width="1376"/>
   <unicode hex="041B"/>
   <anchor x="1236" y="0" name="bottomright"/>
   <outline>
     <contour>
-      <point x="693" y="1386" type="line"/>
       <point x="1115" y="1386" type="line"/>
       <point x="934" y="104" type="line"/>
       <point x="774" y="80" type="line"/>
@@ -39,12 +38,7 @@
       <point x="530" y="528"/>
       <point x="611" y="900"/>
       <point x="667" y="1232" type="curve" smooth="yes"/>
+      <point x="693" y="1386" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>Pe-cy</string>
-    </dict>
-  </lib>
 </glyph>

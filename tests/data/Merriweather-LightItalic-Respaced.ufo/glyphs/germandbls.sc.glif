@@ -3,7 +3,6 @@
   <advance width="1265"/>
   <outline>
     <contour>
-      <point x="1130" y="1110" type="line"/>
       <point x="1154" y="1200" type="line"/>
       <point x="1084" y="1246"/>
       <point x="990" y="1302"/>
@@ -18,7 +17,7 @@
       <point x="342" y="718" type="line" smooth="yes"/>
       <point x="390" y="1068"/>
       <point x="520" y="1220"/>
-      <point x="740" y="1220" type="curve"/>
+      <point x="740" y="1220" type="curve" smooth="yes"/>
       <point x="906" y="1218"/>
       <point x="998" y="1170"/>
       <point x="1022" y="1126" type="curve"/>
@@ -45,16 +44,7 @@
       <point x="1192" y="664"/>
       <point x="960" y="760"/>
       <point x="806" y="760" type="curve"/>
+      <point x="1130" y="1110" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.category</key>
-      <string>Letter</string>
-      <key>com.schriftgestaltung.Glyphs.script</key>
-      <string>latin</string>
-      <key>com.schriftgestaltung.Glyphs.subCategory</key>
-      <string>Smallcaps</string>
-    </dict>
-  </lib>
 </glyph>

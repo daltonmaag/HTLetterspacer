@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="e-cy.sc" format="2">
-  <advance width="1146"/>
+  <advance width="1133"/>
   <outline>
     <contour>
       <point x="556" y="-14" type="curve" smooth="yes"/>
@@ -43,12 +43,4 @@
       <point x="239" y="-14"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>o.sc</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>es-cy.sc</string>
-    </dict>
-  </lib>
 </glyph>

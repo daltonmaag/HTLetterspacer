@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="zero.dnom" format="2">
-  <advance width="852"/>
+  <advance width="843"/>
   <outline>
     <contour>
       <point x="359" y="-20" type="curve" smooth="yes"/>
@@ -31,10 +31,4 @@
       <point x="534" y="45"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>=|</string>
-    </dict>
-  </lib>
 </glyph>

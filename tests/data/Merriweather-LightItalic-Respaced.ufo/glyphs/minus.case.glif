@@ -2,6 +2,6 @@
 <glyph name="minus.case" format="2">
   <advance width="1241"/>
   <outline>
-    <component base="minus" xOffset="65" yOffset="121"/>
+    <component base="minus" xOffset="17" yOffset="121"/>
   </outline>
 </glyph>

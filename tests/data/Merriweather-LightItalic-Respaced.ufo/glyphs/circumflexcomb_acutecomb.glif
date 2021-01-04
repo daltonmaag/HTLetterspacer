@@ -3,7 +3,14 @@
   <anchor x="395" y="1125" name="_top"/>
   <outline>
     <contour>
-      <point x="395" y="1580" type="line"/>
+      <point x="720" y="1535" type="line"/>
+      <point x="806" y="1572"/>
+      <point x="919" y="1651"/>
+      <point x="977" y="1722" type="curve"/>
+      <point x="890" y="1817" type="line"/>
+      <point x="673" y="1587" type="line"/>
+    </contour>
+    <contour>
       <point x="118" y="1281" type="line"/>
       <point x="172" y="1240" type="line"/>
       <point x="271" y="1319"/>
@@ -14,14 +21,7 @@
       <point x="648" y="1240" type="curve"/>
       <point x="709" y="1281" type="line"/>
       <point x="521" y="1580" type="line"/>
-    </contour>
-    <contour>
-      <point x="720" y="1535" type="line"/>
-      <point x="806" y="1572"/>
-      <point x="919" y="1651"/>
-      <point x="977" y="1722" type="curve"/>
-      <point x="890" y="1817" type="line"/>
-      <point x="673" y="1587" type="line"/>
+      <point x="395" y="1580" type="line"/>
     </contour>
   </outline>
   <lib>

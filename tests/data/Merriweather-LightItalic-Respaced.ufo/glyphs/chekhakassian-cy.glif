@@ -1,28 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="chekhakassian-cy" format="2">
-  <advance width="1135"/>
+  <advance width="1086"/>
   <unicode hex="04CC"/>
   <outline>
     <component base="che-cy"/>
     <component base="dzhe_desc.part" xOffset="-20"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.ComponentInfo</key>
-      <array>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>1</integer>
-          <key>name</key>
-          <string>dzhe_desc.part</string>
-        </dict>
-      </array>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>che-cy</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>che-cy</string>
-    </dict>
-  </lib>
 </glyph>

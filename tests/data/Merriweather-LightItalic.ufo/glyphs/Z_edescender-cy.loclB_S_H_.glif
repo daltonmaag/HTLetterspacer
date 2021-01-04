@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="Zedescender-cy.loclBSH" format="2">
-  <advance width="1128"/>
-  <anchor x="605" y="1486" name="top"/>
-  <outline>
-    <component base="Ze-cy"/>
-    <component base="descender"/>
-  </outline>
-</glyph>

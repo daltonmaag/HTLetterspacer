@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="yeru-cy.sc" format="2">
-  <advance width="1784"/>
-  <anchor x="953" y="1292" name="top"/>
-  <outline>
-    <component base="softsign-cy.sc"/>
-    <component base="i-cy.sc" xOffset="1122"/>
-  </outline>
-</glyph>

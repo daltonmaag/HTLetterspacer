@@ -1,28 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="Obarred-cy" format="2">
-  <advance width="1330"/>
+  <advance width="1394"/>
   <unicode hex="04E8"/>
   <outline>
     <component base="O"/>
-    <component base="longbar_part." xOffset="195"/>
+    <component base="longbar_part." xOffset="214"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.ComponentInfo</key>
-      <array>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>1</integer>
-          <key>name</key>
-          <string>longbar_part.</string>
-        </dict>
-      </array>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>O-cy</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>O-cy</string>
-    </dict>
-  </lib>
 </glyph>

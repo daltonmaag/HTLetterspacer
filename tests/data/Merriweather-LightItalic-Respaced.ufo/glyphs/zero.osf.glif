@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="zero.osf" format="2">
-  <advance width="1196"/>
+  <advance width="1193"/>
   <outline>
     <contour>
       <point x="514" y="-16" type="curve" smooth="yes"/>
@@ -31,10 +31,4 @@
       <point x="817" y="73"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>=|</string>
-    </dict>
-  </lib>
 </glyph>

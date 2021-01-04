@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="lslash.sc" format="2">
-  <advance width="1110"/>
-  <outline>
-    <component base="l.sc"/>
-    <component base="slashshortcomb" xOffset="39" yOffset="-200"/>
-  </outline>
-</glyph>

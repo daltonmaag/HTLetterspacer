@@ -6,40 +6,28 @@
   <anchor x="790" y="1292" name="top"/>
   <outline>
     <contour>
+      <point x="880" y="1302" type="line"/>
+      <point x="717" y="1302" type="line"/>
+      <point x="76" y="84" type="line"/>
+      <point x="-56" y="64" type="line"/>
       <point x="-62" y="0" type="line"/>
       <point x="389" y="0" type="line"/>
       <point x="393" y="64" type="line"/>
       <point x="219" y="86" type="line"/>
-      <point x="710" y="1058" type="line"/>
-      <point x="803" y="1243" type="line"/>
-      <point x="761" y="1250" type="line"/>
-      <point x="784" y="1066" type="line"/>
+      <point x="370" y="384" type="line"/>
+      <point x="919" y="384" type="line"/>
       <point x="978" y="84" type="line"/>
       <point x="808" y="64" type="line"/>
       <point x="804" y="0" type="line"/>
       <point x="1294" y="0" type="line"/>
       <point x="1298" y="64" type="line"/>
       <point x="1141" y="88" type="line"/>
-      <point x="880" y="1302" type="line"/>
-      <point x="717" y="1302" type="line"/>
-      <point x="76" y="84" type="line"/>
-      <point x="-56" y="64" type="line"/>
     </contour>
     <contour>
-      <point x="300" y="384" type="line"/>
-      <point x="952" y="384" type="line"/>
-      <point x="951" y="475" type="line"/>
-      <point x="319" y="475" type="line"/>
+      <point x="416" y="475" type="line"/>
+      <point x="770" y="1177" type="line"/>
+      <point x="784" y="1066" type="line"/>
+      <point x="901" y="475" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.category</key>
-      <string>Letter</string>
-      <key>com.schriftgestaltung.Glyphs.script</key>
-      <string>latin</string>
-      <key>com.schriftgestaltung.Glyphs.subCategory</key>
-      <string>Smallcaps</string>
-    </dict>
-  </lib>
 </glyph>

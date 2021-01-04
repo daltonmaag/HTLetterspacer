@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="tedescender-cy.sc" format="2">
-  <advance width="1192"/>
-  <outline>
-    <component base="t.sc"/>
-    <component base="righttooth_part." xOffset="538"/>
-  </outline>
-</glyph>

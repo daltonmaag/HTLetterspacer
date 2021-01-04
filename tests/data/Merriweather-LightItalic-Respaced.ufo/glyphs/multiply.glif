@@ -1,29 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="multiply" format="2">
-  <advance width="1186"/>
+  <advance width="1056"/>
   <unicode hex="00D7"/>
   <outline>
     <contour>
-      <point x="881" y="217" type="line"/>
-      <point x="985" y="316" type="line"/>
-      <point x="682" y="639" type="line"/>
-      <point x="1045" y="978" type="line"/>
-      <point x="966" y="1077" type="line"/>
-      <point x="613" y="722" type="line"/>
-      <point x="327" y="1074" type="line"/>
-      <point x="226" y="976" type="line"/>
-      <point x="527" y="647" type="line"/>
-      <point x="162" y="316" type="line"/>
-      <point x="241" y="215" type="line"/>
-      <point x="596" y="564" type="line"/>
+      <point x="920" y="316" type="line"/>
+      <point x="617" y="639" type="line"/>
+      <point x="980" y="978" type="line"/>
+      <point x="901" y="1077" type="line"/>
+      <point x="548" y="722" type="line"/>
+      <point x="262" y="1074" type="line"/>
+      <point x="161" y="976" type="line"/>
+      <point x="462" y="647" type="line"/>
+      <point x="97" y="316" type="line"/>
+      <point x="176" y="215" type="line"/>
+      <point x="531" y="564" type="line"/>
+      <point x="816" y="217" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>hyphen</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>hyphen</string>
-    </dict>
-  </lib>
 </glyph>

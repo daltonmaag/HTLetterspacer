@@ -4,12 +4,12 @@
   <anchor x="318" y="1879" name="top"/>
   <outline>
     <contour>
-      <point x="161" y="1656" type="line"/>
       <point x="236" y="1606" type="line"/>
       <point x="331" y="1653"/>
       <point x="509" y="1779"/>
       <point x="576" y="1874" type="curve"/>
       <point x="447" y="1962" type="line"/>
+      <point x="161" y="1656" type="line"/>
     </contour>
   </outline>
   <lib>

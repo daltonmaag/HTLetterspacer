@@ -6,15 +6,26 @@
   <anchor x="854" y="1486" name="top"/>
   <outline>
     <contour>
+      <point x="1054" y="1406" type="line"/>
+      <point x="1192" y="1386" type="line"/>
+      <point x="1184" y="1297" type="line"/>
+      <point x="584" y="619" type="line"/>
+      <point x="350" y="335" type="line"/>
+      <point x="496" y="1386" type="line"/>
+      <point x="636" y="1406" type="line"/>
+      <point x="644" y="1486" type="line"/>
+      <point x="222" y="1486" type="line"/>
+      <point x="214" y="1406" type="line"/>
+      <point x="336" y="1386" type="line"/>
+      <point x="162" y="94" type="line"/>
+      <point x="14" y="70" type="line"/>
       <point x="6" y="0" type="line"/>
       <point x="460" y="0" type="line"/>
       <point x="466" y="70" type="line"/>
       <point x="320" y="94" type="line"/>
-      <point x="338" y="258" type="line"/>
-      <point x="282" y="128" type="line"/>
+      <point x="330" y="182" type="line"/>
       <point x="938" y="868" type="line"/>
-      <point x="1210" y="1201" type="line"/>
-      <point x="1175" y="1211" type="line"/>
+      <point x="1166" y="1147" type="line"/>
       <point x="1020" y="94" type="line"/>
       <point x="854" y="70" type="line"/>
       <point x="848" y="0" type="line"/>
@@ -25,21 +36,6 @@
       <point x="1484" y="1406" type="line"/>
       <point x="1494" y="1486" type="line"/>
       <point x="1064" y="1486" type="line"/>
-      <point x="1054" y="1406" type="line"/>
-      <point x="1192" y="1386" type="line"/>
-      <point x="1178" y="1223" type="line"/>
-      <point x="1234" y="1353" type="line"/>
-      <point x="584" y="619" type="line"/>
-      <point x="316" y="294" type="line"/>
-      <point x="342" y="278" type="line"/>
-      <point x="496" y="1386" type="line"/>
-      <point x="636" y="1406" type="line"/>
-      <point x="644" y="1486" type="line"/>
-      <point x="222" y="1486" type="line"/>
-      <point x="214" y="1406" type="line"/>
-      <point x="336" y="1386" type="line"/>
-      <point x="162" y="94" type="line"/>
-      <point x="14" y="70" type="line"/>
     </contour>
   </outline>
 </glyph>

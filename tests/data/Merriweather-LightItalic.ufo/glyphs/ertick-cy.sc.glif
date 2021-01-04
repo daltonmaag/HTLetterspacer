@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="ertick-cy.sc" format="2">
-  <advance width="1142"/>
-  <outline>
-    <component base="p.sc"/>
-    <component base="ptick_part." xOffset="-67" yOffset="-58"/>
-  </outline>
-</glyph>

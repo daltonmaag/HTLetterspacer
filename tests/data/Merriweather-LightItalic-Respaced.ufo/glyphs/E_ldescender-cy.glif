@@ -1,28 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="Eldescender-cy" format="2">
-  <advance width="1320"/>
+  <advance width="1381"/>
   <unicode hex="052E"/>
   <outline>
     <component base="El-cy"/>
-    <component base="righttooth_part." xOffset="939"/>
+    <component base="righttooth_part." xOffset="957"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.ComponentInfo</key>
-      <array>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>0</integer>
-          <key>name</key>
-          <string>El-cy</string>
-        </dict>
-      </array>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>El-cy</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>Tse-cy</string>
-    </dict>
-  </lib>
 </glyph>

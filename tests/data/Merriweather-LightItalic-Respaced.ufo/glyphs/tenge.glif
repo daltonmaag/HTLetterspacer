@@ -4,7 +4,12 @@
   <unicode hex="20B8"/>
   <outline>
     <contour>
-      <point x="344" y="0" type="line"/>
+      <point x="1400" y="1377" type="line"/>
+      <point x="1414" y="1486" type="line"/>
+      <point x="297" y="1486" type="line"/>
+      <point x="280" y="1377" type="line"/>
+    </contour>
+    <contour>
       <point x="986" y="0" type="line"/>
       <point x="992" y="76" type="line"/>
       <point x="746" y="94" type="line"/>
@@ -20,34 +25,7 @@
       <point x="718" y="1052" type="line"/>
       <point x="589" y="94" type="line"/>
       <point x="348" y="76" type="line"/>
-    </contour>
-    <contour>
-      <point x="280" y="1377" type="line"/>
-      <point x="1400" y="1377" type="line"/>
-      <point x="1414" y="1486" type="line"/>
-      <point x="297" y="1486" type="line"/>
+      <point x="344" y="0" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.hints</key>
-      <array>
-        <dict>
-          <key>horizontal</key>
-          <false/>
-          <key>options</key>
-          <integer>0</integer>
-          <key>place</key>
-          <array>
-            <integer>22</integer>
-            <integer>0</integer>
-          </array>
-          <key>stem</key>
-          <integer>-2</integer>
-          <key>type</key>
-          <string>Stem</string>
-        </dict>
-      </array>
-    </dict>
-  </lib>
 </glyph>

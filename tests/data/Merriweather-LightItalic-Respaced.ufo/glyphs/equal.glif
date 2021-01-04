@@ -1,27 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="equal" format="2">
-  <advance width="1136"/>
+  <advance width="1229"/>
   <unicode hex="003D"/>
   <outline>
     <contour>
-      <point x="223" y="957" type="line"/>
-      <point x="211" y="830" type="line"/>
-      <point x="1005" y="830" type="line"/>
-      <point x="1019" y="957" type="line"/>
+      <point x="257" y="830" type="line"/>
+      <point x="1051" y="830" type="line"/>
+      <point x="1065" y="957" type="line"/>
+      <point x="269" y="957" type="line"/>
     </contour>
     <contour>
-      <point x="155" y="458" type="line"/>
-      <point x="143" y="331" type="line"/>
-      <point x="937" y="331" type="line"/>
-      <point x="951" y="458" type="line"/>
+      <point x="189" y="331" type="line"/>
+      <point x="983" y="331" type="line"/>
+      <point x="997" y="458" type="line"/>
+      <point x="201" y="458" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>hyphen</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>hyphen</string>
-    </dict>
-  </lib>
 </glyph>

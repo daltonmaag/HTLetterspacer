@@ -6,7 +6,6 @@
   <anchor x="713" y="1486" name="top"/>
   <outline>
     <contour>
-      <point x="22" y="0" type="line"/>
       <point x="1014" y="0" type="line"/>
       <point x="1105" y="349" type="line"/>
       <point x="1010" y="376" type="line"/>
@@ -22,16 +21,7 @@
       <point x="1016" y="1394" type="line"/>
       <point x="845" y="1193" type="line"/>
       <point x="1" y="73" type="line"/>
+      <point x="22" y="0" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.category</key>
-      <string>Letter</string>
-      <key>com.schriftgestaltung.Glyphs.script</key>
-      <string>latin</string>
-      <key>com.schriftgestaltung.Glyphs.subCategory</key>
-      <string>Uppercase</string>
-    </dict>
-  </lib>
 </glyph>

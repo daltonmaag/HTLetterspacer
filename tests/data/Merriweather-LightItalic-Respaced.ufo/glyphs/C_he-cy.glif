@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="Che-cy" format="2">
-  <advance width="1333"/>
+  <advance width="1310"/>
   <unicode hex="0427"/>
   <anchor x="683" y="0" name="bottomleft"/>
   <anchor x="1196" y="0" name="bottomright"/>
   <anchor x="778" y="1486" name="top"/>
   <outline>
     <contour>
-      <point x="691" y="0" type="line"/>
       <point x="1177" y="0" type="line"/>
       <point x="1183" y="80" type="line"/>
       <point x="1040" y="104" type="line"/>
@@ -45,12 +44,7 @@
       <point x="957" y="652" type="curve"/>
       <point x="882" y="104" type="line"/>
       <point x="697" y="80" type="line"/>
+      <point x="691" y="0" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>Pe-cy</string>
-    </dict>
-  </lib>
 </glyph>

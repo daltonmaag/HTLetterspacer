@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="Hardsign-cy" format="2">
-  <advance width="1513"/>
+  <advance width="1541"/>
   <unicode hex="042A"/>
   <outline>
     <contour>
@@ -45,10 +45,4 @@
       <point x="1168" y="81"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>Softsign-cy</string>
-    </dict>
-  </lib>
 </glyph>

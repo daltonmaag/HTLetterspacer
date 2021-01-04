@@ -1,15 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="parenright.sc" format="2">
-  <advance width="844"/>
+  <advance width="594"/>
   <outline>
-    <component base="parenleft.sc" xScale="-1" yScale="-1" xOffset="881" yOffset="1380"/>
+    <component base="parenleft.sc" xScale="-1" yScale="-1" xOffset="631" yOffset="1380"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>=|parenleft.sc</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>=|parenleft.sc</string>
-    </dict>
-  </lib>
 </glyph>

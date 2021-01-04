@@ -5,10 +5,10 @@
   <anchor x="256" y="580" name="_tbar"/>
   <outline>
     <contour>
-      <point x="62" y="532" type="line"/>
       <point x="610" y="532" type="line"/>
       <point x="623" y="626" type="line"/>
       <point x="76" y="626" type="line"/>
+      <point x="62" y="532" type="line"/>
     </contour>
   </outline>
 </glyph>

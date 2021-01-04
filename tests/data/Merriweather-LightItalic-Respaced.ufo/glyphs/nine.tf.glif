@@ -41,10 +41,4 @@
       <point x="761" y="618"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>=|six.tf</string>
-    </dict>
-  </lib>
 </glyph>

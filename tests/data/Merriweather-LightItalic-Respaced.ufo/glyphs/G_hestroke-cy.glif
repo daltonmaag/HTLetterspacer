@@ -1,20 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="Ghestroke-cy" format="2">
-  <advance width="1093"/>
+  <advance width="1105"/>
   <unicode hex="0492"/>
   <outline>
     <contour>
-      <point x="767" y="771" type="line"/>
-      <point x="111" y="771" type="line"/>
-      <point x="98" y="682" type="line"/>
-      <point x="754" y="682" type="line"/>
+      <point x="792" y="771" type="line"/>
+      <point x="136" y="771" type="line"/>
+      <point x="123" y="682" type="line"/>
+      <point x="779" y="682" type="line"/>
     </contour>
-    <component base="Ge-cy" xOffset="-8"/>
+    <component base="Ge-cy" xOffset="17"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>Te-cy</string>
-    </dict>
-  </lib>
 </glyph>

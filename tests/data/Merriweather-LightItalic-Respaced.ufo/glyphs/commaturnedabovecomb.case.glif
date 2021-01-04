@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="commaturnedabovecomb.case" format="2">
-  <anchor x="76" y="1110" name="_top"/>
+  <anchor x="170" y="1110" name="_top"/>
   <outline>
-    <component base="commaturnedabovecomb"/>
+    <component base="commaturnedabovecomb" xOffset="94"/>
   </outline>
   <lib>
     <dict>
       <key>com.schriftgestaltung.Glyphs.originalWidth</key>
-      <integer>418</integer>
+      <integer>512</integer>
     </dict>
   </lib>
 </glyph>

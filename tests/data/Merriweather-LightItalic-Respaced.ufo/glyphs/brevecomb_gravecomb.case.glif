@@ -3,12 +3,12 @@
   <anchor x="484" y="1486" name="_top"/>
   <outline>
     <contour>
-      <point x="538" y="1927" type="curve"/>
       <point x="618" y="1982" type="line"/>
       <point x="466" y="2262" type="line"/>
       <point x="342" y="2166" type="line"/>
       <point x="414" y="2067"/>
       <point x="500" y="1955"/>
+      <point x="538" y="1927" type="curve"/>
     </contour>
     <contour>
       <point x="497" y="1615" type="curve" smooth="yes"/>

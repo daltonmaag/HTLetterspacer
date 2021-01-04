@@ -1,27 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="esdescender-cy.sc" format="2">
-  <advance width="1170"/>
+  <advance width="1187"/>
   <outline>
-    <component base="c.sc"/>
-    <component base="cedillacomb.case" xOffset="349"/>
+    <component base="c.sc" xOffset="15"/>
+    <component base="cedillacomb.case" xOffset="364"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.ComponentInfo</key>
-      <array>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>0</integer>
-          <key>name</key>
-          <string>c.sc</string>
-        </dict>
-      </array>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>es-cy.sc</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>es-cy.sc</string>
-    </dict>
-  </lib>
 </glyph>

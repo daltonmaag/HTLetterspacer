@@ -1,15 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="one.lf" format="2">
-  <advance width="868"/>
+  <advance width="727"/>
   <outline>
-    <component base="one"/>
+    <component base="one" xOffset="-46"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>one</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>one</string>
-    </dict>
-  </lib>
 </glyph>

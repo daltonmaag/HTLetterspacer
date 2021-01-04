@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="Entail-cy" format="2">
-  <advance width="1451"/>
-  <unicode hex="04C9"/>
-  <outline>
-    <component base="H"/>
-    <component base="rtail_part." xOffset="825"/>
-  </outline>
-</glyph>

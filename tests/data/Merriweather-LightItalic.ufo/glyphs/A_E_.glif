@@ -5,7 +5,6 @@
   <anchor x="1145" y="1486" name="top"/>
   <outline>
     <contour>
-      <point x="-161" y="0" type="line"/>
       <point x="386" y="0" type="line"/>
       <point x="392" y="70" type="line"/>
       <point x="172" y="94" type="line"/>
@@ -33,12 +32,13 @@
       <point x="710" y="1387" type="line"/>
       <point x="13" y="92" type="line"/>
       <point x="-149" y="70" type="line"/>
+      <point x="-161" y="0" type="line"/>
     </contour>
     <contour>
-      <point x="420" y="582" type="line"/>
       <point x="831" y="1387" type="line"/>
       <point x="970" y="1381" type="line"/>
       <point x="873" y="582" type="line"/>
+      <point x="420" y="582" type="line"/>
     </contour>
   </outline>
 </glyph>

@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="entail-cy.sc" format="2">
-  <advance width="1443"/>
-  <outline>
-    <component base="h.sc"/>
-    <component base="rtail_part." xOffset="787"/>
-  </outline>
-</glyph>

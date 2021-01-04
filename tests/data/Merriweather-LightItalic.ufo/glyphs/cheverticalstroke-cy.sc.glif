@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="cheverticalstroke-cy.sc" format="2">
-  <advance width="1172"/>
-  <outline>
-    <component base="che-cy.sc"/>
-    <component base="vertbarlc_part." xOffset="283" yOffset="-34"/>
-  </outline>
-</glyph>

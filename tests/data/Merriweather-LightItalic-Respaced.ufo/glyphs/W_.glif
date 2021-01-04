@@ -6,33 +6,10 @@
   <anchor x="1114" y="1486" name="top"/>
   <outline>
     <contour>
-      <point x="474" y="-10" type="line"/>
-      <point x="631" y="-10" type="line"/>
-      <point x="1033" y="1032" type="line"/>
-      <point x="1004" y="1250" type="line"/>
-      <point x="673" y="374" type="line"/>
-      <point x="568" y="72" type="line"/>
-      <point x="602" y="69" type="line"/>
-      <point x="554" y="428" type="line"/>
-      <point x="433" y="1390" type="line"/>
-      <point x="605" y="1406" type="line"/>
-      <point x="611" y="1486" type="line"/>
-      <point x="159" y="1486" type="line"/>
-      <point x="151" y="1406" type="line"/>
-      <point x="276" y="1386" type="line"/>
-    </contour>
-    <contour>
-      <point x="1152" y="-10" type="line"/>
-      <point x="1313" y="-10" type="line"/>
-      <point x="1900" y="1386" type="line"/>
-      <point x="2036" y="1406" type="line"/>
-      <point x="2048" y="1486" type="line"/>
-      <point x="1629" y="1486" type="line"/>
       <point x="1621" y="1406" type="line"/>
       <point x="1771" y="1386" type="line"/>
       <point x="1374" y="395" type="line"/>
-      <point x="1249" y="73" type="line"/>
-      <point x="1283" y="69" type="line"/>
+      <point x="1276" y="143" type="line"/>
       <point x="1249" y="428" type="line"/>
       <point x="1139" y="1388" type="line"/>
       <point x="1313" y="1406" type="line"/>
@@ -40,16 +17,25 @@
       <point x="854" y="1486" type="line"/>
       <point x="846" y="1406" type="line"/>
       <point x="986" y="1388" type="line"/>
+      <point x="1003" y="1247" type="line"/>
+      <point x="673" y="374" type="line"/>
+      <point x="592" y="142" type="line"/>
+      <point x="554" y="428" type="line"/>
+      <point x="433" y="1390" type="line"/>
+      <point x="605" y="1406" type="line"/>
+      <point x="611" y="1486" type="line"/>
+      <point x="159" y="1486" type="line"/>
+      <point x="151" y="1406" type="line"/>
+      <point x="276" y="1386" type="line"/>
+      <point x="474" y="-10" type="line"/>
+      <point x="631" y="-10" type="line"/>
+      <point x="1029" y="1023" type="line"/>
+      <point x="1152" y="-10" type="line"/>
+      <point x="1313" y="-10" type="line"/>
+      <point x="1900" y="1386" type="line"/>
+      <point x="2036" y="1406" type="line"/>
+      <point x="2048" y="1486" type="line"/>
+      <point x="1629" y="1486" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.category</key>
-      <string>Letter</string>
-      <key>com.schriftgestaltung.Glyphs.script</key>
-      <string>latin</string>
-      <key>com.schriftgestaltung.Glyphs.subCategory</key>
-      <string>Uppercase</string>
-    </dict>
-  </lib>
 </glyph>

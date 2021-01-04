@@ -8,7 +8,6 @@
   <anchor x="34" y="1292" name="topleft"/>
   <outline>
     <contour>
-      <point x="-12" y="70" type="line"/>
       <point x="-20" y="0" type="line"/>
       <point x="598" y="0" type="line"/>
       <point x="604" y="70" type="line"/>
@@ -23,6 +22,7 @@
       <point x="286" y="1108"/>
       <point x="348" y="1126" type="curve"/>
       <point x="212" y="88" type="line"/>
+      <point x="-12" y="70" type="line"/>
     </contour>
   </outline>
 </glyph>

@@ -5,19 +5,8 @@
   </outline>
   <lib>
     <dict>
-      <key>com.schriftgestaltung.Glyphs.ComponentInfo</key>
-      <array>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>0</integer>
-          <key>name</key>
-          <string>ogonek</string>
-        </dict>
-      </array>
       <key>com.schriftgestaltung.Glyphs.originalWidth</key>
-      <integer>499</integer>
+      <integer>423</integer>
     </dict>
   </lib>
 </glyph>

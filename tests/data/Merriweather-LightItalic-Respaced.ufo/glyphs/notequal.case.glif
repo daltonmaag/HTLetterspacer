@@ -2,6 +2,6 @@
 <glyph name="notequal.case" format="2">
   <advance width="1049"/>
   <outline>
-    <component base="notequal" xOffset="-44"/>
+    <component base="notequal"/>
   </outline>
 </glyph>

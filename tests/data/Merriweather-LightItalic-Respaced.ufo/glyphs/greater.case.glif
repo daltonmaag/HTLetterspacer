@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="greater.case" format="2">
-  <advance width="1144"/>
+  <advance width="1062"/>
   <outline>
-    <component base="greater" xOffset="-36" yOffset="120"/>
+    <component base="greater" xOffset="-65" yOffset="120"/>
   </outline>
 </glyph>

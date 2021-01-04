@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="slashocomb" format="2">
-  <advance width="823"/>
-  <anchor x="413" y="566" name="_center"/>
+  <advance width="737"/>
+  <anchor x="370" y="566" name="_center"/>
   <outline>
     <contour>
-      <point x="41" y="-130" type="line"/>
-      <point x="153" y="37" type="line"/>
-      <point x="200" y="131" type="line"/>
-      <point x="679" y="947" type="line"/>
-      <point x="744" y="1050" type="line"/>
-      <point x="854" y="1222" type="line"/>
-      <point x="785" y="1263" type="line"/>
-      <point x="675" y="1092" type="line"/>
-      <point x="632" y="1003" type="line"/>
-      <point x="158" y="193" type="line"/>
-      <point x="88" y="86" type="line"/>
-      <point x="-29" y="-91" type="line"/>
+      <point x="110" y="37" type="line"/>
+      <point x="157" y="131" type="line"/>
+      <point x="636" y="947" type="line"/>
+      <point x="701" y="1050" type="line"/>
+      <point x="811" y="1222" type="line"/>
+      <point x="742" y="1263" type="line"/>
+      <point x="632" y="1092" type="line"/>
+      <point x="589" y="1003" type="line"/>
+      <point x="115" y="193" type="line"/>
+      <point x="45" y="86" type="line"/>
+      <point x="-72" y="-91" type="line"/>
+      <point x="-2" y="-130" type="line"/>
     </contour>
   </outline>
 </glyph>

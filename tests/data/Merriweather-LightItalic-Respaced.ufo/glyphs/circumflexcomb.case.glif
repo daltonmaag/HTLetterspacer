@@ -4,17 +4,15 @@
   <anchor x="594" y="2073" name="top"/>
   <outline>
     <contour>
-      <point x="191" y="1660" type="line"/>
       <point x="243" y="1614" type="line"/>
       <point x="352" y="1695"/>
       <point x="460" y="1776"/>
       <point x="569" y="1857" type="curve"/>
-      <point x="647" y="1775"/>
-      <point x="726" y="1692"/>
-      <point x="804" y="1610" type="curve"/>
+      <point x="804" y="1610" type="line"/>
       <point x="860" y="1658" type="line"/>
       <point x="644" y="1980" type="line"/>
       <point x="510" y="1980" type="line"/>
+      <point x="191" y="1660" type="line"/>
     </contour>
   </outline>
   <lib>

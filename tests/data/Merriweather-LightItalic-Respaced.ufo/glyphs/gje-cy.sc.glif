@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="gje-cy.sc" format="2">
-  <advance width="992"/>
-  <outline>
-    <component base="ge-cy.sc"/>
-    <component base="acutecomb" xOffset="368" yOffset="182"/>
-  </outline>
-</glyph>

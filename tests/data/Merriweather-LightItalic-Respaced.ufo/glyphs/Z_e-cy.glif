@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="Ze-cy" format="2">
-  <advance width="1123"/>
+  <advance width="1137"/>
   <unicode hex="0417"/>
   <anchor x="486" y="0" name="bottom"/>
   <anchor x="654" y="1486" name="top"/>
@@ -53,10 +53,4 @@
       <point x="238" y="-16"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>B</string>
-    </dict>
-  </lib>
 </glyph>

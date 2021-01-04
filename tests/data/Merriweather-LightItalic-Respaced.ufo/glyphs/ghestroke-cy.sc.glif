@@ -1,21 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="ghestroke-cy.sc" format="2">
-  <advance width="1027"/>
+  <advance width="965"/>
   <outline>
     <contour>
-      <point x="673" y="678" type="line"/>
-      <point x="106" y="677" type="line"/>
-      <point x="93" y="594" type="line"/>
-      <point x="661" y="594" type="line"/>
+      <point x="660" y="678" type="line"/>
+      <point x="93" y="677" type="line"/>
+      <point x="80" y="594" type="line"/>
+      <point x="648" y="594" type="line"/>
     </contour>
-    <component base="ge-cy.sc" xOffset="35"/>
+    <component base="ge-cy.sc" xOffset="22"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>ge-cy.sc</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>ge-cy.sc</string>
-    </dict>
-  </lib>
 </glyph>
