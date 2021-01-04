@@ -6,33 +6,4 @@
     <component base="comma" xOffset="89"/>
     <component base="period" xOffset="108" yOffset="790"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.ComponentInfo</key>
-      <array>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>0</integer>
-          <key>name</key>
-          <string>comma</string>
-        </dict>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>1</integer>
-          <key>name</key>
-          <string>period</string>
-        </dict>
-      </array>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>period</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.widthMetricsKey</key>
-      <string>period</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:19</string>
-    </dict>
-  </lib>
 </glyph>

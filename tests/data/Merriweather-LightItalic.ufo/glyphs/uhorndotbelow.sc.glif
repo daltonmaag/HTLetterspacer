@@ -5,18 +5,4 @@
     <component base="uhorn.sc"/>
     <component base="dotbelowcomb" xOffset="527"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.category</key>
-      <string>Letter</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:19</string>
-      <key>com.schriftgestaltung.Glyphs.script</key>
-      <string>latin</string>
-      <key>com.schriftgestaltung.Glyphs.subCategory</key>
-      <string>Smallcaps</string>
-      <key>public.markColor</key>
-      <string>0.97,1,0,1</string>
-    </dict>
-  </lib>
 </glyph>

@@ -1,29 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="obarred-cy.sc" format="2">
-  <advance width="1311"/>
+  <advance width="2249"/>
   <outline>
     <component base="o.sc"/>
-    <component base="longbar_part." xOffset="156" yOffset="-108"/>
+    <component base="longbar_part." xOffset="1311"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.ComponentInfo</key>
-      <array>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>1</integer>
-          <key>name</key>
-          <string>longbar_part.</string>
-        </dict>
-      </array>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>o.sc</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>o.sc</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:19</string>
-    </dict>
-  </lib>
 </glyph>

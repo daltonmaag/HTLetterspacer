@@ -39,14 +39,4 @@
       <point x="188" y="1486" type="line"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>T</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>Ef-cy</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:19</string>
-    </dict>
-  </lib>
 </glyph>

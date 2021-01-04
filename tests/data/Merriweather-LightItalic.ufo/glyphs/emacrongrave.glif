@@ -7,16 +7,4 @@
     <component base="macroncomb" xOffset="311" yOffset="-2"/>
     <component base="gravecomb" xOffset="276" yOffset="260"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.category</key>
-      <string>Letter</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:18</string>
-      <key>com.schriftgestaltung.Glyphs.script</key>
-      <string>latin</string>
-      <key>com.schriftgestaltung.Glyphs.subCategory</key>
-      <string>Lowercase</string>
-    </dict>
-  </lib>
 </glyph>

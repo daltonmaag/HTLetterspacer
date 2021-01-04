@@ -6,12 +6,4 @@
     <component base="idotless"/>
     <component base="dieresis-cy" xOffset="275"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.widthMetricsKey</key>
-      <string>i</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:19</string>
-    </dict>
-  </lib>
 </glyph>

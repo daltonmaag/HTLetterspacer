@@ -5,14 +5,4 @@
   <outline>
     <component base="quoteleft" xScale="0.89879" xyScale="-0.43837" yxScale="-0.43837" yScale="-0.89879" xOffset="606" yOffset="2662"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>quoteleft</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>quoteleft</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:19</string>
-    </dict>
-  </lib>
 </glyph>

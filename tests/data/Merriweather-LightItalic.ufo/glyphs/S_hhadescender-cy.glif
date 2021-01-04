@@ -1,30 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="Shhadescender-cy" format="2">
-  <advance width="1312"/>
+  <advance width="1255"/>
   <unicode hex="0526"/>
   <outline>
-    <component base="Shha-cy" xOffset="10"/>
-    <component base="righttooth_part." xOffset="903"/>
+    <component base="Shha-cy"/>
+    <component base="righttooth_part." xOffset="893"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.ComponentInfo</key>
-      <array>
-        <dict>
-          <key>alignment</key>
-          <integer>-1</integer>
-          <key>index</key>
-          <integer>0</integer>
-          <key>name</key>
-          <string>Shha-cy</string>
-        </dict>
-      </array>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>Pe-cy</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>Tse-cy</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:19</string>
-    </dict>
-  </lib>
 </glyph>

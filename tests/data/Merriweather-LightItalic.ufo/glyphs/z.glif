@@ -52,16 +52,4 @@
       <point x="732" y="981"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.category</key>
-      <string>Letter</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/14 15:36:50</string>
-      <key>com.schriftgestaltung.Glyphs.script</key>
-      <string>latin</string>
-      <key>com.schriftgestaltung.Glyphs.subCategory</key>
-      <string>Lowercase</string>
-    </dict>
-  </lib>
 </glyph>

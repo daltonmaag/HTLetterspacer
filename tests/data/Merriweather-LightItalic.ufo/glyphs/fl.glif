@@ -1,19 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="fl" format="2">
-  <advance width="1323"/>
+  <advance width="1265"/>
   <unicode hex="FB02"/>
   <outline>
     <component base="f"/>
-    <component base="l" xOffset="742"/>
+    <component base="l" xOffset="684"/>
   </outline>
-  <lib>
-    <dict>
-      <key>com.schriftgestaltung.Glyphs.glyph.leftMetricsKey</key>
-      <string>f</string>
-      <key>com.schriftgestaltung.Glyphs.glyph.rightMetricsKey</key>
-      <string>l</string>
-      <key>com.schriftgestaltung.Glyphs.lastChange</key>
-      <string>2020/05/13 18:38:18</string>
-    </dict>
-  </lib>
 </glyph>
