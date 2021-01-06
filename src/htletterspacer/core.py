@@ -275,18 +275,11 @@ class HTLetterspacerLib:
             LOGGER.warning("Glyph has no name.")
         elif len(layer.contours) < 1 and len(layer.components) < 1:
             LOGGER.warning("No paths in glyph %s.", layer.name)
-        # both sidebearings with metric keys
-        # elif layer.hasAlignedWidth():
-        #     self.output += (
-        #         "Glyph "
-        #         + layer.name
-        #         + " has automatic alignment. Spacing not set.\n"
-        #     )
-        elif (
-            layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None
-            and layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None
-        ):
-            LOGGER.warning("Glyph %s has metric keys. Spacing not set.", layer.name)
+        # elif (
+        #     layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None
+        #     and layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None
+        # ):
+        #     LOGGER.warning("Glyph %s has metric keys. Spacing not set.", layer.name)
         # if it is tabular
         # elif ".tosf" in layer.name or ".tf" in layer.name:
         #     LOGGER.warning("Glyph %s is supposed to be tabular.", layer.name)
