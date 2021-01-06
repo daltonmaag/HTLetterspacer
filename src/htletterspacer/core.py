@@ -330,8 +330,7 @@ def setSidebearingsSlanted(
     bounds = layer.getControlBounds()
     assert bounds is not None
     left, _, _, _ = bounds
-    origin = (left, xheight / 2)
-    m = skew_matrix((-a, 0), offset=origin)
+    m = skew_matrix((-a, 0), offset=(left, xheight / 2))
 
     original_width = (
         layer.lib.get("com.schriftgestaltung.Glyphs.originalWidth") or layer.width
@@ -346,8 +345,7 @@ def setSidebearingsSlanted(
     boundsback = backslant.getControlBounds()
     assert boundsback is not None
     left, _, _, _ = boundsback
-    origin = (left, xheight / 2)
-    mf = skew_matrix((a, 0), offset=origin)
+    mf = skew_matrix((a, 0), offset=(left, xheight / 2))
     forwardslant = Glyph()
     forwardslant.width = backslant.width
     backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
