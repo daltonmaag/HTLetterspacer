@@ -2,6 +2,6 @@
 <glyph name="quotesinglbase.ss01" format="2">
   <advance width="501"/>
   <outline>
-    <component base="quoteright.ss01" xOffset="-196" yOffset="-1394"/>
+    <component base="quoteright.ss01" xOffset="-191" yOffset="-1394"/>
   </outline>
 </glyph>

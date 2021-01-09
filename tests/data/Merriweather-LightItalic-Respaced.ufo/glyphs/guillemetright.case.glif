@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="guillemetright.case" format="2">
-  <advance width="1085"/>
+  <advance width="1185"/>
   <outline>
-    <component base="guillemetright" xOffset="-80" yOffset="143"/>
+    <component base="guillemetright" xOffset="20" yOffset="143"/>
   </outline>
 </glyph>

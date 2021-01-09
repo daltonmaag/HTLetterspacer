@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="esdescender-cy.sc" format="2">
-  <advance width="1187"/>
+  <advance width="1172"/>
   <outline>
-    <component base="c.sc" xOffset="15"/>
-    <component base="cedillacomb.case" xOffset="364"/>
+    <component base="c.sc"/>
+    <component base="cedillacomb.case" xOffset="349"/>
   </outline>
 </glyph>

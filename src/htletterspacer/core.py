@@ -327,35 +327,39 @@ def setSidebearings(
 def setSidebearingsSlanted(
     layer: Glyph, l: float, r: float, a: float, xheight: float
 ) -> None:
-    bounds = layer.getControlBounds()
-    assert bounds is not None
-    left, _, _, _ = bounds
-    m = skew_matrix((-a, 0), offset=(left, xheight / 2))
-
     original_width = (
         layer.lib.get("com.schriftgestaltung.Glyphs.originalWidth") or layer.width
     )
 
-    backslant = Glyph()
+    bounds = layer.getBounds()
+    assert bounds is not None
+    left, _, _, _ = bounds
+    m = skew_matrix((-a, 0), offset=(left, xheight / 2))
+    backslant = Glyph(name="backslant")
     backslant.width = original_width
     layer.drawPoints(TransformPointPen(backslant.getPointPen(), m))
-    backslant.setLeftMargin(l)
-    backslant.setRightMargin(r)
+    setLeftMargin(backslant, l)
+    setRightMargin(backslant, r)
 
-    boundsback = backslant.getControlBounds()
+    boundsback = backslant.getBounds()
     assert boundsback is not None
     left, _, _, _ = boundsback
     mf = skew_matrix((a, 0), offset=(left, xheight / 2))
-    forwardslant = Glyph()
+    forwardslant = Glyph(name="forwardslant")
     forwardslant.width = backslant.width
     backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
-    # forwardslant.width = round(forwardslant.width)
 
-    if GLYPHS_LEFT_METRICS_KEY not in layer.lib:
-        layer.setLeftMargin(round(forwardslant.getLeftMargin()))
-    if GLYPHS_RIGHT_METRICS_KEY not in layer.lib:
-        layer.setRightMargin(round(forwardslant.getRightMargin()))
+    left_margin = getLeftMargin(forwardslant)
+    assert left_margin is not None
+    right_margin = getRightMargin(forwardslant)
+    assert right_margin is not None
+    setLeftMargin(layer, round(left_margin))
+    setRightMargin(layer, round(right_margin))
     layer.width = round(layer.width)
+    for contour in layer.contours:
+        for point in contour:
+            point.x = round(point.x)
+            point.y = round(point.y)
 
     if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
         layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
@@ -370,6 +374,14 @@ def skew_matrix(angle, offset=(0, 0)):
     sT = sT.skew(x, y)
     sT = sT.translate(-dx, -dy)
     return sT
+
+
+def save_to_temp_ufo(*glyphs):
+    import ufoLib2
+    output_ufo = ufoLib2.Font()
+    for g in glyphs:
+        output_ufo.layers.defaultLayer.insertGlyph(g)
+    output_ufo.save("/tmp/test.ufo", overwrite=True)
 
 
 # shape calculations

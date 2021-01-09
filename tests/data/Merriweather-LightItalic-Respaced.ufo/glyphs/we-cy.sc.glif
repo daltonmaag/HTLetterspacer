@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="we-cy.sc" format="2">
-  <advance width="1981"/>
+  <advance width="1885"/>
   <outline>
-    <component base="w.sc" xOffset="96"/>
+    <component base="w.sc"/>
   </outline>
 </glyph>

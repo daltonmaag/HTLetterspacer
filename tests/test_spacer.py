@@ -147,6 +147,7 @@ def test_spacer_merriweather(datadir):
 
     for glyph, glyph_ref, factor in (
         # (".notdef", ".notdef", 1.1),
+        ("dzhe_desc.part", "dzhe_desc.part", 1.0),
         ("a.sc", "h.sc", 1.1),
         ("A", "H", 1.25),
         ("a", "x", 1.0),
@@ -275,8 +276,8 @@ def test_spacer_merriweather(datadir):
         ("delta.sc", "h.sc", 1.1),
         ("Delta", "H", 1.25),
         ("desccy_part.", "desccy_part.", 1.0),
-        ("descender", "descender", 1.6),
-        ("dieresis-cy", "dieresis-cy", 1.5),
+        ("descender", "descender", 1.0),
+        ("dieresis-cy", "dieresis-cy", 1.0),
         ("dieresis", "dieresis", 1.0),
         ("dieresisbelowcomb.case", "dieresisbelowcomb.case", 1.0),
         ("dieresisbelowcomb", "dieresisbelowcomb", 1.0),
@@ -302,7 +303,6 @@ def test_spacer_merriweather(datadir):
         ("Dz", "H", 1.25),
         ("DZ", "H", 1.25),
         ("DZcaron", "H", 1.25),
-        ("dzhe_desc.part", "dzhe_desc.part", 0.8),
         ("dzhe-cy.sc", "h.sc", 1.1),
         ("Dzhe-cy", "H", 1.25),
         ("e-cy.sc", "h.sc", 1.1),
@@ -469,7 +469,7 @@ def test_spacer_merriweather(datadir):
         ("hardsign-cy", "x", 1.0),
         ("hbar.sc", "h.sc", 1.1),
         ("Hbar", "H", 1.25),
-        ("hook_cy.part", "hook_cy.part", 0.8),
+        ("hook_cy.part", "hook_cy.part", 1.0),
         ("hookabovecomb.case", "hookabovecomb.case", 1.0),
         ("hookabovecomb", "hookabovecomb", 1.0),
         ("horizontalbar", "horizontalbar", 1.0),
@@ -569,7 +569,7 @@ def test_spacer_merriweather(datadir):
         ("lje-cy", "x", 1.0),
         ("logicalnot.case", "logicalnot.case", 1.5),
         ("logicalnot", "logicalnot", 1.5),
-        ("longbar_part.", "longbar_part.", 1.25),
+        ("longbar_part.", "longbar_part.", 1.0),
         ("lozenge", "lozenge", 1.5),
         ("lslash", "x", 1.0),
         ("m.sc", "h.sc", 1.1),
@@ -639,7 +639,7 @@ def test_spacer_merriweather(datadir):
         ("one.tosf", "one", 1.2),
         ("one", "one", 1.2),
         ("ordfeminine", "ordfeminine", 1.0),
-        ("ordmasculine", "ordmasculine", 0.8),
+        ("ordmasculine", "ordmasculine", 1.0),
         ("p.sc", "h.sc", 1.1),
         ("P", "H", 1.25),
         ("p", "x", 1.0),
@@ -680,8 +680,8 @@ def test_spacer_merriweather(datadir):
         ("published", "published", 1.5),
         ("punctuationspace", "punctuationspace", 1.25),
         ("q", "x", 1.0),
-        ("qtail.case", "qtail.case", 1.5),
-        ("qtail.sc", "qtail.sc", 1.5),
+        ("qtail.case", "qtail.case", 1.0),
+        ("qtail.sc", "qtail.sc", 1.0),
         ("question.sc", "question.sc", 1.0),
         ("question.ss01.sc", "question.ss01.sc", 1.0),
         ("question.ss01", "question.ss01", 1.4),
@@ -720,13 +720,13 @@ def test_spacer_merriweather(datadir):
         ("reversedze-cy", "x", 1.0),
         ("rightanglebracket-math", "rightanglebracket-math", 1.2),
         ("rightArrow", "rightArrow", 1.5),
-        ("righttooth_part.", "righttooth_part.", 1.4),
+        ("righttooth_part.", "righttooth_part.", 1.0),
         ("ring", "ring", 1.0),
         ("ringcomb.case", "ringcomb.case", 1.0),
         ("ringcomb", "ringcomb", 1.0),
         ("ringhalfleft", "ringhalfleft", 1.0),
         ("ringhalfright", "ringhalfright", 1.0),
-        ("rtail_part.", "rtail_part.", 1.5),
+        ("rtail_part.", "rtail_part.", 1.0),
         ("ruble", "ruble", 1.6),
         ("rupeeIndian", "rupeeIndian", 1.6),
         ("s.sc", "h.sc", 1.1),
@@ -771,9 +771,9 @@ def test_spacer_merriweather(datadir):
         ("slash.case", "slash.case", 1.0),
         ("slash", "slash", 1.0),
         ("slashlongcomb", "slashlongcomb", 1.0),
-        ("slashocomb.case", "slashocomb.case", 1.2),
+        ("slashocomb.case", "slashocomb.case", 1.0),
         ("slashocomb.sc", "slashocomb.sc", 1.0),
-        ("slashocomb", "slashocomb", 1.1),
+        ("slashocomb", "slashocomb", 1.0),
         ("slashshortcomb", "slashshortcomb", 1.0),
         ("softhyphen.case", "softhyphen.case", 1.0),
         ("softhyphen", "softhyphen", 1.0),
@@ -847,7 +847,7 @@ def test_spacer_merriweather(datadir):
         ("v", "x", 1.0),
         ("ve-cy.loclBGR", "x", 1.0),
         ("ve-cy", "x", 1.0),
-        ("vertbarlc_part.", "vertbarlc_part.", 1.2),
+        ("vertbarlc_part.", "vertbarlc_part.", 1.0),
         ("verticallinelowmod", "verticallinelowmod", 1.0),
         ("verticallinemod", "verticallinemod", 1.0),
         ("w.sc", "h.sc", 1.1),
@@ -924,15 +924,17 @@ def test_spacer_merriweather(datadir):
             left_should = glyph_rspc.getLeftMargin(ufo_rspc)
             if left_should is None:
                 continue  # skip emquad, etc.
-            assert glyph_orig.getLeftMargin() == pytest.approx(
-                left_should, abs=1
-            ), glyph
+            left_is = glyph_orig.getLeftMargin()
+            assert left_is is not None
+            assert round(left_is) == pytest.approx(round(left_should), abs=1), glyph
             right_should = glyph_rspc.getRightMargin(ufo_rspc)
-            assert glyph_orig.getRightMargin() == pytest.approx(
-                right_should, abs=1
-            ), glyph
+            assert right_should is not None
+            right_is = glyph_orig.getRightMargin()
+            assert right_is is not None
+            assert round(right_is) == pytest.approx(round(right_should), abs=1), glyph
         except:
             output_ufo = ufoLib2.Font()
+            output_ufo.info.unitsPerEm = ufo_orig.info.unitsPerEm
             output_ufo.layers.defaultLayer.insertGlyph(glyph_orig, name="respaced")
             output_ufo.layers.defaultLayer.insertGlyph(glyph_rspc, name="comparison")
             output_ufo.save("/tmp/test.ufo", overwrite=True)

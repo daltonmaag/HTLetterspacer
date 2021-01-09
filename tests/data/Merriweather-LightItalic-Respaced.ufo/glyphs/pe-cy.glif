@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="pe-cy" format="2">
-  <advance width="1102"/>
+  <advance width="1130"/>
   <unicode hex="043F"/>
   <outline>
-    <component base="n" xOffset="-28"/>
+    <component base="n"/>
   </outline>
 </glyph>
