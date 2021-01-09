@@ -338,8 +338,8 @@ def setSidebearingsSlanted(
     backslant = Glyph(name="backslant")
     backslant.width = original_width
     layer.drawPoints(TransformPointPen(backslant.getPointPen(), m))
-    setLeftMargin(backslant, l)
-    setRightMargin(backslant, r)
+    backslant.setLeftMargin(l)
+    backslant.setRightMargin(r)
 
     boundsback = backslant.getBounds()
     assert boundsback is not None
@@ -349,12 +349,12 @@ def setSidebearingsSlanted(
     forwardslant.width = backslant.width
     backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
 
-    left_margin = getLeftMargin(forwardslant)
+    left_margin = forwardslant.getLeftMargin()
     assert left_margin is not None
-    right_margin = getRightMargin(forwardslant)
+    right_margin = forwardslant.getRightMargin()
     assert right_margin is not None
-    setLeftMargin(layer, round(left_margin))
-    setRightMargin(layer, round(right_margin))
+    layer.setLeftMargin(round(left_margin))
+    layer.setRightMargin(round(right_margin))
     layer.width = round(layer.width)
     for contour in layer.contours:
         for point in contour:
@@ -378,6 +378,7 @@ def skew_matrix(angle, offset=(0, 0)):
 
 def save_to_temp_ufo(*glyphs):
     import ufoLib2
+
     output_ufo = ufoLib2.Font()
     for g in glyphs:
         output_ufo.layers.defaultLayer.insertGlyph(g)
@@ -435,75 +436,6 @@ def marginList(layer: Glyph) -> Tuple[List[Any], List[Any]]:
 
 
 ####
-
-
-def getLeftMargin(
-    glyph: Glyph, layer: Optional[Union[Layer, Font]] = None
-) -> Optional[float]:
-    """Returns the the space in font units from the point of origin to the
-    left side of the glyph.
-
-    Args:
-        layer: The layer of the glyph to look up components, if any. Not needed for
-            pure-contour glyphs.
-    """
-    bounds = glyph.getBounds(layer)
-    if bounds is None:
-        return None
-    return bounds.xMin
-
-
-def setLeftMargin(
-    glyph: Glyph, value: float, layer: Optional[Union[Layer, Font]] = None
-) -> None:
-    """Sets the the space in font units from the point of origin to the
-    left side of the glyph.
-
-    Args:
-        value: The desired left margin in font units.
-        layer: The layer of the glyph to look up components, if any. Not needed for
-            pure-contour glyphs.
-    """
-    bounds = glyph.getBounds(layer)
-    if bounds is None:
-        return None
-    diff = value - bounds.xMin
-    if diff:
-        glyph.width += diff
-        glyph.move((diff, 0))
-
-
-def getRightMargin(
-    glyph: Glyph, layer: Optional[Union[Layer, Font]] = None
-) -> Optional[float]:
-    """Returns the the space in font units from the glyph's advance width
-    to the right side of the glyph.
-
-    Args:
-        layer: The layer of the glyph to look up components, if any. Not needed for
-            pure-contour glyphs.
-    """
-    bounds = glyph.getBounds(layer)
-    if bounds is None:
-        return None
-    return glyph.width - bounds.xMax
-
-
-def setRightMargin(
-    glyph: Glyph, value: float, layer: Optional[Union[Layer, Font]] = None
-) -> None:
-    """Sets the the space in font units from the glyph's advance width to
-    the right side of the glyph.
-
-    Args:
-        value: The desired right margin in font units.
-        layer: The layer of the glyph to look up components, if any. Not needed for
-            pure-contour glyphs.
-    """
-    bounds = glyph.getBounds(layer)
-    if bounds is None:
-        return None
-    glyph.width = bounds.xMax + value
 
 
 def segments(contour: List[Point]) -> List[List[Point]]:
