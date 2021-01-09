@@ -9,7 +9,7 @@ import fontTools.pens.basePen as basePen
 import numpy as np
 from fontTools.misc.transform import Identity
 from fontTools.pens.transformPen import TransformPointPen
-from ufoLib2.objects import Font, Glyph, Layer
+from ufoLib2.objects import Glyph
 from ufoLib2.objects.point import Point
 
 LOGGER = logging.Logger(__name__)
@@ -273,7 +273,7 @@ class HTLetterspacerLib:
 
         if not layer.name:
             LOGGER.warning("Glyph has no name.")
-        elif len(layer.contours) < 1 and len(layer.components) < 1:
+        elif not layer.contours and not layer.components:
             LOGGER.warning("No paths in glyph %s.", layer.name)
         # elif (
         #     layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None
