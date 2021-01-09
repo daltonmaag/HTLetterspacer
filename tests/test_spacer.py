@@ -900,17 +900,9 @@ def test_spacer_merriweather(datadir):
     ):
         glyph_orig = ufo_orig[glyph]
         if glyph_orig.components:
-            continue  # FIXME deal with components # XXX: composites sidebearings set differently???
-            dpen = DecomposingRecordingPen(ufo_orig)
-            glyph_orig.draw(dpen)
-            dpen.replay(glyph_orig.getPen())
-            glyph_orig.components.clear()
+            continue  # composites are complicated: change other glyphs, ...
+            # would have to space them first and then all dependents.
         glyph_ref_orig = ufo_orig[glyph_ref]
-        if glyph_ref_orig.components:
-            dpen = DecomposingRecordingPen(ufo_orig)
-            glyph_ref_orig.draw(dpen)
-            dpen.replay(glyph_ref_orig.getPen())
-            glyph_ref_orig.components.clear()
         assert not glyph_orig.components
         assert not glyph_ref_orig.components
 
