@@ -8,8 +8,9 @@ import fontTools.misc.bezierTools as bezierTools
 import fontTools.pens.basePen as basePen
 import numpy as np
 from fontTools.misc.transform import Identity
+from fontTools.pens.recordingPen import DecomposingRecordingPen
 from fontTools.pens.transformPen import TransformPointPen
-from ufoLib2.objects import Glyph
+from ufoLib2.objects import Font, Glyph, Layer
 from ufoLib2.objects.point import Point
 
 LOGGER = logging.Logger(__name__)
@@ -262,35 +263,48 @@ class HTLetterspacerLib:
 
         # if there is a metric rule
         else:
+            # TODO: coverage test and remove
             if layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None or self.LSB == False:
                 self.newL = layer.getLeftMargin()
             if layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None or self.RSB == False:
                 self.newR = layer.getRightMargin()
 
-    def spaceMain(self, layer: Glyph, referenceLayer: Glyph) -> None:
-        # TODO: decompose glyphs
-        assert not layer.components
+    def spaceMain(
+        self, layer: Glyph, referenceLayer: Glyph, glyphset: Union[Font, Layer]
+    ) -> None:
+        if layer.components:
+            dpen = DecomposingRecordingPen(glyphset)
+            layer.draw(dpen)
+            layer_decomposed = layer.copy()
+            layer_decomposed.components.clear()
+            dpen.replay(layer_decomposed.getPen())
+            layer_measure = layer_decomposed
+        else:
+            layer_measure = layer
+
+        if referenceLayer.components:
+            dpen = DecomposingRecordingPen(glyphset)
+            referenceLayer.draw(dpen)
+            referenceLayer_decomposed = referenceLayer.copy()
+            referenceLayer_decomposed.components.clear()
+            dpen.replay(referenceLayer_decomposed.getPen())
+            referenceLayer_measure = referenceLayer_decomposed
+        else:
+            referenceLayer_measure = referenceLayer
 
         if not layer.name:
             LOGGER.warning("Glyph has no name.")
         elif not layer.contours and not layer.components:
             LOGGER.warning("No paths in glyph %s.", layer.name)
-        # elif (
-        #     layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None
-        #     and layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None
-        # ):
-        #     LOGGER.warning("Glyph %s has metric keys. Spacing not set.", layer.name)
-        # if it is tabular
-        # elif ".tosf" in layer.name or ".tf" in layer.name:
-        #     LOGGER.warning("Glyph %s is supposed to be tabular.", layer.name)
         # if it is fraction / silly condition
         elif "fraction" in layer.name:
             LOGGER.warning("Glyph %s should be checked and done manually.", layer.name)
         # if not...
         else:
-            self.setSpace(layer, referenceLayer)
+            self.setSpace(layer_measure, referenceLayer_measure)
             setSidebearings(
                 layer,
+                glyphset,
                 self.newL,
                 self.newR,
                 self.newWidth,
@@ -303,6 +317,7 @@ class HTLetterspacerLib:
 #  Functions
 def setSidebearings(
     layer: Glyph,
+    glyphset: Union[Font, Layer],
     newL: float,
     newR: float,
     width: float,
@@ -311,10 +326,10 @@ def setSidebearings(
     xheight: float,
 ) -> None:
     if angle:
-        setSidebearingsSlanted(layer, newL, newR, angle, xheight)
+        setSidebearingsSlanted(layer, glyphset, newL, newR, angle, xheight)
     else:
-        layer.setLeftMargin(newL)
-        layer.setRightMargin(newR)
+        layer.setLeftMargin(newL, glyphset)
+        layer.setRightMargin(newR, glyphset)
 
     # adjusts the tabular miscalculation
     if width:
@@ -325,23 +340,29 @@ def setSidebearings(
 
 
 def setSidebearingsSlanted(
-    layer: Glyph, l: float, r: float, a: float, xheight: float
+    layer: Glyph,
+    glyphset: Union[Font, Layer],
+    l: float,
+    r: float,
+    a: float,
+    xheight: float,
 ) -> None:
+    # TODO: Handle this outside the core.
     original_width = (
         layer.lib.get("com.schriftgestaltung.Glyphs.originalWidth") or layer.width
     )
 
-    bounds = layer.getBounds()
+    bounds = layer.getBounds(glyphset)
     assert bounds is not None
     left, _, _, _ = bounds
     m = skew_matrix((-a, 0), offset=(left, xheight / 2))
     backslant = Glyph(name="backslant")
     backslant.width = original_width
     layer.drawPoints(TransformPointPen(backslant.getPointPen(), m))
-    backslant.setLeftMargin(l)
-    backslant.setRightMargin(r)
+    backslant.setLeftMargin(l, glyphset)
+    backslant.setRightMargin(r, glyphset)
 
-    boundsback = backslant.getBounds()
+    boundsback = backslant.getBounds(glyphset)
     assert boundsback is not None
     left, _, _, _ = boundsback
     mf = skew_matrix((a, 0), offset=(left, xheight / 2))
@@ -349,18 +370,19 @@ def setSidebearingsSlanted(
     forwardslant.width = backslant.width
     backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
 
-    left_margin = forwardslant.getLeftMargin()
+    left_margin = forwardslant.getLeftMargin(glyphset)
     assert left_margin is not None
-    right_margin = forwardslant.getRightMargin()
+    right_margin = forwardslant.getRightMargin(glyphset)
     assert right_margin is not None
-    layer.setLeftMargin(round(left_margin))
-    layer.setRightMargin(round(right_margin))
+    layer.setLeftMargin(round(left_margin), glyphset)
+    layer.setRightMargin(round(right_margin), glyphset)
     layer.width = round(layer.width)
     for contour in layer.contours:
         for point in contour:
             point.x = round(point.x)
             point.y = round(point.y)
 
+    # TODO: Handle this outside the core.
     if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
         layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
         layer.width = 0

@@ -1,8 +1,7 @@
-import htletterspacer.core
-import ufoLib2
-from fontTools.pens.recordingPen import DecomposingRecordingPen
-
 import pytest
+import ufoLib2
+
+import htletterspacer.core
 
 
 def test_spacer(datadir):
@@ -24,16 +23,16 @@ def test_spacer(datadir):
     o.paramDepth = 5
     o.paramOver = 0
 
-    assert glyph_O.getLeftMargin() == 20
-    assert glyph_O.getRightMargin() == 20
+    assert glyph_O.getLeftMargin(ufo_orig) == 20
+    assert glyph_O.getRightMargin(ufo_orig) == 20
 
-    o.spaceMain(glyph_O, glyph_H)
+    o.spaceMain(glyph_O, glyph_H, ufo_orig)
     assert o.minYref == 0
     assert o.maxYref == 800
     assert o.newL == 13
     assert o.newR == 13
-    assert glyph_O.getLeftMargin() == 13
-    assert glyph_O.getRightMargin() == 13
+    assert glyph_O.getLeftMargin(ufo_orig) == 13
+    assert glyph_O.getRightMargin(ufo_orig) == 13
 
 
 def test_spacer_mutatorsans(datadir):
@@ -62,6 +61,7 @@ def test_spacer_mutatorsans(datadir):
         ("arrowup", "arrowup", 1.5),
         ("B", "H", 1.25),
         ("C", "H", 1.25),
+        ("comma", "comma", 1.4),
         ("D", "H", 1.25),
         ("dieresis", "dieresis", 1.0),
         ("dot", "dot", 1.5),
@@ -96,7 +96,6 @@ def test_spacer_mutatorsans(datadir):
         # ("Aacute", "H", 1.25),  # "Automatic Alignment, space not set."
         ("Adieresis", "H", 1.25),
         ("colon", "colon", 1.4),
-        ("comma", "comma", 1.4),
         ("Q", "H", 1.25),
         ("quotedblbase", "quotedblbase", 1.2),
         ("quotedblleft", "quotedblleft", 1.2),
@@ -105,27 +104,19 @@ def test_spacer_mutatorsans(datadir):
         ("semicolon", "semicolon", 1.4),
     ):
         glyph_orig = ufo_orig[glyph]
-        if glyph_orig.components:
-            dpen = DecomposingRecordingPen(ufo_orig)
-            glyph_orig.draw(dpen)
-            dpen.replay(glyph_orig.getPen())
-            glyph_orig.components.clear()
         glyph_ref_orig = ufo_orig[glyph_ref]
-        if glyph_ref_orig.components:
-            dpen = DecomposingRecordingPen(ufo_orig)
-            glyph_ref_orig.draw(dpen)
-            dpen.replay(glyph_ref_orig.getPen())
-            glyph_ref_orig.components.clear()
-        assert not glyph_orig.components
-        assert not glyph_ref_orig.components
 
         o.width = glyph_orig.width
         o.factor = factor
-        o.spaceMain(glyph_orig, glyph_ref_orig)
+        o.spaceMain(glyph_orig, glyph_ref_orig, ufo_orig)
 
         glyph_rspc = ufo_rspc[glyph]
-        assert glyph_orig.getLeftMargin() == glyph_rspc.getLeftMargin(ufo_rspc), glyph
-        assert glyph_orig.getRightMargin() == glyph_rspc.getRightMargin(ufo_rspc), glyph
+        assert glyph_orig.getLeftMargin(ufo_orig) == glyph_rspc.getLeftMargin(
+            ufo_rspc
+        ), glyph
+        assert glyph_orig.getRightMargin(ufo_orig) == glyph_rspc.getRightMargin(
+            ufo_rspc
+        ), glyph
 
 
 def test_spacer_merriweather(datadir):
@@ -900,28 +891,27 @@ def test_spacer_merriweather(datadir):
     ):
         glyph_orig = ufo_orig[glyph]
         if glyph_orig.components:
-            continue  # composites are complicated: change other glyphs, ...
+            continue  # composites in Merriweather are complicated: change other glyphs, ...
             # would have to space them first and then all dependents.
         glyph_ref_orig = ufo_orig[glyph_ref]
-        assert not glyph_orig.components
-        assert not glyph_ref_orig.components
 
         o.width = glyph_orig.width
         o.newWidth = 0.0
         o.factor = factor
-        o.spaceMain(glyph_orig, glyph_ref_orig)
+        o.spaceMain(glyph_orig, glyph_ref_orig, ufo_orig)
 
         glyph_rspc = ufo_rspc[glyph]
         try:
             left_should = glyph_rspc.getLeftMargin(ufo_rspc)
             if left_should is None:
                 continue  # skip emquad, etc.
-            left_is = glyph_orig.getLeftMargin()
+            left_is = glyph_orig.getLeftMargin(ufo_orig)
             assert left_is is not None
             assert round(left_is) == pytest.approx(round(left_should), abs=1), glyph
+
             right_should = glyph_rspc.getRightMargin(ufo_rspc)
             assert right_should is not None
-            right_is = glyph_orig.getRightMargin()
+            right_is = glyph_orig.getRightMargin(ufo_orig)
             assert right_is is not None
             assert round(right_is) == pytest.approx(round(right_should), abs=1), glyph
         except:
