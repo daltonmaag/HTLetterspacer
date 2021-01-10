@@ -272,6 +272,10 @@ class HTLetterspacerLib:
     def spaceMain(
         self, layer: Glyph, referenceLayer: Glyph, glyphset: Union[Font, Layer]
     ) -> None:
+        if not layer.contours and not layer.components:
+            LOGGER.warning("No paths in glyph %s.", layer.name)
+            return
+
         if layer.components:
             dpen = DecomposingRecordingPen(glyphset)
             layer.draw(dpen)
@@ -292,26 +296,17 @@ class HTLetterspacerLib:
         else:
             referenceLayer_measure = referenceLayer
 
-        if not layer.name:
-            LOGGER.warning("Glyph has no name.")
-        elif not layer.contours and not layer.components:
-            LOGGER.warning("No paths in glyph %s.", layer.name)
-        # if it is fraction / silly condition
-        elif "fraction" in layer.name:
-            LOGGER.warning("Glyph %s should be checked and done manually.", layer.name)
-        # if not...
-        else:
-            self.setSpace(layer_measure, referenceLayer_measure)
-            setSidebearings(
-                layer,
-                glyphset,
-                self.newL,
-                self.newR,
-                self.newWidth,
-                color,
-                self.angle,
-                self.xHeight,
-            )
+        self.setSpace(layer_measure, referenceLayer_measure)
+        setSidebearings(
+            layer,
+            glyphset,
+            self.newL,
+            self.newR,
+            self.newWidth,
+            color,
+            self.angle,
+            self.xHeight,
+        )
 
 
 #  Functions

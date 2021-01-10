@@ -402,7 +402,7 @@ def test_spacer_merriweather(datadir):
         ("four", "one", 1.2),
         ("fourperemspace", "fourperemspace", 1.0),
         ("fourthtonechinese", "fourthtonechinese", 1.0),
-        ("fraction", "fraction", 1.3),
+        # ("fraction", "fraction", 1.3),  # Skipped in original code.
         ("franc", "franc", 1.6),
         ("g.sc", "h.sc", 1.1),
         ("G", "H", 1.25),
