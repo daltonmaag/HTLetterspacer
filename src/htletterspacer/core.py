@@ -72,8 +72,8 @@ class HTLetterspacerLib:
 
     def processMargins(self, lMargin, rMargin):
         # deSlant if is italic
-        lMargin = self.deSlant(lMargin)
-        rMargin = self.deSlant(rMargin)
+        lMargin = deslant(lMargin, self.angle, self.xHeight)
+        rMargin = deslant(rMargin, self.angle, self.xHeight)
 
         # get extremes
         # lExtreme, rExtreme = self.maxPoints(lMargin + rMargin, self.minYref, self.maxYref)
@@ -89,8 +89,8 @@ class HTLetterspacerLib:
         lMargin = self.closeOpenCounters(lMargin, lExtreme)
         rMargin = self.closeOpenCounters(rMargin, rExtreme)
 
-        lMargin = self.slant(lMargin)
-        rMargin = self.slant(rMargin)
+        lMargin = slant(lMargin, self.angle, self.xHeight)
+        rMargin = slant(rMargin, self.angle, self.xHeight)
         return lMargin, rMargin
 
     # process lists with depth, proportional to xheight
@@ -168,20 +168,6 @@ class HTLetterspacerLib:
         margin.append(endPoint)
         return margin
 
-    def _italicOnOffPoint(self, p, onoff):
-        mline = self.xHeight / 2
-        cateto = -p.y + mline
-        if onoff == "off":
-            cateto = -cateto
-        xvar = -rectCateto(self.angle, cateto)
-        return NSMakePoint(p.x + xvar, p.y)
-
-    def deSlant(self, margin):
-        return [self._italicOnOffPoint(p, "off") for p in margin]
-
-    def slant(self, margin):
-        return [self._italicOnOffPoint(p, "on") for p in margin]
-
     def setSpace(self, layer: Glyph, referenceLayer: Glyph) -> None:
         # get reference glyph maximum points
         overshoot = self.overshoot()
@@ -199,11 +185,11 @@ class HTLetterspacerLib:
 
         # create a closed polygon
         lPolygon, rPolygon = self.processMargins(lMargins, rMargins)
-        lMargins = self.deSlant(lMargins)
-        rMargins = self.deSlant(rMargins)
+        lMargins = deslant(lMargins, self.angle, self.xHeight)
+        rMargins = deslant(rMargins, self.angle, self.xHeight)
 
-        lFullMargin = self.deSlant(lFullMargin)
-        rFullMargin = self.deSlant(rFullMargin)
+        lFullMargin = deslant(lFullMargin, self.angle, self.xHeight)
+        rFullMargin = deslant(rFullMargin, self.angle, self.xHeight)
 
         # get extreme points deitalized
         layer_bounds = layer.getBounds()
@@ -342,6 +328,23 @@ def calculate_sidebearing_value(
     prop_area = (amplitude_y * white_area) / xheight
     valor = prop_area - area(polygon)
     return valor / amplitude_y
+
+
+def italic_on_off_point(p, make_italic: bool, angle, xHeight):
+    mline = xHeight / 2
+    cateto = -p.y + mline
+    if not make_italic:
+        cateto = -cateto
+    xvar = -rectCateto(angle, cateto)
+    return NSMakePoint(p.x + xvar, p.y)
+
+
+def deslant(margin: list[NSPoint], angle: float, xHeight: int):
+    return [italic_on_off_point(p, False, angle, xHeight) for p in margin]
+
+
+def slant(margin: list[NSPoint], angle: float, xHeight: int):
+    return [italic_on_off_point(p, True, angle, xHeight) for p in margin]
 
 
 def setSidebearings(
