@@ -16,9 +16,6 @@ from ufoLib2.objects.point import Point
 LOGGER = logging.Logger(__name__)
 
 # Default parameters
-paramArea = 400  # white area in thousand units
-paramDepth = 15  # depth in open counterforms, from extreme points.
-paramOver = 0  # overshoot in spacing vertical range
 color = False  # mark color, False for no mark
 paramFreq = (
     5  # frequency of vertical measuring. Higher values are faster but less accurate
@@ -41,9 +38,9 @@ def NSMakePoint(x: float, y: float) -> NSPoint:
 
 class HTLetterspacerLib:
     def __init__(self, upm, angle, xHeight, LSB, RSB, factor, width):
-        self.paramArea = paramArea
-        self.paramDepth = paramDepth
-        self.paramOver = paramOver
+        self.paramArea = 400  # white area in thousand units
+        self.paramDepth = 15  # depth in open counterforms, from extreme points.
+        self.paramOver = 0  # overshoot in spacing vertical range
         self.tabVersion = False
         self.upm = upm
         self.angle = angle
