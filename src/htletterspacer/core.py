@@ -47,37 +47,6 @@ class HTLetterspacerLib:
         self.color = False  # mark color, False for no mark
         self.paramFreq = 5  # frequency of vertical measuring. Higher values are faster but less accurate
 
-    def processMargins(self, lMargin, rMargin):
-        # deSlant if is italic
-        lMargin = deslant(lMargin, self.angle, self.xHeight)
-        rMargin = deslant(rMargin, self.angle, self.xHeight)
-
-        # get extremes
-        # lExtreme, rExtreme = maxPoints(lMargin + rMargin, self.minYref, self.maxYref)
-        lExtreme, rExtreme = max_points(lMargin + rMargin, self.minYref, self.maxYref)
-
-        # set depth
-        lMargin, rMargin = set_depth(
-            lMargin,
-            rMargin,
-            lExtreme,
-            rExtreme,
-            self.xHeight,
-            self.minYref,
-            self.maxYref,
-            self.paramDepth,
-            self.paramFreq,
-        )
-
-        # close open counterforms at 45 degrees
-        lMargin, rMargin = diagonize(lMargin, rMargin, self.paramFreq)
-        lMargin = close_open_counters(lMargin, lExtreme, self.maxYref, self.minYref)
-        rMargin = close_open_counters(rMargin, rExtreme, self.maxYref, self.minYref)
-
-        lMargin = slant(lMargin, self.angle, self.xHeight)
-        rMargin = slant(rMargin, self.angle, self.xHeight)
-        return lMargin, rMargin
-
     def setSpace(self, layer: Glyph, referenceLayer: Glyph) -> None:
         # get reference glyph maximum points
         overshoot = calculate_overshoot(self.xHeight, self.paramOver)
@@ -94,7 +63,16 @@ class HTLetterspacerLib:
         rMargins = [p for p in rFullMargin if self.minYref <= p.y <= self.maxYref]
 
         # create a closed polygon
-        lPolygon, rPolygon = self.processMargins(lMargins, rMargins)
+        lPolygon, rPolygon = process_margins(
+            lMargins,
+            rMargins,
+            self.angle,
+            self.xHeight,
+            self.minYref,
+            self.maxYref,
+            self.paramDepth,
+            self.paramFreq,
+        )
         lMargins = deslant(lMargins, self.angle, self.xHeight)
         rMargins = deslant(rMargins, self.angle, self.xHeight)
 
@@ -361,6 +339,50 @@ def diagonize(
         if next_point.x < (actual_point.x - diff) and next_point.y < actual_point.y:
             margins_right[total - index - 1].x = actual_point.x - diff
 
+    return margins_left, margins_right
+
+
+def process_margins(
+    margins_left: list[NSPoint],
+    margins_right: list[NSPoint],
+    angle: float,
+    xheight: int,
+    min_yref: float,
+    max_yref: float,
+    param_depth: int,
+    param_freq: int,
+) -> tuple[list[NSPoint], list[NSPoint]]:
+    # deSlant if is italic
+    margins_left = deslant(margins_left, angle, xheight)
+    margins_right = deslant(margins_right, angle, xheight)
+
+    # get extremes
+    extreme_left, extreme_right = max_points(
+        margins_left + margins_right, min_yref, max_yref
+    )
+
+    # set depth
+    margins_left, margins_right = set_depth(
+        margins_left,
+        margins_right,
+        extreme_left,
+        extreme_right,
+        xheight,
+        min_yref,
+        max_yref,
+        param_depth,
+        param_freq,
+    )
+
+    # close open counterforms at 45 degrees
+    margins_left, margins_right = diagonize(margins_left, margins_right, param_freq)
+    margins_left = close_open_counters(margins_left, extreme_left, max_yref, min_yref)
+    margins_right = close_open_counters(
+        margins_right, extreme_right, max_yref, min_yref
+    )
+
+    margins_left = slant(margins_left, angle, xheight)
+    margins_right = slant(margins_right, angle, xheight)
     return margins_left, margins_right
 
 
