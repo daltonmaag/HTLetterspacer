@@ -73,50 +73,13 @@ class HTLetterspacerLib:
         )
 
         # close open counterforms at 45 degrees
-        lMargin, rMargin = self.diagonize(lMargin, rMargin)
+        lMargin, rMargin = diagonize(lMargin, rMargin, paramFreq)
         lMargin = close_open_counters(lMargin, lExtreme, self.maxYref, self.minYref)
         rMargin = close_open_counters(rMargin, rExtreme, self.maxYref, self.minYref)
 
         lMargin = slant(lMargin, self.angle, self.xHeight)
         rMargin = slant(rMargin, self.angle, self.xHeight)
         return lMargin, rMargin
-
-    # close counters at 45 degrees
-    def diagonize(self, marginsL, marginsR):
-        # TODO: Use https://github.com/huertatipografica/HTLetterspacer/issues/45
-        total = len(marginsL) - 1
-
-        valueFreq = paramFreq * 1.5
-        for index in range(total):
-            # left
-            actualPoint = marginsL[index]
-            nextPoint = marginsL[index + 1]
-            diff = nextPoint.y - actualPoint.y
-            if nextPoint.x > (actualPoint.x + diff) and nextPoint.y > actualPoint.y:
-                marginsL[index + 1].x = actualPoint.x + diff
-            # right
-            actualPoint = marginsR[index]
-            nextPoint = marginsR[index + 1]
-            # if nextPoint.x < (actualPoint.x - valueFreq) and nextPoint.y > actualPoint.y:
-            if nextPoint.x < (actualPoint.x - diff) and nextPoint.y > actualPoint.y:
-                marginsR[index + 1].x = actualPoint.x - diff
-
-            # left
-            actualPoint = marginsL[total - index]
-            nextPoint = marginsL[total - index - 1]
-            diff = actualPoint.y - nextPoint.y
-            if (
-                nextPoint.x > (actualPoint.x + valueFreq)
-                and nextPoint.y < actualPoint.y
-            ):
-                marginsL[total - index - 1].x = actualPoint.x + diff
-            # right
-            actualPoint = marginsR[total - index]
-            nextPoint = marginsR[total - index - 1]
-            if nextPoint.x < (actualPoint.x - diff) and nextPoint.y < actualPoint.y:
-                marginsR[total - index - 1].x = actualPoint.x - diff
-
-        return marginsL, marginsR
 
     def setSpace(self, layer: Glyph, referenceLayer: Glyph) -> None:
         # get reference glyph maximum points
@@ -357,6 +320,48 @@ def set_depth(
         margins_left.append(NSMakePoint(maxdepth, y))
         margins_right.append(NSMakePoint(mindepth, y))
         y += paramFreq
+
+    return margins_left, margins_right
+
+
+def diagonize(
+    margins_left: list[NSPoint],
+    margins_right: list[NSPoint],
+    param_freq: int,
+) -> tuple[list[NSPoint], list[NSPoint]]:
+    """close counters at 45 degrees"""
+    # TODO: Use https://github.com/huertatipografica/HTLetterspacer/issues/45
+    total = len(margins_left) - 1
+
+    frequency = param_freq * 1.5
+    for index in range(total):
+        # left
+        actual_point = margins_left[index]
+        next_point = margins_left[index + 1]
+        diff = next_point.y - actual_point.y
+        if next_point.x > (actual_point.x + diff) and next_point.y > actual_point.y:
+            margins_left[index + 1].x = actual_point.x + diff
+        # right
+        actual_point = margins_right[index]
+        next_point = margins_right[index + 1]
+        # if nextPoint.x < (actualPoint.x - valueFreq) and nextPoint.y > actualPoint.y:
+        if next_point.x < (actual_point.x - diff) and next_point.y > actual_point.y:
+            margins_right[index + 1].x = actual_point.x - diff
+
+        # left
+        actual_point = margins_left[total - index]
+        next_point = margins_left[total - index - 1]
+        diff = actual_point.y - next_point.y
+        if (
+            next_point.x > (actual_point.x + frequency)
+            and next_point.y < actual_point.y
+        ):
+            margins_left[total - index - 1].x = actual_point.x + diff
+        # right
+        actual_point = margins_right[total - index]
+        next_point = margins_right[total - index - 1]
+        if next_point.x < (actual_point.x - diff) and next_point.y < actual_point.y:
+            margins_right[total - index - 1].x = actual_point.x - diff
 
     return margins_left, margins_right
 
