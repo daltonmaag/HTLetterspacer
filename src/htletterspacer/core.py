@@ -147,7 +147,7 @@ class HTLetterspacerLib:
 
     def setSpace(self, layer: Glyph, referenceLayer: Glyph) -> None:
         # get reference glyph maximum points
-        overshoot = self.overshoot()
+        overshoot = calculate_overshoot(self.xHeight, self.paramOver)
 
         # store min and max y
         reference_layer_bounds = referenceLayer.getBounds()
@@ -345,6 +345,10 @@ def max_points(
                 left = p.x
                 lefty = p.y
     return NSMakePoint(left, lefty), NSMakePoint(right, righty)
+
+
+def calculate_overshoot(xHeight: int, paramOver: int) -> float:
+    return xHeight * paramOver / 100
 
 
 def setSidebearings(
