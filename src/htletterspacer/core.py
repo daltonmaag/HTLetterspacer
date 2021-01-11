@@ -86,8 +86,8 @@ class HTLetterspacerLib:
 
         # close open counterforms at 45 degrees
         lMargin, rMargin = self.diagonize(lMargin, rMargin)
-        lMargin = self.closeOpenCounters(lMargin, lExtreme)
-        rMargin = self.closeOpenCounters(rMargin, rExtreme)
+        lMargin = close_open_counters(lMargin, lExtreme, self.maxYref, self.minYref)
+        rMargin = close_open_counters(rMargin, rExtreme, self.maxYref, self.minYref)
 
         lMargin = slant(lMargin, self.angle, self.xHeight)
         rMargin = slant(rMargin, self.angle, self.xHeight)
@@ -159,14 +159,6 @@ class HTLetterspacerLib:
                 marginsR[total - index - 1].x = actualPoint.x - diff
 
         return marginsL, marginsR
-
-    # close counterforms, creating a polygon
-    def closeOpenCounters(self, margin, extreme):
-        initPoint = NSMakePoint(extreme.x, self.minYref)
-        endPoint = NSMakePoint(extreme.x, self.maxYref)
-        margin.insert(0, initPoint)
-        margin.append(endPoint)
-        return margin
 
     def setSpace(self, layer: Glyph, referenceLayer: Glyph) -> None:
         # get reference glyph maximum points
@@ -345,6 +337,17 @@ def deslant(margin: list[NSPoint], angle: float, xHeight: int):
 
 def slant(margin: list[NSPoint], angle: float, xHeight: int):
     return [italic_on_off_point(p, True, angle, xHeight) for p in margin]
+
+
+def close_open_counters(
+    margin: list[NSPoint], extreme: NSPoint, max_yref: float, min_yref: float
+) -> list[NSPoint]:
+    """close counterforms, creating a polygon"""
+    initPoint = NSMakePoint(extreme.x, min_yref)
+    endPoint = NSMakePoint(extreme.x, max_yref)
+    margin.insert(0, initPoint)
+    margin.append(endPoint)
+    return margin
 
 
 def setSidebearings(
