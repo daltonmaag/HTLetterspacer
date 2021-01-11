@@ -54,9 +54,6 @@ class HTLetterspacerLib:
         self.width = width
         self.newWidth = 0.0
 
-    def overshoot(self):
-        return self.xHeight * self.paramOver / 100
-
     def processMargins(self, lMargin, rMargin):
         # deSlant if is italic
         lMargin = deslant(lMargin, self.angle, self.xHeight)
