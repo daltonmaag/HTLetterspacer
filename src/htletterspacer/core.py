@@ -182,20 +182,6 @@ class HTLetterspacerLib:
     def slant(self, margin):
         return [self._italicOnOffPoint(p, "on") for p in margin]
 
-    def calculateSBValue(self, polygon):
-        amplitudeY = self.maxYref - self.minYref
-
-        # recalculates area based on UPM
-        areaUPM = self.paramArea * ((self.upm / 1000) ** 2)
-
-        # calculates proportional area
-        whiteArea = areaUPM * self.factor * 100
-
-        propArea = (amplitudeY * whiteArea) / self.xHeight
-
-        valor = propArea - area(polygon)
-        return valor / amplitudeY
-
     def setSpace(self, layer: Glyph, referenceLayer: Glyph) -> None:
         # get reference glyph maximum points
         overshoot = self.overshoot()
@@ -236,8 +222,32 @@ class HTLetterspacerLib:
         distanceR = math.ceil(rFullExtreme.x - rExtreme.x)
 
         # set new sidebearings
-        self.newL = math.ceil(0 - distanceL + self.calculateSBValue(lPolygon))
-        self.newR = math.ceil(0 - distanceR + self.calculateSBValue(rPolygon))
+        self.newL = math.ceil(
+            0
+            - distanceL
+            + calculate_sidebearing_value(
+                self.factor,
+                self.maxYref,
+                self.minYref,
+                self.paramArea,
+                lPolygon,
+                self.upm,
+                self.xHeight,
+            )
+        )
+        self.newR = math.ceil(
+            0
+            - distanceR
+            + calculate_sidebearing_value(
+                self.factor,
+                self.maxYref,
+                self.minYref,
+                self.paramArea,
+                rPolygon,
+                self.upm,
+                self.xHeight,
+            )
+        )
 
         # tabVersion
         if ".tosf" in layer.name or ".tf" in layer.name or self.tabVersion:
@@ -310,6 +320,30 @@ class HTLetterspacerLib:
 
 
 #  Functions
+
+
+def calculate_sidebearing_value(
+    factor: float,
+    max_yref: float,
+    min_yref: float,
+    param_area: int,
+    polygon: list[NSPoint],
+    upm: int,
+    xheight: int,
+) -> float:
+    amplitude_y = max_yref - min_yref
+
+    # recalculates area based on UPM
+    area_upm = param_area * ((upm / 1000) ** 2)
+
+    # calculates proportional area
+    white_area = area_upm * factor * 100
+
+    prop_area = (amplitude_y * white_area) / xheight
+    valor = prop_area - area(polygon)
+    return valor / amplitude_y
+
+
 def setSidebearings(
     layer: Glyph,
     glyphset: Union[Font, Layer],
@@ -411,7 +445,7 @@ def rectCateto(angle, cat):
 
 
 # point list area
-def area(points):
+def area(points: list[NSPoint]) -> float:
     s = 0
     for ii in np.arange(len(points)) - 1:
         s = s + (points[ii].x * points[ii + 1].y - points[ii + 1].x * points[ii].y)
