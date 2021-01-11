@@ -64,7 +64,16 @@ class HTLetterspacerLib:
         lExtreme, rExtreme = max_points(lMargin + rMargin, self.minYref, self.maxYref)
 
         # set depth
-        lMargin, rMargin = self.setDepth(lMargin, rMargin, lExtreme, rExtreme)
+        lMargin, rMargin = set_depth(
+            lMargin,
+            rMargin,
+            lExtreme,
+            rExtreme,
+            self.xHeight,
+            self.minYref,
+            self.maxYref,
+            self.paramDepth,
+        )
 
         # close open counterforms at 45 degrees
         lMargin, rMargin = self.diagonize(lMargin, rMargin)
@@ -74,36 +83,6 @@ class HTLetterspacerLib:
         lMargin = slant(lMargin, self.angle, self.xHeight)
         rMargin = slant(rMargin, self.angle, self.xHeight)
         return lMargin, rMargin
-
-    # process lists with depth, proportional to xheight
-    def setDepth(self, marginsL, marginsR, lExtreme, rExtreme):
-        depth = self.xHeight * self.paramDepth / 100
-        maxdepth = lExtreme.x + depth
-        mindepth = rExtreme.x - depth
-        marginsL = [NSMakePoint(min(p.x, maxdepth), p.y) for p in marginsL]
-        marginsR = [NSMakePoint(max(p.x, mindepth), p.y) for p in marginsR]
-
-        # add all the points at maximum depth if glyph is shorter than overshoot
-        y = marginsL[0].y - paramFreq
-        while y > self.minYref:
-            marginsL.insert(0, NSMakePoint(maxdepth, y))
-            marginsR.insert(0, NSMakePoint(mindepth, y))
-            y -= paramFreq
-
-        y = marginsL[-1].y + paramFreq
-        while y < self.maxYref:
-            marginsL.append(NSMakePoint(maxdepth, y))
-            marginsR.append(NSMakePoint(mindepth, y))
-            y += paramFreq
-
-        # if marginsL[-1].y<(self.maxYref-paramFreq):
-        # 	marginsL.append(NSMakePoint(min(p.x, maxdepth), self.maxYref))
-        # 	marginsR.append(NSMakePoint(max(p.x, mindepth), self.maxYref))
-        # if marginsL[0].y>(self.minYref):
-        # 	marginsL.insert(0,NSMakePoint(min(p.x, maxdepth), self.minYref))
-        # 	marginsR.insert(0,NSMakePoint(max(p.x, mindepth), self.minYref))
-
-        return marginsL, marginsR
 
     # close counters at 45 degrees
     def diagonize(self, marginsL, marginsR):
@@ -350,6 +329,39 @@ def max_points(
 
 def calculate_overshoot(xHeight: int, paramOver: int) -> float:
     return xHeight * paramOver / 100
+
+
+def set_depth(
+    margins_left: list[NSPoint],
+    margins_right: list[NSPoint],
+    extreme_left: NSPoint,
+    extreme_right: NSPoint,
+    xheight: int,
+    min_yref: float,
+    max_yref: float,
+    param_depth: int,
+) -> tuple[list[NSPoint], list[NSPoint]]:
+    """process lists with depth, proportional to xheight"""
+    depth = xheight * param_depth / 100
+    maxdepth = extreme_left.x + depth
+    mindepth = extreme_right.x - depth
+    margins_left = [NSMakePoint(min(p.x, maxdepth), p.y) for p in margins_left]
+    margins_right = [NSMakePoint(max(p.x, mindepth), p.y) for p in margins_right]
+
+    # add all the points at maximum depth if glyph is shorter than overshoot
+    y = margins_left[0].y - paramFreq
+    while y > min_yref:
+        margins_left.insert(0, NSMakePoint(maxdepth, y))
+        margins_right.insert(0, NSMakePoint(mindepth, y))
+        y -= paramFreq
+
+    y = margins_left[-1].y + paramFreq
+    while y < max_yref:
+        margins_left.append(NSMakePoint(maxdepth, y))
+        margins_right.append(NSMakePoint(mindepth, y))
+        y += paramFreq
+
+    return margins_left, margins_right
 
 
 def setSidebearings(
