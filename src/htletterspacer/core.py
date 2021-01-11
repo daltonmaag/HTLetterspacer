@@ -303,22 +303,22 @@ def set_depth(
 ) -> tuple[list[NSPoint], list[NSPoint]]:
     """process lists with depth, proportional to xheight"""
     depth = xheight * param_depth / 100
-    maxdepth = extreme_left.x + depth
-    mindepth = extreme_right.x - depth
-    margins_left = [NSMakePoint(min(p.x, maxdepth), p.y) for p in margins_left]
-    margins_right = [NSMakePoint(max(p.x, mindepth), p.y) for p in margins_right]
+    max_depth = extreme_left.x + depth
+    min_depth = extreme_right.x - depth
+    margins_left = [NSMakePoint(min(p.x, max_depth), p.y) for p in margins_left]
+    margins_right = [NSMakePoint(max(p.x, min_depth), p.y) for p in margins_right]
 
     # add all the points at maximum depth if glyph is shorter than overshoot
     y = margins_left[0].y - paramFreq
     while y > min_yref:
-        margins_left.insert(0, NSMakePoint(maxdepth, y))
-        margins_right.insert(0, NSMakePoint(mindepth, y))
+        margins_left.insert(0, NSMakePoint(max_depth, y))
+        margins_right.insert(0, NSMakePoint(min_depth, y))
         y -= paramFreq
 
     y = margins_left[-1].y + paramFreq
     while y < max_yref:
-        margins_left.append(NSMakePoint(maxdepth, y))
-        margins_right.append(NSMakePoint(mindepth, y))
+        margins_left.append(NSMakePoint(max_depth, y))
+        margins_right.append(NSMakePoint(min_depth, y))
         y += paramFreq
 
     return margins_left, margins_right
