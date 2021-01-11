@@ -57,29 +57,14 @@ class HTLetterspacerLib:
     def overshoot(self):
         return self.xHeight * self.paramOver / 100
 
-    def maxPoints(self, points, minY, maxY):
-        right = -10000
-        left = 10000
-        for p in points:
-            if p.y >= minY and p.y <= maxY:
-                if p.x > right:
-                    right = p.x
-                    righty = p.y
-                if p.x < left:
-                    left = p.x
-                    lefty = p.y
-        return NSMakePoint(left, lefty), NSMakePoint(right, righty)
-
     def processMargins(self, lMargin, rMargin):
         # deSlant if is italic
         lMargin = deslant(lMargin, self.angle, self.xHeight)
         rMargin = deslant(rMargin, self.angle, self.xHeight)
 
         # get extremes
-        # lExtreme, rExtreme = self.maxPoints(lMargin + rMargin, self.minYref, self.maxYref)
-        lExtreme, rExtreme = self.maxPoints(
-            lMargin + rMargin, self.minYref, self.maxYref
-        )
+        # lExtreme, rExtreme = maxPoints(lMargin + rMargin, self.minYref, self.maxYref)
+        lExtreme, rExtreme = max_points(lMargin + rMargin, self.minYref, self.maxYref)
 
         # set depth
         lMargin, rMargin = self.setDepth(lMargin, rMargin, lExtreme, rExtreme)
@@ -185,15 +170,11 @@ class HTLetterspacerLib:
 
         # get extreme points deitalized
         layer_bounds = layer.getBounds()
-        lFullExtreme, rFullExtreme = self.maxPoints(
-            lFullMargin + rFullMargin,
-            layer_bounds.yMin,
-            layer_bounds.yMax,
+        lFullExtreme, rFullExtreme = max_points(
+            lFullMargin + rFullMargin, layer_bounds.yMin, layer_bounds.yMax
         )
         # get zone extreme points
-        lExtreme, rExtreme = self.maxPoints(
-            lMargins + rMargins, self.minYref, self.maxYref
-        )
+        lExtreme, rExtreme = max_points(lMargins + rMargins, self.minYref, self.maxYref)
 
         # dif between extremes full and zone
         distanceL = math.ceil(lExtreme.x - lFullExtreme.x)
@@ -348,6 +329,22 @@ def close_open_counters(
     margin.insert(0, initPoint)
     margin.append(endPoint)
     return margin
+
+
+def max_points(
+    points: list[NSPoint], minY: float, maxY: float
+) -> tuple[NSPoint, NSPoint]:
+    right = -10000
+    left = 10000
+    for p in points:
+        if p.y >= minY and p.y <= maxY:
+            if p.x > right:
+                right = p.x
+                righty = p.y
+            if p.x < left:
+                left = p.x
+                lefty = p.y
+    return NSMakePoint(left, lefty), NSMakePoint(right, righty)
 
 
 def setSidebearings(
