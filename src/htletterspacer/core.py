@@ -15,12 +15,6 @@ from ufoLib2.objects.point import Point
 
 LOGGER = logging.Logger(__name__)
 
-# Default parameters
-color = False  # mark color, False for no mark
-paramFreq = (
-    5  # frequency of vertical measuring. Higher values are faster but less accurate
-)
-
 GLYPHS_LEFT_METRICS_KEY = "com.schriftgestaltung.Glyphs.glyph.leftMetricsKey"
 GLYPHS_RIGHT_METRICS_KEY = "com.schriftgestaltung.Glyphs.glyph.rightMetricsKey"
 
@@ -50,6 +44,8 @@ class HTLetterspacerLib:
         self.factor = factor
         self.width = width
         self.newWidth = 0.0
+        self.color = False  # mark color, False for no mark
+        self.paramFreq = 5  # frequency of vertical measuring. Higher values are faster but less accurate
 
     def processMargins(self, lMargin, rMargin):
         # deSlant if is italic
@@ -70,10 +66,11 @@ class HTLetterspacerLib:
             self.minYref,
             self.maxYref,
             self.paramDepth,
+            self.paramFreq,
         )
 
         # close open counterforms at 45 degrees
-        lMargin, rMargin = diagonize(lMargin, rMargin, paramFreq)
+        lMargin, rMargin = diagonize(lMargin, rMargin, self.paramFreq)
         lMargin = close_open_counters(lMargin, lExtreme, self.maxYref, self.minYref)
         rMargin = close_open_counters(rMargin, rExtreme, self.maxYref, self.minYref)
 
@@ -91,7 +88,7 @@ class HTLetterspacerLib:
         self.maxYref = reference_layer_bounds.yMax + overshoot
 
         # bounds
-        lFullMargin, rFullMargin = marginList(layer)
+        lFullMargin, rFullMargin = marginList(layer, self.paramFreq)
 
         lMargins = [p for p in lFullMargin if self.minYref <= p.y <= self.maxYref]
         rMargins = [p for p in rFullMargin if self.minYref <= p.y <= self.maxYref]
@@ -208,7 +205,7 @@ class HTLetterspacerLib:
             self.newL,
             self.newR,
             self.newWidth,
-            color,
+            self.color,
             self.angle,
             self.xHeight,
         )
@@ -300,6 +297,7 @@ def set_depth(
     min_yref: float,
     max_yref: float,
     param_depth: int,
+    param_freq: int,
 ) -> tuple[list[NSPoint], list[NSPoint]]:
     """process lists with depth, proportional to xheight"""
     depth = xheight * param_depth / 100
@@ -309,17 +307,17 @@ def set_depth(
     margins_right = [NSMakePoint(max(p.x, min_depth), p.y) for p in margins_right]
 
     # add all the points at maximum depth if glyph is shorter than overshoot
-    y = margins_left[0].y - paramFreq
+    y = margins_left[0].y - param_freq
     while y > min_yref:
         margins_left.insert(0, NSMakePoint(max_depth, y))
         margins_right.insert(0, NSMakePoint(min_depth, y))
-        y -= paramFreq
+        y -= param_freq
 
-    y = margins_left[-1].y + paramFreq
+    y = margins_left[-1].y + param_freq
     while y < max_yref:
         margins_left.append(NSMakePoint(max_depth, y))
         margins_right.append(NSMakePoint(min_depth, y))
-        y += paramFreq
+        y += param_freq
 
     return margins_left, margins_right
 
@@ -490,7 +488,7 @@ def getMargins(
 
 
 # a list of margins
-def marginList(layer: Glyph) -> Tuple[List[Any], List[Any]]:
+def marginList(layer: Glyph, param_freq: int) -> Tuple[List[Any], List[Any]]:
     layer_bounds = layer.getBounds()
     assert layer_bounds is not None
     y = layer_bounds.yMin
@@ -504,7 +502,7 @@ def marginList(layer: Glyph) -> Tuple[List[Any], List[Any]]:
             listL.append(NSMakePoint(lpos, y))
         if rpos is not None:
             listR.append(NSMakePoint(rpos, y))
-        y += paramFreq
+        y += param_freq
     return listL, listR
 
 
