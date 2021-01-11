@@ -332,18 +332,22 @@ def close_open_counters(
 
 
 def max_points(
-    points: list[NSPoint], minY: float, maxY: float
+    points: list[NSPoint], min_y: float, max_y: float
 ) -> tuple[NSPoint, NSPoint]:
     right = -10000
+    righty = None
     left = 10000
+    lefty = None
     for p in points:
-        if p.y >= minY and p.y <= maxY:
+        if p.y >= min_y and p.y <= max_y:
             if p.x > right:
                 right = p.x
                 righty = p.y
             if p.x < left:
                 left = p.x
                 lefty = p.y
+    assert lefty is not None
+    assert righty is not None
     return NSMakePoint(left, lefty), NSMakePoint(right, righty)
 
 
