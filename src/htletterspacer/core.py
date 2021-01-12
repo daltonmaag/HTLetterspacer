@@ -48,7 +48,7 @@ class HTLetterspacerLib:
 
     def set_space(
         self, layer: Glyph, reference_layer: Glyph
-    ) -> tuple[float, float, float]:
+    ) -> tuple[int, int, int]:
         # get reference glyph maximum points
         overshoot = calculate_overshoot(self.xheight, self.param_over)
 
@@ -151,10 +151,14 @@ class HTLetterspacerLib:
         # if there is a metric rule
         else:
             # TODO: coverage test and remove
-            if layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None or self.LSB == False:
-                new_left = layer.getLeftMargin()
-            if layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None or self.RSB == False:
-                new_right = layer.getRightMargin()
+            if self.LSB == False:
+                margin_left = layer.getLeftMargin()
+                assert margin_left is not None
+                new_left = round(margin_left)
+            if self.RSB == False:
+                margin_right = layer.getRightMargin()
+                assert margin_right is not None
+                new_right = round(margin_right)
 
         return new_left, new_right, new_width
 
