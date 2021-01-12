@@ -662,7 +662,7 @@ def qcurve_intersections(
     p1 = points[0]
     # TODO: skia pathops also has a SegmentPenIterator
     # https://github.com/googlefonts/nanoemoji/blob/9adfff414b1ba32a816d722936421c52d4827d8a/src/nanoemoji/svg_path.py#L98-L101
-    for index, (p2, p3) in enumerate(basePen.decomposeQuadraticSegment(points[1:])):
+    for p2, p3 in basePen.decomposeQuadraticSegment(points[1:]):
         (ax, ay), (bx, by), (cx, cy) = bezierTools.calcQuadraticParameters(p1, p2, p3)
         p1 = p3  # prepare for next turn
 
