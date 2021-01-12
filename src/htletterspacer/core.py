@@ -1,7 +1,7 @@
 import logging
 import math
 from dataclasses import dataclass
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, Optional, Union
 
 import fontTools.misc.arrayTools as arrayTools
 import fontTools.misc.bezierTools as bezierTools
@@ -507,8 +507,8 @@ def area(points: list[NSPoint]) -> float:
 
 # get margins in Glyphs
 def get_margins(
-    layer: Glyph, measurement_line: Tuple[float, float, float, float]
-) -> Tuple[Optional[float], Optional[float]]:
+    layer: Glyph, measurement_line: tuple[float, float, float, float]
+) -> tuple[Optional[float], Optional[float]]:
     # TODO: intersection returns a reversed list?
     result = sorted(intersections(layer, measurement_line))
     if not result:
@@ -521,7 +521,7 @@ def get_margins(
 
 
 # a list of margins
-def margin_list(layer: Glyph, param_freq: int) -> Tuple[List[Any], List[Any]]:
+def margin_list(layer: Glyph, param_freq: int) -> tuple[list[Any], list[Any]]:
     layer_bounds = layer.getBounds()
     assert layer_bounds is not None
     y = layer_bounds.yMin
@@ -542,7 +542,7 @@ def margin_list(layer: Glyph, param_freq: int) -> Tuple[List[Any], List[Any]]:
 ####
 
 
-def segments(contour: List[Point]) -> List[List[Point]]:
+def segments(contour: list[Point]) -> list[list[Point]]:
     if not contour:
         return []
     segments = [[]]
@@ -565,9 +565,9 @@ def segments(contour: List[Point]) -> List[List[Point]]:
 
 
 def intersections(
-    layer: Glyph, measurement_line: Tuple[float, float, float, float]
-) -> List[Tuple[float, float]]:
-    intersections: List[Tuple[float, float]] = []
+    layer: Glyph, measurement_line: tuple[float, float, float, float]
+) -> list[tuple[float, float]]:
+    intersections: list[tuple[float, float]] = []
     x1, y1, x2, y2 = measurement_line
     for contour in layer.contours:
         for segment_pair in arrayTools.pairwise(segments(contour.points)):
@@ -601,13 +601,13 @@ def curve_intersections(
     p2: Point,
     p3: Point,
     p4: Point,
-) -> List[Tuple[float, float]]:
+) -> list[tuple[float, float]]:
     """
     Computes intersection between a line and a cubic curve.
     Adapted from: https://www.particleincell.com/2013/cubic-line-intersection/
     Takes four scalars describing line parameters and four points describing
     curve.
-    Returns a List of intersections in Tuples of the format (coordinate_x,
+    Returns a list of intersections in Tuples of the format (coordinate_x,
     coordinate_y, term, subsegment_index == 0). The subsegment_index is only
     used for quadratic curves.
     """
@@ -639,7 +639,7 @@ def curve_intersections(
 
 def qcurve_intersections(
     x1: float, y1: float, x2: float, y2: float, *pts: Point
-) -> List[Tuple[float, float]]:
+) -> list[tuple[float, float]]:
     """
     Computes intersection between a quadratic spline and a line segment.
     Adapted from curveIntersections(). Takes four scalars describing line and an
@@ -647,7 +647,7 @@ def qcurve_intersections(
     anchor) point. Quadatric curves are special in that they can consist of
     implied on-curve points, which is why this function returns a
     `subsegment_index` to associate a `t` with the correct subsegment.
-    Returns a List of intersections in Tuples of the format (coordinate_x,
+    Returns a list of intersections in Tuples of the format (coordinate_x,
     coordinate_y, term, subsegment_index).
     """
 
@@ -688,14 +688,14 @@ def qcurve_intersections(
 
 def line_intersection(
     x1: float, y1: float, x2: float, y2: float, p3: Point, p4: Point
-) -> Optional[Tuple[float, float]]:
+) -> Optional[tuple[float, float]]:
     """
     Computes intersection between two lines.
     Adapted from Andre LaMothe, "Tricks of the Windows Game Programming Gurus".
     G. Bach, http://stackoverflow.com/a/1968345
     Takes four scalars describing line parameters and two points describing
     line.
-    Returns a List of intersections in Tuples of the format (coordinate_x,
+    Returns a list of intersections in Tuples of the format (coordinate_x,
     coordinate_y, term, subsegment_index == 0). The subsegment_index is only
     used for quadratic curves.
     """
