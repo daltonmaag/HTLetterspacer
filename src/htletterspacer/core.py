@@ -71,7 +71,7 @@ def space_main(
         assert layer_width is not None
         tabular_width = round(layer_width)
 
-    new_left, new_right, new_width = set_space(
+    new_left, new_right, new_width = calculate_spacing(
         layer_measure,
         reference_layer_measure,
         angle,
@@ -97,7 +97,7 @@ def space_main(
     )
 
 
-def set_space(
+def calculate_spacing(
     layer: Glyph,
     reference_layer: Glyph,
     angle: float,
