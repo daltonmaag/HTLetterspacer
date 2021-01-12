@@ -7,7 +7,7 @@ import fontTools.misc.arrayTools as arrayTools
 import fontTools.misc.bezierTools as bezierTools
 import fontTools.pens.basePen as basePen
 import numpy as np
-from fontTools.misc.transform import Identity
+from fontTools.misc.transform import Identity, Transform
 from fontTools.pens.recordingPen import DecomposingRecordingPen
 from fontTools.pens.transformPen import TransformPointPen
 from ufoLib2.objects import Font, Glyph, Layer
@@ -24,10 +24,6 @@ class NSPoint:
     __slots__ = "x", "y"
     x: float
     y: float
-
-
-def NSMakePoint(x: float, y: float) -> NSPoint:
-    return NSPoint(x, y)
 
 
 def space_main(
@@ -246,7 +242,7 @@ def italic_on_off_point(
     if not make_italic:
         cateto = -cateto
     xvar = -rect_cateto(angle, cateto)
-    return NSMakePoint(p.x + xvar, p.y)
+    return NSPoint(p.x + xvar, p.y)
 
 
 def deslant(margin: list[NSPoint], angle: float, xHeight: int) -> list[NSPoint]:
@@ -261,8 +257,8 @@ def close_open_counters(
     margin: list[NSPoint], extreme: NSPoint, max_yref: float, min_yref: float
 ) -> list[NSPoint]:
     """close counterforms, creating a polygon"""
-    initPoint = NSMakePoint(extreme.x, min_yref)
-    endPoint = NSMakePoint(extreme.x, max_yref)
+    initPoint = NSPoint(extreme.x, min_yref)
+    endPoint = NSPoint(extreme.x, max_yref)
     margin.insert(0, initPoint)
     margin.append(endPoint)
     return margin
@@ -285,7 +281,7 @@ def max_points(
                 lefty = p.y
     assert lefty is not None
     assert righty is not None
-    return NSMakePoint(left, lefty), NSMakePoint(right, righty)
+    return NSPoint(left, lefty), NSPoint(right, righty)
 
 
 def calculate_overshoot(xHeight: int, paramOver: int) -> float:
@@ -307,20 +303,20 @@ def set_depth(
     depth = xheight * param_depth / 100
     max_depth = extreme_left.x + depth
     min_depth = extreme_right.x - depth
-    margins_left = [NSMakePoint(min(p.x, max_depth), p.y) for p in margins_left]
-    margins_right = [NSMakePoint(max(p.x, min_depth), p.y) for p in margins_right]
+    margins_left = [NSPoint(min(p.x, max_depth), p.y) for p in margins_left]
+    margins_right = [NSPoint(max(p.x, min_depth), p.y) for p in margins_right]
 
     # add all the points at maximum depth if glyph is shorter than overshoot
     y = margins_left[0].y - param_freq
     while y > min_yref:
-        margins_left.insert(0, NSMakePoint(max_depth, y))
-        margins_right.insert(0, NSMakePoint(min_depth, y))
+        margins_left.insert(0, NSPoint(max_depth, y))
+        margins_right.insert(0, NSPoint(min_depth, y))
         y -= param_freq
 
     y = margins_left[-1].y + param_freq
     while y < max_yref:
-        margins_left.append(NSMakePoint(max_depth, y))
-        margins_right.append(NSMakePoint(min_depth, y))
+        margins_left.append(NSPoint(max_depth, y))
+        margins_right.append(NSPoint(min_depth, y))
         y += param_freq
 
     return margins_left, margins_right
@@ -481,7 +477,9 @@ def set_sidebearings_slanted(
         layer.width = 0
 
 
-def skew_matrix(angle, offset=(0, 0)):
+def skew_matrix(
+    angle: tuple[float, float], offset: tuple[float, float] = (0, 0)
+) -> Transform:
     dx, dy = offset
     x, y = angle
     x, y = math.radians(x), math.radians(y)
@@ -492,7 +490,7 @@ def skew_matrix(angle, offset=(0, 0)):
 
 
 # shape calculations
-def rect_cateto(angle, cat):
+def rect_cateto(angle: float, cat: float) -> float:
     angle = math.radians(angle)
     return cat * math.tan(angle)
 
@@ -532,9 +530,9 @@ def margin_list(layer: Glyph, param_freq: int) -> Tuple[List[Any], List[Any]]:
         measurement_line = layer_bounds.xMin, y, layer_bounds.xMax, y
         lpos, rpos = get_margins(layer, measurement_line)
         if lpos is not None:
-            list_left.append(NSMakePoint(lpos, y))
+            list_left.append(NSPoint(lpos, y))
         if rpos is not None:
-            list_right.append(NSMakePoint(rpos, y))
+            list_right.append(NSPoint(rpos, y))
         y += param_freq
     return list_left, list_right
 
