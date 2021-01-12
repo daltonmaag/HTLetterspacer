@@ -35,7 +35,6 @@ def space_main(
     reference_layer: Glyph,
     glyphset: Union[Font, Layer],
     angle: float,
-    color: Any,
     compute_lsb: bool,
     compute_rsb: bool,
     factor: float,
@@ -94,7 +93,6 @@ def space_main(
         new_left,
         new_right,
         new_width,
-        color,
         angle,
         xheight,
     )
@@ -116,6 +114,8 @@ def set_space(
     width: int,
     xheight: int,
 ) -> tuple[int, int, int]:
+    # TODO: compute lsb/rsb separately?
+
     # get reference glyph maximum points
     overshoot = calculate_overshoot(xheight, param_over)
 
@@ -208,7 +208,7 @@ def set_space(
         LOGGER.warning(
             "%s is tabular and adjusted at width = %s", layer.name, str(layer_width)
         )
-    # if there is a metric rule
+    # TODO: Decide earlier whether to compute lsb/rsb.
     else:
         if not compute_lsb:
             margin_left = layer.getLeftMargin()
@@ -424,7 +424,6 @@ def set_sidebearings(
     new_left: float,
     new_right: float,
     width: float,
-    color: Any,
     angle: float,
     xheight: float,
 ) -> None:
@@ -437,9 +436,6 @@ def set_sidebearings(
     # adjusts the tabular miscalculation
     if width:
         layer.width = width
-
-    if color:
-        layer.lib["public.markColor"] = color
 
 
 def set_sidebearings_slanted(
