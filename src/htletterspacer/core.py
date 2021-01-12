@@ -67,7 +67,9 @@ def space_main(
         reference_layer_measure = reference_layer
 
     if tabular_width is None and (".tosf" in layer.name or ".tf" in layer.name):
-        tabular_width = layer.width
+        layer_width = layer.width
+        assert layer_width is not None
+        tabular_width = round(layer_width)
 
     new_left, new_right, new_width = set_space(
         layer_measure,
