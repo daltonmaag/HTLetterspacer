@@ -32,112 +32,116 @@ def NSMakePoint(x: float, y: float) -> NSPoint:
 
 class HTLetterspacerLib:
     def __init__(self, upm, angle, xHeight, LSB, RSB, factor, width):
-        self.paramArea = 400  # white area in thousand units
-        self.paramDepth = 15  # depth in open counterforms, from extreme points.
-        self.paramOver = 0  # overshoot in spacing vertical range
-        self.tabVersion = False
+        self.param_area = 400  # white area in thousand units
+        self.param_depth = 15  # depth in open counterforms, from extreme points.
+        self.param_over = 0  # overshoot in spacing vertical range
+        self.tab_version = False
         self.upm = upm
         self.angle = angle
-        self.xHeight = xHeight
+        self.xheight = xHeight
         self.LSB = LSB
         self.RSB = RSB
         self.factor = factor
         self.width = width
-        self.newWidth = 0.0
+        self.new_width = 0.0
         self.color = False  # mark color, False for no mark
-        self.paramFreq = 5  # frequency of vertical measuring. Higher values are faster but less accurate
+        self.param_freq = 5  # frequency of vertical measuring. Higher values are faster but less accurate
 
-    def setSpace(self, layer: Glyph, referenceLayer: Glyph) -> None:
+    def set_space(self, layer: Glyph, reference_layer: Glyph) -> None:
         # get reference glyph maximum points
-        overshoot = calculate_overshoot(self.xHeight, self.paramOver)
+        overshoot = calculate_overshoot(self.xheight, self.param_over)
 
         # store min and max y
-        reference_layer_bounds = referenceLayer.getBounds()
-        self.minYref = reference_layer_bounds.yMin - overshoot
-        self.maxYref = reference_layer_bounds.yMax + overshoot
+        reference_layer_bounds = reference_layer.getBounds()
+        self.min_yref = reference_layer_bounds.yMin - overshoot
+        self.max_yref = reference_layer_bounds.yMax + overshoot
 
         # bounds
-        lFullMargin, rFullMargin = marginList(layer, self.paramFreq)
+        margins_left_full, margins_right_full = marginList(layer, self.param_freq)
 
-        lMargins = [p for p in lFullMargin if self.minYref <= p.y <= self.maxYref]
-        rMargins = [p for p in rFullMargin if self.minYref <= p.y <= self.maxYref]
+        margins_left = [
+            p for p in margins_left_full if self.min_yref <= p.y <= self.max_yref
+        ]
+        margins_right = [
+            p for p in margins_right_full if self.min_yref <= p.y <= self.max_yref
+        ]
 
         # create a closed polygon
-        lPolygon, rPolygon = process_margins(
-            lMargins,
-            rMargins,
+        polygon_left, polygon_right = process_margins(
+            margins_left,
+            margins_right,
             self.angle,
-            self.xHeight,
-            self.minYref,
-            self.maxYref,
-            self.paramDepth,
-            self.paramFreq,
+            self.xheight,
+            self.min_yref,
+            self.max_yref,
+            self.param_depth,
+            self.param_freq,
         )
-        lMargins = deslant(lMargins, self.angle, self.xHeight)
-        rMargins = deslant(rMargins, self.angle, self.xHeight)
+        margins_left = deslant(margins_left, self.angle, self.xheight)
+        margins_right = deslant(margins_right, self.angle, self.xheight)
 
-        lFullMargin = deslant(lFullMargin, self.angle, self.xHeight)
-        rFullMargin = deslant(rFullMargin, self.angle, self.xHeight)
+        margins_left_full = deslant(margins_left_full, self.angle, self.xheight)
+        margins_right_full = deslant(margins_right_full, self.angle, self.xheight)
 
         # get extreme points deitalized
         layer_bounds = layer.getBounds()
-        lFullExtreme, rFullExtreme = max_points(
-            lFullMargin + rFullMargin, layer_bounds.yMin, layer_bounds.yMax
+        extreme_left_full, extreme_right_full = max_points(
+            margins_left_full + margins_right_full, layer_bounds.yMin, layer_bounds.yMax
         )
         # get zone extreme points
-        lExtreme, rExtreme = max_points(lMargins + rMargins, self.minYref, self.maxYref)
+        extreme_left, extreme_right = max_points(
+            margins_left + margins_right, self.min_yref, self.max_yref
+        )
 
         # dif between extremes full and zone
-        distanceL = math.ceil(lExtreme.x - lFullExtreme.x)
-        distanceR = math.ceil(rFullExtreme.x - rExtreme.x)
+        distance_left = math.ceil(extreme_left.x - extreme_left_full.x)
+        distance_right = math.ceil(extreme_right_full.x - extreme_right.x)
 
         # set new sidebearings
-        self.newL = math.ceil(
+        self.new_left = math.ceil(
             0
-            - distanceL
+            - distance_left
             + calculate_sidebearing_value(
                 self.factor,
-                self.maxYref,
-                self.minYref,
-                self.paramArea,
-                lPolygon,
+                self.max_yref,
+                self.min_yref,
+                self.param_area,
+                polygon_left,
                 self.upm,
-                self.xHeight,
+                self.xheight,
             )
         )
-        self.newR = math.ceil(
+        self.new_right = math.ceil(
             0
-            - distanceR
+            - distance_right
             + calculate_sidebearing_value(
                 self.factor,
-                self.maxYref,
-                self.minYref,
-                self.paramArea,
-                rPolygon,
+                self.max_yref,
+                self.min_yref,
+                self.param_area,
+                polygon_right,
                 self.upm,
-                self.xHeight,
+                self.xheight,
             )
         )
 
         # tabVersion
-        if ".tosf" in layer.name or ".tf" in layer.name or self.tabVersion:
+        if ".tosf" in layer.name or ".tf" in layer.name or self.tab_version:
             if self.width:
-                self.layerWidth = self.width
+                layer_width = self.width
             else:
-                self.layerWidth = layer.width
+                layer_width = layer.width
 
-            widthShape = rFullExtreme.x - lFullExtreme.x
-            widthActual = widthShape + self.newL + self.newR
-            widthDiff = (self.layerWidth - widthActual) / 2
+            width_shape = extreme_right_full.x - extreme_left_full.x
+            width_actual = width_shape + self.new_left + self.new_right
+            width_diff = (layer_width - width_actual) / 2
 
-            self.newL += widthDiff
-            self.newR += widthDiff
-            self.newWidth = self.layerWidth
+            self.new_left += width_diff
+            self.new_right += width_diff
+            self.new_width = layer_width
 
             LOGGER.warning(
-                "%s is tabular and adjusted at width = %s",
-                layer.name,
-                str(self.layerWidth),
+                "%s is tabular and adjusted at width = %s", layer.name, str(layer_width)
             )
         # end tabVersion
 
@@ -145,12 +149,12 @@ class HTLetterspacerLib:
         else:
             # TODO: coverage test and remove
             if layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None or self.LSB == False:
-                self.newL = layer.getLeftMargin()
+                self.new_left = layer.getLeftMargin()
             if layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None or self.RSB == False:
-                self.newR = layer.getRightMargin()
+                self.new_right = layer.getRightMargin()
 
     def spaceMain(
-        self, layer: Glyph, referenceLayer: Glyph, glyphset: Union[Font, Layer]
+        self, layer: Glyph, reference_layer: Glyph, glyphset: Union[Font, Layer]
     ) -> None:
         if not layer.contours and not layer.components:
             LOGGER.warning("No paths in glyph %s.", layer.name)
@@ -166,26 +170,26 @@ class HTLetterspacerLib:
         else:
             layer_measure = layer
 
-        if referenceLayer.components:
+        if reference_layer.components:
             dpen = DecomposingRecordingPen(glyphset)
-            referenceLayer.draw(dpen)
-            referenceLayer_decomposed = referenceLayer.copy()
-            referenceLayer_decomposed.components.clear()
-            dpen.replay(referenceLayer_decomposed.getPen())
-            referenceLayer_measure = referenceLayer_decomposed
+            reference_layer.draw(dpen)
+            reference_layer_decomposed = reference_layer.copy()
+            reference_layer_decomposed.components.clear()
+            dpen.replay(reference_layer_decomposed.getPen())
+            reference_layer_measure = reference_layer_decomposed
         else:
-            referenceLayer_measure = referenceLayer
+            reference_layer_measure = reference_layer
 
-        self.setSpace(layer_measure, referenceLayer_measure)
-        setSidebearings(
+        self.set_space(layer_measure, reference_layer_measure)
+        set_sidebearings(
             layer,
             glyphset,
-            self.newL,
-            self.newR,
-            self.newWidth,
+            self.new_left,
+            self.new_right,
+            self.new_width,
             self.color,
             self.angle,
-            self.xHeight,
+            self.xheight,
         )
 
 
@@ -386,21 +390,21 @@ def process_margins(
     return margins_left, margins_right
 
 
-def setSidebearings(
+def set_sidebearings(
     layer: Glyph,
     glyphset: Union[Font, Layer],
-    newL: float,
-    newR: float,
+    new_left: float,
+    new_right: float,
     width: float,
     color: Any,
     angle: float,
     xheight: float,
 ) -> None:
     if angle:
-        setSidebearingsSlanted(layer, glyphset, newL, newR, angle, xheight)
+        set_sidebearings_slanted(layer, glyphset, new_left, new_right, angle, xheight)
     else:
-        layer.setLeftMargin(newL, glyphset)
-        layer.setRightMargin(newR, glyphset)
+        layer.setLeftMargin(new_left, glyphset)
+        layer.setRightMargin(new_right, glyphset)
 
     # adjusts the tabular miscalculation
     if width:
@@ -410,7 +414,7 @@ def setSidebearings(
         layer.lib["public.markColor"] = color
 
 
-def setSidebearingsSlanted(
+def set_sidebearings_slanted(
     layer: Glyph,
     glyphset: Union[Font, Layer],
     l: float,

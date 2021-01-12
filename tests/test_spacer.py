@@ -19,18 +19,18 @@ def test_spacer(datadir):
         1.25,
         glyph_O.width,
     )
-    o.paramArea = 120
-    o.paramDepth = 5
-    o.paramOver = 0
+    o.param_area = 120
+    o.param_depth = 5
+    o.param_over = 0
 
     assert glyph_O.getLeftMargin(ufo_orig) == 20
     assert glyph_O.getRightMargin(ufo_orig) == 20
 
     o.spaceMain(glyph_O, glyph_H, ufo_orig)
-    assert o.minYref == 0
-    assert o.maxYref == 800
-    assert o.newL == 13
-    assert o.newR == 13
+    assert o.min_yref == 0
+    assert o.max_yref == 800
+    assert o.new_left == 13
+    assert o.new_right == 13
     assert glyph_O.getLeftMargin(ufo_orig) == 13
     assert glyph_O.getRightMargin(ufo_orig) == 13
 
@@ -48,9 +48,9 @@ def test_spacer_mutatorsans(datadir):
         0.0,
         0.0,
     )
-    o.paramArea = 120
-    o.paramDepth = 5
-    o.paramOver = 0
+    o.param_area = 120
+    o.param_depth = 5
+    o.param_over = 0
 
     for glyph, glyph_ref, factor in (
         ("A", "H", 1.25),
@@ -132,9 +132,9 @@ def test_spacer_merriweather(datadir):
         0.0,
         0.0,
     )
-    o.paramArea = 400
-    o.paramDepth = 15
-    o.paramOver = 0
+    o.param_area = 400
+    o.param_depth = 15
+    o.param_over = 0
 
     for glyph, glyph_ref, factor in (
         # (".notdef", ".notdef", 1.1),
@@ -896,7 +896,7 @@ def test_spacer_merriweather(datadir):
         glyph_ref_orig = ufo_orig[glyph_ref]
 
         o.width = glyph_orig.width
-        o.newWidth = 0.0
+        o.new_width = 0.0
         o.factor = factor
         o.spaceMain(glyph_orig, glyph_ref_orig, ufo_orig)
 
