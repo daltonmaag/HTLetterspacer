@@ -29,8 +29,6 @@ def test_spacer(datadir):
     o.spaceMain(glyph_O, glyph_H, ufo_orig)
     assert o.min_yref == 0
     assert o.max_yref == 800
-    assert o.new_left == 13
-    assert o.new_right == 13
     assert glyph_O.getLeftMargin(ufo_orig) == 13
     assert glyph_O.getRightMargin(ufo_orig) == 13
 

@@ -43,11 +43,12 @@ class HTLetterspacerLib:
         self.RSB = RSB
         self.factor = factor
         self.width = width
-        self.new_width = 0.0
         self.color = False  # mark color, False for no mark
         self.param_freq = 5  # frequency of vertical measuring. Higher values are faster but less accurate
 
-    def set_space(self, layer: Glyph, reference_layer: Glyph) -> None:
+    def set_space(
+        self, layer: Glyph, reference_layer: Glyph
+    ) -> tuple[float, float, float]:
         # get reference glyph maximum points
         overshoot = calculate_overshoot(self.xheight, self.param_over)
 
@@ -98,7 +99,7 @@ class HTLetterspacerLib:
         distance_right = math.ceil(extreme_right_full.x - extreme_right.x)
 
         # set new sidebearings
-        self.new_left = math.ceil(
+        new_left: int = math.ceil(
             0
             - distance_left
             + calculate_sidebearing_value(
@@ -111,7 +112,7 @@ class HTLetterspacerLib:
                 self.xheight,
             )
         )
-        self.new_right = math.ceil(
+        new_right: int = math.ceil(
             0
             - distance_right
             + calculate_sidebearing_value(
@@ -124,21 +125,23 @@ class HTLetterspacerLib:
                 self.xheight,
             )
         )
+        new_width: int = 0
 
         # tabVersion
         if ".tosf" in layer.name or ".tf" in layer.name or self.tab_version:
+            layer_width: int
             if self.width:
                 layer_width = self.width
             else:
-                layer_width = layer.width
+                layer_width = round(layer.width)
 
             width_shape = extreme_right_full.x - extreme_left_full.x
-            width_actual = width_shape + self.new_left + self.new_right
+            width_actual = width_shape + new_left + new_right
             width_diff = (layer_width - width_actual) / 2
 
-            self.new_left += width_diff
-            self.new_right += width_diff
-            self.new_width = layer_width
+            new_left += width_diff
+            new_right += width_diff
+            new_width = layer_width
 
             LOGGER.warning(
                 "%s is tabular and adjusted at width = %s", layer.name, str(layer_width)
@@ -149,9 +152,11 @@ class HTLetterspacerLib:
         else:
             # TODO: coverage test and remove
             if layer.lib.get(GLYPHS_LEFT_METRICS_KEY) is not None or self.LSB == False:
-                self.new_left = layer.getLeftMargin()
+                new_left = layer.getLeftMargin()
             if layer.lib.get(GLYPHS_RIGHT_METRICS_KEY) is not None or self.RSB == False:
-                self.new_right = layer.getRightMargin()
+                new_right = layer.getRightMargin()
+
+        return new_left, new_right, new_width
 
     def spaceMain(
         self, layer: Glyph, reference_layer: Glyph, glyphset: Union[Font, Layer]
@@ -180,13 +185,15 @@ class HTLetterspacerLib:
         else:
             reference_layer_measure = reference_layer
 
-        self.set_space(layer_measure, reference_layer_measure)
+        new_left, new_right, new_width = self.set_space(
+            layer_measure, reference_layer_measure
+        )
         set_sidebearings(
             layer,
             glyphset,
-            self.new_left,
-            self.new_right,
-            self.new_width,
+            new_left,
+            new_right,
+            new_width,
             self.color,
             self.angle,
             self.xheight,
