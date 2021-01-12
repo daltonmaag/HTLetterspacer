@@ -57,7 +57,7 @@ class HTLetterspacerLib:
         self.max_yref = reference_layer_bounds.yMax + overshoot
 
         # bounds
-        margins_left_full, margins_right_full = marginList(layer, self.param_freq)
+        margins_left_full, margins_right_full = margin_list(layer, self.param_freq)
 
         margins_left = [
             p for p in margins_left_full if self.min_yref <= p.y <= self.max_yref
@@ -225,7 +225,7 @@ def italic_on_off_point(
     cateto = -p.y + mline
     if not make_italic:
         cateto = -cateto
-    xvar = -rectCateto(angle, cateto)
+    xvar = -rect_cateto(angle, cateto)
     return NSMakePoint(p.x + xvar, p.y)
 
 
@@ -475,21 +475,10 @@ def skew_matrix(angle, offset=(0, 0)):
     return sT
 
 
-def save_to_temp_ufo(*glyphs):
-    import ufoLib2
-
-    output_ufo = ufoLib2.Font()
-    for g in glyphs:
-        output_ufo.layers.defaultLayer.insertGlyph(g)
-    output_ufo.save("/tmp/test.ufo", overwrite=True)
-
-
 # shape calculations
-def rectCateto(angle, cat):
+def rect_cateto(angle, cat):
     angle = math.radians(angle)
-    result = cat * (math.tan(angle))
-    # result = round(result)
-    return result
+    return cat * math.tan(angle)
 
 
 # point list area
@@ -501,7 +490,7 @@ def area(points: list[NSPoint]) -> float:
 
 
 # get margins in Glyphs
-def getMargins(
+def get_margins(
     layer: Glyph, measurement_line: Tuple[float, float, float, float]
 ) -> Tuple[Optional[float], Optional[float]]:
     # TODO: intersection returns a reversed list?
@@ -516,22 +505,22 @@ def getMargins(
 
 
 # a list of margins
-def marginList(layer: Glyph, param_freq: int) -> Tuple[List[Any], List[Any]]:
+def margin_list(layer: Glyph, param_freq: int) -> Tuple[List[Any], List[Any]]:
     layer_bounds = layer.getBounds()
     assert layer_bounds is not None
     y = layer_bounds.yMin
-    listL = []
-    listR = []
+    list_left = []
+    list_right = []
     # works over glyph copy
     while y <= layer_bounds.yMax:
         measurement_line = layer_bounds.xMin, y, layer_bounds.xMax, y
-        lpos, rpos = getMargins(layer, measurement_line)
+        lpos, rpos = get_margins(layer, measurement_line)
         if lpos is not None:
-            listL.append(NSMakePoint(lpos, y))
+            list_left.append(NSMakePoint(lpos, y))
         if rpos is not None:
-            listR.append(NSMakePoint(rpos, y))
+            list_right.append(NSMakePoint(rpos, y))
         y += param_freq
-    return listL, listR
+    return list_left, list_right
 
 
 ####
@@ -541,15 +530,15 @@ def segments(contour: List[Point]) -> List[List[Point]]:
     if not contour:
         return []
     segments = [[]]
-    lastWasOffCurve = False
+    last_was_off_curve = False
     for point in contour:
         segments[-1].append(point)
         if point.segmentType is not None:
             segments.append([])
-        lastWasOffCurve = point.segmentType is None
+        last_was_off_curve = point.segmentType is None
     if len(segments[-1]) == 0:
         del segments[-1]
-    if lastWasOffCurve:
+    if last_was_off_curve:
         lastSegment = segments[-1]
         segment = segments.pop(0)
         lastSegment.extend(segment)
@@ -569,17 +558,17 @@ def intersections(
             last, curr = segment_pair
             curr_type = curr[-1].type
             if curr_type == "line":
-                i = lineIntersection(x1, y1, x2, y2, last[-1], curr[-1])
+                i = line_intersection(x1, y1, x2, y2, last[-1], curr[-1])
                 if i is not None:
                     intersections.append(i)
             elif curr_type == "curve":
-                i = curveIntersections(
+                i = curve_intersections(
                     x1, y1, x2, y2, last[-1], curr[0], curr[1], curr[2]
                 )
                 if i:
                     intersections.extend(i)
             elif curr_type == "qcurve":
-                i = qcurveIntersections(x1, y1, x2, y2, last[-1], *curr)
+                i = qcurve_intersections(x1, y1, x2, y2, last[-1], *curr)
                 if i:
                     intersections.extend(i)
             else:
@@ -587,7 +576,7 @@ def intersections(
     return intersections
 
 
-def curveIntersections(
+def curve_intersections(
     x1: float,
     y1: float,
     x2: float,
@@ -632,7 +621,7 @@ def curveIntersections(
     return sol
 
 
-def qcurveIntersections(
+def qcurve_intersections(
     x1: float, y1: float, x2: float, y2: float, *pts: Point
 ) -> List[Tuple[float, float]]:
     """
@@ -681,7 +670,7 @@ def qcurveIntersections(
     return sol
 
 
-def lineIntersection(
+def line_intersection(
     x1: float, y1: float, x2: float, y2: float, p3: Point, p4: Point
 ) -> Optional[Tuple[float, float]]:
     """
