@@ -218,7 +218,9 @@ def calculate_sidebearing_value(
     return valor / amplitude_y
 
 
-def italic_on_off_point(p, make_italic: bool, angle, xHeight):
+def italic_on_off_point(
+    p: NSPoint, make_italic: bool, angle: float, xHeight: int
+) -> NSPoint:
     mline = xHeight / 2
     cateto = -p.y + mline
     if not make_italic:
@@ -227,11 +229,11 @@ def italic_on_off_point(p, make_italic: bool, angle, xHeight):
     return NSMakePoint(p.x + xvar, p.y)
 
 
-def deslant(margin: list[NSPoint], angle: float, xHeight: int):
+def deslant(margin: list[NSPoint], angle: float, xHeight: int) -> list[NSPoint]:
     return [italic_on_off_point(p, False, angle, xHeight) for p in margin]
 
 
-def slant(margin: list[NSPoint], angle: float, xHeight: int):
+def slant(margin: list[NSPoint], angle: float, xHeight: int) -> list[NSPoint]:
     return [italic_on_off_point(p, True, angle, xHeight) for p in margin]
 
 
