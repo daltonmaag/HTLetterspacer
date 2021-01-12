@@ -447,7 +447,7 @@ def set_sidebearings_slanted(
     assert bounds is not None
     left, _, _, _ = bounds
     m = skew_matrix((-a, 0), offset=(left, xheight / 2))
-    backslant = Glyph(name="backslant")
+    backslant = Glyph()
     backslant.width = original_width
     layer.drawPoints(TransformPointPen(backslant.getPointPen(), m))
     backslant.setLeftMargin(l, glyphset)
@@ -457,7 +457,7 @@ def set_sidebearings_slanted(
     assert boundsback is not None
     left, _, _, _ = boundsback
     mf = skew_matrix((a, 0), offset=(left, xheight / 2))
-    forwardslant = Glyph(name="forwardslant")
+    forwardslant = Glyph()
     forwardslant.width = backslant.width
     backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
 
