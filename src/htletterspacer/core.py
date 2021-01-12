@@ -30,181 +30,196 @@ def NSMakePoint(x: float, y: float) -> NSPoint:
     return NSPoint(x, y)
 
 
-class HTLetterspacerLib:
-    def __init__(self, upm, angle, xHeight, LSB, RSB, factor, width):
-        self.param_area = 400  # white area in thousand units
-        self.param_depth = 15  # depth in open counterforms, from extreme points.
-        self.param_over = 0  # overshoot in spacing vertical range
-        self.tab_version = False
-        self.upm = upm
-        self.angle = angle
-        self.xheight = xHeight
-        self.LSB = LSB
-        self.RSB = RSB
-        self.factor = factor
-        self.width = width
-        self.color = False  # mark color, False for no mark
-        self.param_freq = 5  # frequency of vertical measuring. Higher values are faster but less accurate
+def space_main(
+    layer: Glyph,
+    reference_layer: Glyph,
+    glyphset: Union[Font, Layer],
+    angle: float,
+    color: Any,
+    compute_lsb: bool,
+    compute_rsb: bool,
+    factor: float,
+    param_area: int,
+    param_depth: int,
+    param_freq: int,
+    param_over: int,
+    tab_version: bool,
+    upm: int,
+    width: int,
+    xheight: int,
+) -> None:
+    if not layer.contours and not layer.components:
+        LOGGER.warning("No paths in glyph %s.", layer.name)
+        return
 
-    def set_space(
-        self, layer: Glyph, reference_layer: Glyph
-    ) -> tuple[int, int, int]:
-        # get reference glyph maximum points
-        overshoot = calculate_overshoot(self.xheight, self.param_over)
+    if layer.components:
+        dpen = DecomposingRecordingPen(glyphset)
+        layer.draw(dpen)
+        layer_decomposed = layer.copy()
+        layer_decomposed.components.clear()
+        dpen.replay(layer_decomposed.getPen())
+        layer_measure = layer_decomposed
+    else:
+        layer_measure = layer
 
-        # store min and max y
-        reference_layer_bounds = reference_layer.getBounds()
-        self.min_yref = reference_layer_bounds.yMin - overshoot
-        self.max_yref = reference_layer_bounds.yMax + overshoot
+    if reference_layer.components:
+        dpen = DecomposingRecordingPen(glyphset)
+        reference_layer.draw(dpen)
+        reference_layer_decomposed = reference_layer.copy()
+        reference_layer_decomposed.components.clear()
+        dpen.replay(reference_layer_decomposed.getPen())
+        reference_layer_measure = reference_layer_decomposed
+    else:
+        reference_layer_measure = reference_layer
 
-        # bounds
-        margins_left_full, margins_right_full = margin_list(layer, self.param_freq)
+    new_left, new_right, new_width = set_space(
+        layer_measure,
+        reference_layer_measure,
+        angle,
+        compute_lsb,
+        compute_rsb,
+        factor,
+        param_area,
+        param_depth,
+        param_freq,
+        param_over,
+        tab_version,
+        upm,
+        width,
+        xheight,
+    )
+    set_sidebearings(
+        layer,
+        glyphset,
+        new_left,
+        new_right,
+        new_width,
+        color,
+        angle,
+        xheight,
+    )
 
-        margins_left = [
-            p for p in margins_left_full if self.min_yref <= p.y <= self.max_yref
-        ]
-        margins_right = [
-            p for p in margins_right_full if self.min_yref <= p.y <= self.max_yref
-        ]
 
-        # create a closed polygon
-        polygon_left, polygon_right = process_margins(
-            margins_left,
-            margins_right,
-            self.angle,
-            self.xheight,
-            self.min_yref,
-            self.max_yref,
-            self.param_depth,
-            self.param_freq,
+def set_space(
+    layer: Glyph,
+    reference_layer: Glyph,
+    angle: float,
+    compute_lsb: bool,
+    compute_rsb: bool,
+    factor: float,
+    param_area: int,
+    param_depth: int,
+    param_freq: int,
+    param_over: int,
+    tab_version: bool,
+    upm: int,
+    width: int,
+    xheight: int,
+) -> tuple[int, int, int]:
+    # get reference glyph maximum points
+    overshoot = calculate_overshoot(xheight, param_over)
+
+    # store min and max y
+    reference_layer_bounds = reference_layer.getBounds()
+    min_yref = reference_layer_bounds.yMin - overshoot
+    max_yref = reference_layer_bounds.yMax + overshoot
+
+    # bounds
+    margins_left_full, margins_right_full = margin_list(layer, param_freq)
+
+    margins_left = [p for p in margins_left_full if min_yref <= p.y <= max_yref]
+    margins_right = [p for p in margins_right_full if min_yref <= p.y <= max_yref]
+
+    # create a closed polygon
+    polygon_left, polygon_right = process_margins(
+        margins_left,
+        margins_right,
+        angle,
+        xheight,
+        min_yref,
+        max_yref,
+        param_depth,
+        param_freq,
+    )
+    margins_left = deslant(margins_left, angle, xheight)
+    margins_right = deslant(margins_right, angle, xheight)
+
+    margins_left_full = deslant(margins_left_full, angle, xheight)
+    margins_right_full = deslant(margins_right_full, angle, xheight)
+
+    # get extreme points deitalized
+    layer_bounds = layer.getBounds()
+    extreme_left_full, extreme_right_full = max_points(
+        margins_left_full + margins_right_full, layer_bounds.yMin, layer_bounds.yMax
+    )
+    # get zone extreme points
+    extreme_left, extreme_right = max_points(
+        margins_left + margins_right, min_yref, max_yref
+    )
+
+    # dif between extremes full and zone
+    distance_left = math.ceil(extreme_left.x - extreme_left_full.x)
+    distance_right = math.ceil(extreme_right_full.x - extreme_right.x)
+
+    # set new sidebearings
+    new_left: int = math.ceil(
+        0
+        - distance_left
+        + calculate_sidebearing_value(
+            factor,
+            max_yref,
+            min_yref,
+            param_area,
+            polygon_left,
+            upm,
+            xheight,
         )
-        margins_left = deslant(margins_left, self.angle, self.xheight)
-        margins_right = deslant(margins_right, self.angle, self.xheight)
-
-        margins_left_full = deslant(margins_left_full, self.angle, self.xheight)
-        margins_right_full = deslant(margins_right_full, self.angle, self.xheight)
-
-        # get extreme points deitalized
-        layer_bounds = layer.getBounds()
-        extreme_left_full, extreme_right_full = max_points(
-            margins_left_full + margins_right_full, layer_bounds.yMin, layer_bounds.yMax
+    )
+    new_right: int = math.ceil(
+        0
+        - distance_right
+        + calculate_sidebearing_value(
+            factor,
+            max_yref,
+            min_yref,
+            param_area,
+            polygon_right,
+            upm,
+            xheight,
         )
-        # get zone extreme points
-        extreme_left, extreme_right = max_points(
-            margins_left + margins_right, self.min_yref, self.max_yref
-        )
+    )
+    new_width: int = 0
 
-        # dif between extremes full and zone
-        distance_left = math.ceil(extreme_left.x - extreme_left_full.x)
-        distance_right = math.ceil(extreme_right_full.x - extreme_right.x)
-
-        # set new sidebearings
-        new_left: int = math.ceil(
-            0
-            - distance_left
-            + calculate_sidebearing_value(
-                self.factor,
-                self.max_yref,
-                self.min_yref,
-                self.param_area,
-                polygon_left,
-                self.upm,
-                self.xheight,
-            )
-        )
-        new_right: int = math.ceil(
-            0
-            - distance_right
-            + calculate_sidebearing_value(
-                self.factor,
-                self.max_yref,
-                self.min_yref,
-                self.param_area,
-                polygon_right,
-                self.upm,
-                self.xheight,
-            )
-        )
-        new_width: int = 0
-
-        # tabVersion
-        if ".tosf" in layer.name or ".tf" in layer.name or self.tab_version:
-            layer_width: int
-            if self.width:
-                layer_width = self.width
-            else:
-                layer_width = round(layer.width)
-
-            width_shape = extreme_right_full.x - extreme_left_full.x
-            width_actual = width_shape + new_left + new_right
-            width_diff = (layer_width - width_actual) / 2
-
-            new_left += width_diff
-            new_right += width_diff
-            new_width = layer_width
-
-            LOGGER.warning(
-                "%s is tabular and adjusted at width = %s", layer.name, str(layer_width)
-            )
-        # end tabVersion
-
-        # if there is a metric rule
+    if ".tosf" in layer.name or ".tf" in layer.name or tab_version:
+        layer_width: int
+        if width:
+            layer_width = width
         else:
-            # TODO: coverage test and remove
-            if self.LSB == False:
-                margin_left = layer.getLeftMargin()
-                assert margin_left is not None
-                new_left = round(margin_left)
-            if self.RSB == False:
-                margin_right = layer.getRightMargin()
-                assert margin_right is not None
-                new_right = round(margin_right)
+            layer_width = round(layer.width)
 
-        return new_left, new_right, new_width
+        width_shape = extreme_right_full.x - extreme_left_full.x
+        width_actual = width_shape + new_left + new_right
+        width_diff = round((layer_width - width_actual) / 2)
 
-    def spaceMain(
-        self, layer: Glyph, reference_layer: Glyph, glyphset: Union[Font, Layer]
-    ) -> None:
-        if not layer.contours and not layer.components:
-            LOGGER.warning("No paths in glyph %s.", layer.name)
-            return
+        new_left += width_diff
+        new_right += width_diff
+        new_width = layer_width
 
-        if layer.components:
-            dpen = DecomposingRecordingPen(glyphset)
-            layer.draw(dpen)
-            layer_decomposed = layer.copy()
-            layer_decomposed.components.clear()
-            dpen.replay(layer_decomposed.getPen())
-            layer_measure = layer_decomposed
-        else:
-            layer_measure = layer
-
-        if reference_layer.components:
-            dpen = DecomposingRecordingPen(glyphset)
-            reference_layer.draw(dpen)
-            reference_layer_decomposed = reference_layer.copy()
-            reference_layer_decomposed.components.clear()
-            dpen.replay(reference_layer_decomposed.getPen())
-            reference_layer_measure = reference_layer_decomposed
-        else:
-            reference_layer_measure = reference_layer
-
-        new_left, new_right, new_width = self.set_space(
-            layer_measure, reference_layer_measure
+        LOGGER.warning(
+            "%s is tabular and adjusted at width = %s", layer.name, str(layer_width)
         )
-        set_sidebearings(
-            layer,
-            glyphset,
-            new_left,
-            new_right,
-            new_width,
-            self.color,
-            self.angle,
-            self.xheight,
-        )
+    # if there is a metric rule
+    else:
+        if not compute_lsb:
+            margin_left = layer.getLeftMargin()
+            assert margin_left is not None
+            new_left = round(margin_left)
+        if not compute_rsb:
+            margin_right = layer.getRightMargin()
+            assert margin_right is not None
+            new_right = round(margin_right)
 
-
-#  Functions
+    return new_left, new_right, new_width
 
 
 def calculate_sidebearing_value(

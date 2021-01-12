@@ -8,27 +8,29 @@ def test_spacer(datadir):
     ufo_orig = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed.ufo")
     glyph_O = ufo_orig["O"]
     glyph_H = ufo_orig["H"]
-    # ufo_rspc = ufoLib2.Font.open(datadir / "Respaced.ufo")
-
-    o = htletterspacer.core.HTLetterspacerLib(
-        ufo_orig.info.unitsPerEm,
-        ufo_orig.info.italicAngle,
-        ufo_orig.info.xHeight,
-        True,
-        True,
-        1.25,
-        glyph_O.width,
-    )
-    o.param_area = 120
-    o.param_depth = 5
-    o.param_over = 0
 
     assert glyph_O.getLeftMargin(ufo_orig) == 20
     assert glyph_O.getRightMargin(ufo_orig) == 20
 
-    o.spaceMain(glyph_O, glyph_H, ufo_orig)
-    assert o.min_yref == 0
-    assert o.max_yref == 800
+    htletterspacer.core.space_main(
+        glyph_O,
+        glyph_H,
+        ufo_orig,
+        angle=ufo_orig.info.italicAngle,
+        color=None,
+        compute_lsb=True,
+        compute_rsb=True,
+        factor=1.25,
+        param_area=120,
+        param_depth=5,
+        param_freq=5,
+        param_over=0,
+        tab_version=False,
+        upm=ufo_orig.info.unitsPerEm,
+        width=0,
+        xheight=ufo_orig.info.xHeight,
+    )
+
     assert glyph_O.getLeftMargin(ufo_orig) == 13
     assert glyph_O.getRightMargin(ufo_orig) == 13
 
@@ -36,19 +38,6 @@ def test_spacer(datadir):
 def test_spacer_mutatorsans(datadir):
     ufo_orig = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed.ufo")
     ufo_rspc = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed-Respaced.ufo")
-
-    o = htletterspacer.core.HTLetterspacerLib(
-        ufo_orig.info.unitsPerEm,
-        ufo_orig.info.italicAngle,
-        ufo_orig.info.xHeight,
-        True,
-        True,
-        0.0,
-        0.0,
-    )
-    o.param_area = 120
-    o.param_depth = 5
-    o.param_over = 0
 
     for glyph, glyph_ref, factor in (
         ("A", "H", 1.25),
@@ -104,9 +93,24 @@ def test_spacer_mutatorsans(datadir):
         glyph_orig = ufo_orig[glyph]
         glyph_ref_orig = ufo_orig[glyph_ref]
 
-        o.width = glyph_orig.width
-        o.factor = factor
-        o.spaceMain(glyph_orig, glyph_ref_orig, ufo_orig)
+        htletterspacer.core.space_main(
+            glyph_orig,
+            glyph_ref_orig,
+            ufo_orig,
+            angle=ufo_orig.info.italicAngle,
+            color=None,
+            compute_lsb=True,
+            compute_rsb=True,
+            factor=factor,
+            param_area=120,
+            param_depth=5,
+            param_freq=5,
+            param_over=0,
+            tab_version=False,
+            upm=ufo_orig.info.unitsPerEm,
+            width=glyph_orig.width,
+            xheight=ufo_orig.info.xHeight,
+        )
 
         glyph_rspc = ufo_rspc[glyph]
         assert glyph_orig.getLeftMargin(ufo_orig) == glyph_rspc.getLeftMargin(
@@ -120,19 +124,6 @@ def test_spacer_mutatorsans(datadir):
 def test_spacer_merriweather(datadir):
     ufo_orig = ufoLib2.Font.open(datadir / "Merriweather-LightItalic.ufo")
     ufo_rspc = ufoLib2.Font.open(datadir / "Merriweather-LightItalic-Respaced.ufo")
-
-    o = htletterspacer.core.HTLetterspacerLib(
-        ufo_orig.info.unitsPerEm,
-        -ufo_orig.info.italicAngle,
-        ufo_orig.info.xHeight,
-        True,
-        True,
-        0.0,
-        0.0,
-    )
-    o.param_area = 400
-    o.param_depth = 15
-    o.param_over = 0
 
     for glyph, glyph_ref, factor in (
         # (".notdef", ".notdef", 1.1),
@@ -893,29 +884,36 @@ def test_spacer_merriweather(datadir):
             # would have to space them first and then all dependents.
         glyph_ref_orig = ufo_orig[glyph_ref]
 
-        o.width = glyph_orig.width
-        o.new_width = 0.0
-        o.factor = factor
-        o.spaceMain(glyph_orig, glyph_ref_orig, ufo_orig)
+        htletterspacer.core.space_main(
+            glyph_orig,
+            glyph_ref_orig,
+            ufo_orig,
+            angle=-ufo_orig.info.italicAngle,
+            color=None,
+            compute_lsb=True,
+            compute_rsb=True,
+            factor=factor,
+            param_area=400,
+            param_depth=15,
+            param_freq=5,
+            param_over=0,
+            tab_version=False,
+            upm=ufo_orig.info.unitsPerEm,
+            width=glyph_orig.width,
+            xheight=ufo_orig.info.xHeight,
+        )
 
         glyph_rspc = ufo_rspc[glyph]
-        try:
-            left_should = glyph_rspc.getLeftMargin(ufo_rspc)
-            if left_should is None:
-                continue  # skip emquad, etc.
-            left_is = glyph_orig.getLeftMargin(ufo_orig)
-            assert left_is is not None
-            assert round(left_is) == pytest.approx(round(left_should), abs=1), glyph
 
-            right_should = glyph_rspc.getRightMargin(ufo_rspc)
-            assert right_should is not None
-            right_is = glyph_orig.getRightMargin(ufo_orig)
-            assert right_is is not None
-            assert round(right_is) == pytest.approx(round(right_should), abs=1), glyph
-        except:
-            output_ufo = ufoLib2.Font()
-            output_ufo.info.unitsPerEm = ufo_orig.info.unitsPerEm
-            output_ufo.layers.defaultLayer.insertGlyph(glyph_orig, name="respaced")
-            output_ufo.layers.defaultLayer.insertGlyph(glyph_rspc, name="comparison")
-            output_ufo.save("/tmp/test.ufo", overwrite=True)
-            raise
+        left_should = glyph_rspc.getLeftMargin(ufo_rspc)
+        if left_should is None:
+            continue  # skip emquad, etc.
+        left_is = glyph_orig.getLeftMargin(ufo_orig)
+        assert left_is is not None
+        assert round(left_is) == pytest.approx(round(left_should), abs=1), glyph
+
+        right_should = glyph_rspc.getRightMargin(ufo_rspc)
+        assert right_should is not None
+        right_is = glyph_orig.getRightMargin(ufo_orig)
+        assert right_is is not None
+        assert round(right_is) == pytest.approx(round(right_should), abs=1), glyph
