@@ -214,6 +214,26 @@ def calculate_spacing(
     return new_left, new_right, new_width
 
 
+def set_sidebearings(
+    layer: Glyph,
+    glyphset: Union[Font, Layer],
+    new_left: float,
+    new_right: float,
+    width: float,
+    angle: float,
+    xheight: float,
+) -> None:
+    if angle:
+        set_sidebearings_slanted(layer, glyphset, new_left, new_right, angle, xheight)
+    else:
+        layer.setLeftMargin(new_left, glyphset)
+        layer.setRightMargin(new_right, glyphset)
+
+    # adjusts the tabular miscalculation
+    if width:
+        layer.width = width
+
+
 def calculate_sidebearing_value(
     factor: float,
     max_yref: float,
@@ -408,26 +428,6 @@ def process_margins(
     margins_left = slant(margins_left, angle, xheight)
     margins_right = slant(margins_right, angle, xheight)
     return margins_left, margins_right
-
-
-def set_sidebearings(
-    layer: Glyph,
-    glyphset: Union[Font, Layer],
-    new_left: float,
-    new_right: float,
-    width: float,
-    angle: float,
-    xheight: float,
-) -> None:
-    if angle:
-        set_sidebearings_slanted(layer, glyphset, new_left, new_right, angle, xheight)
-    else:
-        layer.setLeftMargin(new_left, glyphset)
-        layer.setRightMargin(new_right, glyphset)
-
-    # adjusts the tabular miscalculation
-    if width:
-        layer.width = width
 
 
 def set_sidebearings_slanted(
