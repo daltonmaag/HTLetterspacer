@@ -27,7 +27,7 @@ def test_spacer(datadir):
         param_over=0,
         tab_version=False,
         upm=ufo_orig.info.unitsPerEm,
-        width=0,
+        width=glyph_O.width,
         xheight=ufo_orig.info.xHeight,
     )
 
