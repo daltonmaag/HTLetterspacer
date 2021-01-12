@@ -17,7 +17,6 @@ def test_spacer(datadir):
         glyph_H,
         ufo_orig,
         angle=ufo_orig.info.italicAngle,
-        color=None,
         compute_lsb=True,
         compute_rsb=True,
         factor=1.25,
@@ -25,9 +24,8 @@ def test_spacer(datadir):
         param_depth=5,
         param_freq=5,
         param_over=0,
-        tab_version=False,
+        tabular_width=None,
         upm=ufo_orig.info.unitsPerEm,
-        width=glyph_O.width,
         xheight=ufo_orig.info.xHeight,
     )
 
@@ -98,7 +96,6 @@ def test_spacer_mutatorsans(datadir):
             glyph_ref_orig,
             ufo_orig,
             angle=ufo_orig.info.italicAngle,
-            color=None,
             compute_lsb=True,
             compute_rsb=True,
             factor=factor,
@@ -106,9 +103,8 @@ def test_spacer_mutatorsans(datadir):
             param_depth=5,
             param_freq=5,
             param_over=0,
-            tab_version=False,
+            tabular_width=None,
             upm=ufo_orig.info.unitsPerEm,
-            width=glyph_orig.width,
             xheight=ufo_orig.info.xHeight,
         )
 
@@ -889,7 +885,6 @@ def test_spacer_merriweather(datadir):
             glyph_ref_orig,
             ufo_orig,
             angle=-ufo_orig.info.italicAngle,
-            color=None,
             compute_lsb=True,
             compute_rsb=True,
             factor=factor,
@@ -897,9 +892,8 @@ def test_spacer_merriweather(datadir):
             param_depth=15,
             param_freq=5,
             param_over=0,
-            tab_version=False,
+            tabular_width=None,
             upm=ufo_orig.info.unitsPerEm,
-            width=glyph_orig.width,
             xheight=ufo_orig.info.xHeight,
         )
 

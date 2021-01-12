@@ -42,9 +42,8 @@ def space_main(
     param_depth: int,
     param_freq: int,
     param_over: int,
-    tab_version: bool,
+    tabular_width: Optional[int],
     upm: int,
-    width: int,
     xheight: int,
 ) -> None:
     if not layer.contours and not layer.components:
@@ -71,6 +70,9 @@ def space_main(
     else:
         reference_layer_measure = reference_layer
 
+    if tabular_width is None and (".tosf" in layer.name or ".tf" in layer.name):
+        tabular_width = layer.width
+
     new_left, new_right, new_width = set_space(
         layer_measure,
         reference_layer_measure,
@@ -82,9 +84,8 @@ def space_main(
         param_depth,
         param_freq,
         param_over,
-        tab_version,
+        tabular_width,
         upm,
-        width,
         xheight,
     )
     set_sidebearings(
@@ -109,9 +110,8 @@ def set_space(
     param_depth: int,
     param_freq: int,
     param_over: int,
-    tab_version: bool,
+    tabular_width: Optional[int],
     upm: int,
-    width: int,
     xheight: int,
 ) -> tuple[int, int, int]:
     # TODO: compute lsb/rsb separately?
@@ -190,23 +190,17 @@ def set_space(
     )
     new_width: int = 0
 
-    if ".tosf" in layer.name or ".tf" in layer.name or tab_version:
-        layer_width: int
-        if width:
-            layer_width = width
-        else:
-            layer_width = round(layer.width)
-
+    if tabular_width is not None:
         width_shape = extreme_right_full.x - extreme_left_full.x
         width_actual = width_shape + new_left + new_right
-        width_diff = round((layer_width - width_actual) / 2)
+        width_diff = round((tabular_width - width_actual) / 2)
 
         new_left += width_diff
         new_right += width_diff
-        new_width = layer_width
+        new_width = tabular_width
 
         LOGGER.warning(
-            "%s is tabular and adjusted at width = %s", layer.name, str(layer_width)
+            "%s is tabular and adjusted at width = %s", layer.name, str(tabular_width)
         )
     # TODO: Decide earlier whether to compute lsb/rsb.
     else:
