@@ -63,7 +63,7 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
             glyph,
             ref_bounds,
             ufo,
-            angle=ufo.info.italicAngle,
+            angle=-ufo.info.italicAngle,
             compute_lsb=True,
             compute_rsb=True,
             factor=factor,
