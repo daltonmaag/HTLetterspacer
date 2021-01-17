@@ -14,7 +14,7 @@ LOGGER = logging.Logger(__name__)
 
 
 def main(args: Optional[list[str]] = None) -> Optional[int]:
-    parser = argparse.ArgumentParser(description="build some fonts")
+    parser = argparse.ArgumentParser(description="Respace all glyphs with contours.")
     parser.add_argument("ufo", type=ufoLib2.Font.open)
     parser.add_argument("--area", type=int, default=400)
     parser.add_argument("--depth", type=int, default=15)
