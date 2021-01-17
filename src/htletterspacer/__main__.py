@@ -54,7 +54,6 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
 
         ref_name, factor = htletterspacer.config.reference_and_factor(config, glyph)
 
-        # Cache bounds of reference glyphs for performance.
         glyph_ref = ufo[ref_name]
         assert glyph_ref.name is not None
         ref_bounds = glyph_ref.getBounds(ufo)
