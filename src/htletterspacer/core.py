@@ -11,8 +11,8 @@ from fontTools.misc.transform import Identity, Transform
 from fontTools.pens.recordingPen import DecomposingRecordingPen
 from fontTools.pens.transformPen import TransformPointPen
 from ufoLib2.objects import Font, Glyph, Layer
-from ufoLib2.objects.point import Point
 from ufoLib2.objects.misc import BoundingBox
+from ufoLib2.objects.point import Point
 
 LOGGER = logging.Logger(__name__)
 

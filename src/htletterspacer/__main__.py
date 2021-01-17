@@ -5,7 +5,6 @@ from pathlib import Path
 from typing import Optional
 
 import ufoLib2
-from ufoLib2.objects.misc import BoundingBox
 
 import htletterspacer.config
 import htletterspacer.core
