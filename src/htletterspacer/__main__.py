@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Optional
 
 import ufoLib2
+from ufoLib2.objects.misc import BoundingBox
 
 import htletterspacer.config
 import htletterspacer.core
@@ -38,9 +39,14 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
             htletterspacer.config.DEFAULT_CONFIGURATION
         )
 
+    ref_bounds: dict[str, BoundingBox] = {}
+
     # Composites come last because their spacing depends on their components.
     for glyph in sorted((g for g in ufo), key=lambda g: len(g.components)):
         assert glyph.name is not None
+        if not glyph.contours:
+            LOGGER.warning("Skipping glyph %s because it has not contours.", glyph.name)
+            continue
         if glyph.components:
             LOGGER.warning("Skipping glyph %s because it has components.", glyph.name)
             continue
@@ -48,11 +54,21 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
             LOGGER.warning("Skipping glyph %s because it is a mark.", glyph.name)
             continue
 
-        glyph_ref, factor = htletterspacer.config.reference_and_factor(config, glyph)
+        ref_name, factor = htletterspacer.config.reference_and_factor(config, glyph)
+
+        # Cache bounds of reference glyphs for performance.
+        glyph_ref = ufo[ref_name]
+        assert glyph_ref.name is not None
+        if ref_name in ref_bounds:
+            glyph_ref_bounds = ref_bounds[ref_name]
+        else:
+            bounds = glyph_ref.getBounds(ufo)
+            assert bounds is not None
+            glyph_ref_bounds = ref_bounds[ref_name] = bounds
 
         htletterspacer.core.space_main(
             glyph,
-            ufo[glyph_ref],
+            glyph_ref_bounds,
             ufo,
             angle=ufo.info.italicAngle,
             compute_lsb=True,

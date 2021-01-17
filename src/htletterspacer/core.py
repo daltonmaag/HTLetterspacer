@@ -12,6 +12,7 @@ from fontTools.pens.recordingPen import DecomposingRecordingPen
 from fontTools.pens.transformPen import TransformPointPen
 from ufoLib2.objects import Font, Glyph, Layer
 from ufoLib2.objects.point import Point
+from ufoLib2.objects.misc import BoundingBox
 
 LOGGER = logging.Logger(__name__)
 
@@ -28,7 +29,7 @@ class NSPoint:
 
 def space_main(
     layer: Glyph,
-    reference_layer: Glyph,
+    reference_layer_bounds: BoundingBox,
     glyphset: Union[Font, Layer],
     angle: float,
     compute_lsb: bool,
@@ -56,16 +57,6 @@ def space_main(
     else:
         layer_measure = layer
 
-    if reference_layer.components:
-        dpen = DecomposingRecordingPen(glyphset)
-        reference_layer.draw(dpen)
-        reference_layer_decomposed = reference_layer.copy()
-        reference_layer_decomposed.components.clear()
-        dpen.replay(reference_layer_decomposed.getPen())
-        reference_layer_measure = reference_layer_decomposed
-    else:
-        reference_layer_measure = reference_layer
-
     if tabular_width is None and (".tosf" in layer.name or ".tf" in layer.name):
         layer_width = layer.width
         assert layer_width is not None
@@ -73,7 +64,7 @@ def space_main(
 
     new_left, new_right, new_width = calculate_spacing(
         layer_measure,
-        reference_layer_measure,
+        reference_layer_bounds,
         angle,
         compute_lsb,
         compute_rsb,
@@ -99,7 +90,7 @@ def space_main(
 
 def calculate_spacing(
     layer: Glyph,
-    reference_layer: Glyph,
+    reference_layer_bounds: BoundingBox,
     angle: float,
     compute_lsb: bool,
     compute_rsb: bool,
@@ -118,7 +109,6 @@ def calculate_spacing(
     overshoot = calculate_overshoot(xheight, param_over)
 
     # store min and max y
-    reference_layer_bounds = reference_layer.getBounds()
     min_yref = reference_layer_bounds.yMin - overshoot
     max_yref = reference_layer_bounds.yMax + overshoot
 
@@ -306,6 +296,7 @@ def max_points(
     return NSPoint(left, lefty), NSPoint(right, righty)
 
 
+# TODO: calc once at the beginning
 def calculate_overshoot(xHeight: int, paramOver: int) -> float:
     return xHeight * paramOver / 100
 
