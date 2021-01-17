@@ -12,6 +12,9 @@ import htletterspacer.core
 LOGGER = logging.Logger(__name__)
 
 
+# TODO: build graph of composite dependencies and space everything, including composites
+# TODO: respect metrics keys by skipping that side or by interpreting them?
+# TODO: pull in glyphConstruction to rebuild components?
 def main(args: Optional[list[str]] = None) -> Optional[int]:
     parser = argparse.ArgumentParser(description="Respace all glyphs with contours.")
     parser.add_argument("ufo", type=ufoLib2.Font.open)
