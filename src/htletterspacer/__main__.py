@@ -39,8 +39,6 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
             htletterspacer.config.DEFAULT_CONFIGURATION
         )
 
-    ref_bounds: dict[str, BoundingBox] = {}
-
     # Composites come last because their spacing depends on their components.
     for glyph in sorted((g for g in ufo), key=lambda g: len(g.components)):
         assert glyph.name is not None
@@ -59,16 +57,12 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
         # Cache bounds of reference glyphs for performance.
         glyph_ref = ufo[ref_name]
         assert glyph_ref.name is not None
-        if ref_name in ref_bounds:
-            glyph_ref_bounds = ref_bounds[ref_name]
-        else:
-            bounds = glyph_ref.getBounds(ufo)
-            assert bounds is not None
-            glyph_ref_bounds = ref_bounds[ref_name] = bounds
+        ref_bounds = glyph_ref.getBounds(ufo)
+        assert ref_bounds is not None
 
         htletterspacer.core.space_main(
             glyph,
-            glyph_ref_bounds,
+            ref_bounds,
             ufo,
             angle=ufo.info.italicAngle,
             compute_lsb=True,

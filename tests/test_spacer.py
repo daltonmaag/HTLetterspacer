@@ -52,8 +52,6 @@ def test_spacer_mutatorsans(datadir):
         htletterspacer.config.DEFAULT_CONFIGURATION
     )
 
-    ref_bounds: dict[str, BoundingBox] = {}
-
     # Composites come last because their spacing depends on their components.
     for glyph_orig in sorted((g for g in ufo_orig), key=lambda g: len(g.components)):
         assert glyph_orig.name is not None
@@ -68,14 +66,8 @@ def test_spacer_mutatorsans(datadir):
         )
         glyph_ref_orig = ufo_orig[glyph_ref]
         assert glyph_ref_orig.name is not None
-
-        # Cache bounds of reference glyphs for performance.
-        if glyph_ref_orig.name in ref_bounds:
-            glyph_ref_bounds = ref_bounds[glyph_ref_orig.name]
-        else:
-            bounds = glyph_ref_orig.getBounds(ufo_orig)
-            assert bounds is not None
-            glyph_ref_bounds = ref_bounds[glyph_ref_orig.name] = bounds
+        ref_bounds = glyph_ref_orig.getBounds(ufo_orig)
+        assert ref_bounds is not None
 
         # Manual fixups because our get_data works differently from Glyphs.app's...
         if glyph_ref == "dot":
@@ -83,7 +75,7 @@ def test_spacer_mutatorsans(datadir):
 
         htletterspacer.core.space_main(
             glyph_orig,
-            glyph_ref_bounds,
+            ref_bounds,
             ufo_orig,
             angle=ufo_orig.info.italicAngle,
             compute_lsb=True,
@@ -118,8 +110,6 @@ def test_spacer_merriweather(datadir):
         htletterspacer.config.DEFAULT_CONFIGURATION
     )
 
-    ref_bounds: dict[str, BoundingBox] = {}
-
     for glyph_orig in ufo_orig:
         assert glyph_orig.name is not None
         if not glyph_orig.contours and not glyph_orig.components:
@@ -135,18 +125,12 @@ def test_spacer_merriweather(datadir):
         )
         glyph_ref_orig = ufo_orig[glyph_ref]
         assert glyph_ref_orig.name is not None
-
-        # Cache bounds of reference glyphs for performance.
-        if glyph_ref_orig.name in ref_bounds:
-            glyph_ref_bounds = ref_bounds[glyph_ref_orig.name]
-        else:
-            bounds = glyph_ref_orig.getBounds(ufo_orig)
-            assert bounds is not None
-            glyph_ref_bounds = ref_bounds[glyph_ref_orig.name] = bounds
+        ref_bounds = glyph_ref_orig.getBounds(ufo_orig)
+        assert ref_bounds is not None
 
         htletterspacer.core.space_main(
             glyph_orig,
-            glyph_ref_bounds,
+            ref_bounds,
             ufo_orig,
             angle=-ufo_orig.info.italicAngle,
             compute_lsb=True,
