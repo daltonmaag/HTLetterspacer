@@ -43,7 +43,7 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
     for glyph in sorted((g for g in ufo), key=lambda g: len(g.components)):
         assert glyph.name is not None
         if not glyph.contours:
-            LOGGER.warning("Skipping glyph %s because it has not contours.", glyph.name)
+            LOGGER.warning("Skipping glyph %s because it has no contours.", glyph.name)
             continue
         if glyph.components:
             LOGGER.warning("Skipping glyph %s because it has components.", glyph.name)
