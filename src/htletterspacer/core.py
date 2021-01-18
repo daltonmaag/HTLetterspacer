@@ -219,14 +219,14 @@ def set_sidebearings(
         layer.setLeftMargin(new_left, glyphset)
         layer.setRightMargin(new_right, glyphset)
 
+    # adjusts the tabular miscalculation
+    if width:
+        layer.width = width
+
     # TODO: Handle this outside the core.
     if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
         layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
         layer.width = 0
-
-    # adjusts the tabular miscalculation
-    if width:
-        layer.width = width
 
 
 def calculate_sidebearing_value(
