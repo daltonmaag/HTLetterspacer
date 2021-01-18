@@ -429,17 +429,12 @@ def set_sidebearings_slanted(
     a: float,
     xheight: float,
 ) -> None:
-    # TODO: Handle this outside the core.
-    original_width = (
-        layer.lib.get("com.schriftgestaltung.Glyphs.originalWidth") or layer.width
-    )
-
     bounds = layer.getBounds(glyphset)
     assert bounds is not None
     left, _, _, _ = bounds
     m = skew_matrix((-a, 0), offset=(left, xheight / 2))
     backslant = Glyph()
-    backslant.width = original_width
+    backslant.width = layer.width
     layer.drawPoints(TransformPointPen(backslant.getPointPen(), m))
     backslant.setLeftMargin(l, glyphset)
     backslant.setRightMargin(r, glyphset)
