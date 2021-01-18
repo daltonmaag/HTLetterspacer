@@ -219,6 +219,11 @@ def set_sidebearings(
         layer.setLeftMargin(new_left, glyphset)
         layer.setRightMargin(new_right, glyphset)
 
+    # TODO: Handle this outside the core.
+    if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
+        layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
+        layer.width = 0
+
     # adjusts the tabular miscalculation
     if width:
         layer.width = width
@@ -458,11 +463,6 @@ def set_sidebearings_slanted(
         for point in contour:
             point.x = round(point.x)
             point.y = round(point.y)
-
-    # TODO: Handle this outside the core.
-    if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
-        layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
-        layer.width = 0
 
 
 def skew_matrix(
