@@ -13,6 +13,7 @@ from fontTools.pens.transformPen import TransformPointPen
 from ufoLib2.objects import Font, Glyph, Layer
 from ufoLib2.objects.misc import BoundingBox
 from ufoLib2.objects.point import Point
+from ufoLib2.typing import GlyphSet
 
 LOGGER = logging.Logger(__name__)
 
@@ -214,20 +215,11 @@ def set_sidebearings(
     xheight: float,
 ) -> None:
     if angle:
-        left_margin, right_margin = deslant_sidebearings(
+        new_left, new_right = deslant_sidebearings(
             layer, glyphset, new_left, new_right, angle, xheight
         )
-        layer.setLeftMargin(left_margin, glyphset)
-        layer.setRightMargin(right_margin, glyphset)
-        # Unless all extrema have on-curve points, setting the margins can
-        # result in floating point widths and x coordinates.
-        layer.width = round(layer.width)
-        for contour in layer.contours:
-            for point in contour:
-                point.x = round(point.x)
-    else:
-        layer.setLeftMargin(new_left, glyphset)
-        layer.setRightMargin(new_right, glyphset)
+    set_left_margin_rounded(layer, new_left, glyphset)
+    set_right_margin_rounded(layer, new_right, glyphset)
 
     # adjusts the tabular miscalculation
     if width:
@@ -237,6 +229,43 @@ def set_sidebearings(
     if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
         layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
         layer.width = 0
+
+
+def set_left_margin_rounded(
+    glyph: Glyph, value: float, layer: Optional[GlyphSet] = None
+) -> None:
+    """Sets the the rounded space in font units from the point of origin to the
+    left side of the glyph.
+
+    Args:
+        value: The desired left margin in font units.
+        layer: The layer of the glyph to look up components, if any. Not needed for
+            pure-contour glyphs.
+    """
+    bounds = glyph.getBounds(layer)
+    if bounds is None:
+        return None
+    diff = round(value - bounds.xMin)
+    if diff:
+        glyph.width += diff
+        glyph.move((diff, 0))
+
+
+def set_right_margin_rounded(
+    glyph: Glyph, value: float, layer: Optional[GlyphSet] = None
+) -> None:
+    """Sets the the rounded space in font units from the glyph's advance width to
+    the right side of the glyph.
+
+    Args:
+        value: The desired right margin in font units.
+        layer: The layer of the glyph to look up components, if any. Not needed for
+            pure-contour glyphs.
+    """
+    bounds = glyph.getBounds(layer)
+    if bounds is None:
+        return None
+    glyph.width = round(bounds.xMax + value)
 
 
 def calculate_sidebearing_value(
