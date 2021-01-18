@@ -214,7 +214,17 @@ def set_sidebearings(
     xheight: float,
 ) -> None:
     if angle:
-        set_sidebearings_slanted(layer, glyphset, new_left, new_right, angle, xheight)
+        left_margin, right_margin = deslant_sidebearings(
+            layer, glyphset, new_left, new_right, angle, xheight
+        )
+        layer.setLeftMargin(left_margin, glyphset)
+        layer.setRightMargin(right_margin, glyphset)
+        # Unless all extrema have on-curve points, setting the margins can
+        # result in floating point widths and x coordinates.
+        layer.width = round(layer.width)
+        for contour in layer.contours:
+            for point in contour:
+                point.x = round(point.x)
     else:
         layer.setLeftMargin(new_left, glyphset)
         layer.setRightMargin(new_right, glyphset)
@@ -426,14 +436,14 @@ def process_margins(
     return margins_left, margins_right
 
 
-def set_sidebearings_slanted(
+def deslant_sidebearings(
     layer: Glyph,
     glyphset: Union[Font, Layer],
     l: float,
     r: float,
     a: float,
     xheight: float,
-) -> None:
+) -> tuple[int, int]:
     bounds = layer.getBounds(glyphset)
     assert bounds is not None
     left, _, _, _ = bounds
@@ -456,13 +466,8 @@ def set_sidebearings_slanted(
     assert left_margin is not None
     right_margin = forwardslant.getRightMargin(glyphset)
     assert right_margin is not None
-    layer.setLeftMargin(round(left_margin), glyphset)
-    layer.setRightMargin(round(right_margin), glyphset)
-    layer.width = round(layer.width)
-    for contour in layer.contours:
-        for point in contour:
-            point.x = round(point.x)
-            point.y = round(point.y)
+
+    return round(left_margin), round(right_margin)
 
 
 def skew_matrix(
