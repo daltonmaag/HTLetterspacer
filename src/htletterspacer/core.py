@@ -107,7 +107,7 @@ def calculate_spacing(
     # TODO: compute lsb/rsb separately?
 
     # get reference glyph maximum points
-    overshoot = calculate_overshoot(xheight, param_over)
+    overshoot = xheight * param_over / 100
 
     # store min and max y
     min_yref = reference_layer_bounds.yMin - overshoot
@@ -338,11 +338,6 @@ def max_points(
     assert lefty is not None
     assert righty is not None
     return NSPoint(left, lefty), NSPoint(right, righty)
-
-
-# TODO: calc once at the beginning
-def calculate_overshoot(xHeight: int, paramOver: int) -> float:
-    return xHeight * paramOver / 100
 
 
 def set_depth(
