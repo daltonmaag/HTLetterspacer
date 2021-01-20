@@ -109,7 +109,8 @@ def calculate_spacing(
     # get reference glyph maximum points
     overshoot = xheight * param_over / 100
 
-    # store min and max y
+    # The reference glyph provides the lower and upper bound of the vertical
+    # zone to use for spacing.
     min_yref = reference_layer_bounds.yMin - overshoot
     max_yref = reference_layer_bounds.yMax + overshoot
 
@@ -133,13 +134,11 @@ def calculate_spacing(
         param_freq,
     )
 
-    # get extreme points deitalized
     layer_bounds = layer.getBounds()
     assert layer_bounds is not None
     extreme_left_full, extreme_right_full = max_points(
         margins_left_full + margins_right_full, layer_bounds.yMin, layer_bounds.yMax
     )
-    # get zone extreme points
     extreme_left, extreme_right = max_points(
         margins_left + margins_right, min_yref, max_yref
     )
@@ -301,10 +300,10 @@ def close_open_counters(
     margin: list[NSPoint], extreme: NSPoint, max_yref: float, min_yref: float
 ) -> list[NSPoint]:
     """close counterforms, creating a polygon"""
-    initPoint = NSPoint(extreme.x, min_yref)
-    endPoint = NSPoint(extreme.x, max_yref)
-    margin.insert(0, initPoint)
-    margin.append(endPoint)
+    init_point = NSPoint(extreme.x, min_yref)
+    end_point = NSPoint(extreme.x, max_yref)
+    margin.insert(0, init_point)
+    margin.append(end_point)
     return margin
 
 
