@@ -115,6 +115,9 @@ def calculate_spacing(
 
     # bounds
     margins_left_full, margins_right_full = margin_list(layer, param_freq)
+    if angle:
+        margins_left_full = deslant(margins_left_full, angle, xheight)
+        margins_right_full = deslant(margins_right_full, angle, xheight)
 
     margins_left = [p for p in margins_left_full if min_yref <= p.y <= max_yref]
     margins_right = [p for p in margins_right_full if min_yref <= p.y <= max_yref]
@@ -123,21 +126,16 @@ def calculate_spacing(
     polygon_left, polygon_right = process_margins(
         margins_left,
         margins_right,
-        angle,
         xheight,
         min_yref,
         max_yref,
         param_depth,
         param_freq,
     )
-    margins_left = deslant(margins_left, angle, xheight)
-    margins_right = deslant(margins_right, angle, xheight)
-
-    margins_left_full = deslant(margins_left_full, angle, xheight)
-    margins_right_full = deslant(margins_right_full, angle, xheight)
 
     # get extreme points deitalized
     layer_bounds = layer.getBounds()
+    assert layer_bounds is not None
     extreme_left_full, extreme_right_full = max_points(
         margins_left_full + margins_right_full, layer_bounds.yMin, layer_bounds.yMax
     )
@@ -290,23 +288,13 @@ def calculate_sidebearing_value(
     return valor / amplitude_y
 
 
-def italic_on_off_point(
-    p: NSPoint, make_italic: bool, angle: float, xHeight: int
-) -> NSPoint:
-    mline = xHeight / 2
-    cateto = -p.y + mline
-    if not make_italic:
-        cateto = -cateto
-    xvar = -rect_cateto(angle, cateto)
-    return NSPoint(p.x + xvar, p.y)
-
-
-def deslant(margin: list[NSPoint], angle: float, xHeight: int) -> list[NSPoint]:
-    return [italic_on_off_point(p, False, angle, xHeight) for p in margin]
-
-
-def slant(margin: list[NSPoint], angle: float, xHeight: int) -> list[NSPoint]:
-    return [italic_on_off_point(p, True, angle, xHeight) for p in margin]
+def deslant(margin: list[NSPoint], angle: float, xheight: int) -> list[NSPoint]:
+    """De-slant a list of points (contour) at angle with the point of origin at half the xheight."""
+    mline = xheight / 2
+    return [
+        NSPoint(p.x - (p.y - mline) * math.tan(math.radians(angle)), p.y)
+        for p in margin
+    ]
 
 
 def close_open_counters(
@@ -419,17 +407,12 @@ def diagonize(
 def process_margins(
     margins_left: list[NSPoint],
     margins_right: list[NSPoint],
-    angle: float,
     xheight: int,
     min_yref: float,
     max_yref: float,
     param_depth: int,
     param_freq: int,
 ) -> tuple[list[NSPoint], list[NSPoint]]:
-    # deSlant if is italic
-    margins_left = deslant(margins_left, angle, xheight)
-    margins_right = deslant(margins_right, angle, xheight)
-
     # get extremes
     extreme_left, extreme_right = max_points(
         margins_left + margins_right, min_yref, max_yref
@@ -455,8 +438,6 @@ def process_margins(
         margins_right, extreme_right, max_yref, min_yref
     )
 
-    margins_left = slant(margins_left, angle, xheight)
-    margins_right = slant(margins_right, angle, xheight)
     return margins_left, margins_right
 
 
@@ -504,12 +485,6 @@ def skew_matrix(
     sT = sT.skew(x, y)
     sT = sT.translate(-dx, -dy)
     return sT
-
-
-# shape calculations
-def rect_cateto(angle: float, cat: float) -> float:
-    angle = math.radians(angle)
-    return cat * math.tan(angle)
 
 
 # point list area
