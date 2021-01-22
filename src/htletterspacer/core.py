@@ -6,7 +6,6 @@ from typing import Any, Optional, Union
 import fontTools.misc.arrayTools as arrayTools
 import fontTools.misc.bezierTools as bezierTools
 import fontTools.pens.basePen as basePen
-import numpy as np
 from fontTools.misc.transform import Identity, Transform
 from fontTools.pens.recordingPen import DecomposingRecordingPen
 from fontTools.pens.transformPen import TransformPointPen
@@ -489,7 +488,7 @@ def skew_matrix(
 # point list area
 def area(points: list[NSPoint]) -> float:
     s = 0
-    for ii in np.arange(len(points)) - 1:
+    for ii in range(-1, len(points) - 1):
         s = s + (points[ii].x * points[ii + 1].y - points[ii + 1].x * points[ii].y)
     return abs(s) * 0.5
 
