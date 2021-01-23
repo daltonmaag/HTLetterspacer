@@ -40,17 +40,26 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
     parser.add_argument("--output")
     parsed_args = parser.parse_args(args)
 
-    ufo: ufoLib2.Font = parsed_args.ufo
+    space_ufo(parsed_args)
+
+    if parsed_args.output:
+        parsed_args.ufo.save(parsed_args.output, overwrite=True)
+    else:
+        parsed_args.ufo.save()
+
+
+def space_ufo(args: argparse.Namespace) -> None:
+    ufo: ufoLib2.Font = args.ufo
     assert ufo.info.italicAngle is not None
     assert isinstance(ufo.info.unitsPerEm, int)
     assert isinstance(ufo.info.xHeight, int)
 
-    param_area: int = parsed_args.area or ufo.lib.get(AREA_KEY, 400)
-    param_depth: int = parsed_args.depth or ufo.lib.get(DEPTH_KEY, 15)
-    param_over: int = parsed_args.overshoot or ufo.lib.get(OVERSHOOT_KEY, 0)
+    param_area: int = args.area or ufo.lib.get(AREA_KEY, 400)
+    param_depth: int = args.depth or ufo.lib.get(DEPTH_KEY, 15)
+    param_over: int = args.overshoot or ufo.lib.get(OVERSHOOT_KEY, 0)
 
-    if parsed_args.config is not None:
-        config = htletterspacer.config.parse_config(parsed_args.config.read_text())
+    if args.config is not None:
+        config = htletterspacer.config.parse_config(args.config.read_text())
     else:
         config = htletterspacer.config.parse_config(
             htletterspacer.config.DEFAULT_CONFIGURATION
@@ -96,11 +105,6 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
             upm=ufo.info.unitsPerEm,
             xheight=ufo.info.xHeight,
         )
-
-    if parsed_args.output:
-        ufo.save(parsed_args.output, overwrite=True)
-    else:
-        ufo.save()
 
 
 if __name__ == "__main__":
