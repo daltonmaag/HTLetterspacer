@@ -71,29 +71,30 @@ def space_ufo(args: argparse.Namespace) -> None:
     glyph_graph = {
         g.name: {c.baseGlyph for c in g.components} for g in ufo if g.name is not None
     }
-    reverse_glyph_graph: collections.defaultdict[str, set[str]]
-    reverse_glyph_graph = collections.defaultdict(set)
+    composite_graph: collections.defaultdict[str, set[str]]
+    composite_graph = collections.defaultdict(set)
     for g in ufo:
         if g.name is None:
             continue
         glyph_graph[g.name] = set()
         for c in g.components:
             glyph_graph[g.name].add(c.baseGlyph)
-            reverse_glyph_graph[c.baseGlyph].add(g.name)
+            composite_graph[c.baseGlyph].add(g.name)
 
     # Composites come last because their spacing depends on their components.
     ts = graphlib.TopologicalSorter(glyph_graph)
     for glyph_name in tuple(ts.static_order()):
         glyph = ufo[glyph_name]
         assert glyph.name is not None
-        if glyph.width == 0 and any(a.name.startswith("_") for a in glyph.anchors):
-            LOGGER.warning("Skipping glyph %s because it is a mark.", glyph.name)
-            continue
+
         if not glyph.contours and not glyph.components:
             LOGGER.warning(
-                "Skipping glyph %s because it has neither contours not components.",
+                "Skipping glyph %s because it has neither contours nor components.",
                 glyph.name,
             )
+            continue
+        if glyph.width == 0 and any(a.name.startswith("_") for a in glyph.anchors):
+            LOGGER.warning("Skipping glyph %s because it is a mark.", glyph.name)
             continue
 
         ref_name, factor = htletterspacer.config.reference_and_factor(config, glyph)
@@ -115,10 +116,9 @@ def space_ufo(args: argparse.Namespace) -> None:
         glyph_param_depth: int = glyph.lib.get(DEPTH_KEY, param_depth)
         glyph_param_over: int = glyph.lib.get(OVERSHOOT_KEY, param_over)
 
-        # TODO: make reverse glyph_graph so we know what glyphs are components where
-        # TODO: get new spacing and compute anti-x-delta to apply to the xOffset of all components of it
-        left_before = glyph.getBounds(ufo)
+        left_before = glyph.getLeftMargin(ufo)
         assert left_before is not None
+
         htletterspacer.core.space_main(
             glyph,
             ref_bounds,
@@ -135,19 +135,20 @@ def space_ufo(args: argparse.Namespace) -> None:
             upm=ufo.info.unitsPerEm,
             xheight=ufo.info.xHeight,
         )
-        left_after = glyph.getBounds(ufo)
-        assert left_after is not None
 
-        left_diff = left_before.xMin - left_after.xMin
-        for component_user_name in reverse_glyph_graph.get(glyph_name, []):
-            component_user = ufo[component_user_name]
-            for component in component_user.components:
-                if component.baseGlyph != glyph_name:
-                    continue
-                xx, xy, yx, yy, dx, dy = component.transformation
-                component.transformation = fontTools.misc.transform.Transform(
-                    xx, xy, yx, yy, dx + left_diff, dy
-                )
+        # If the glyph is used as a component in any other glyph, move that component
+        # in the opposite direction (measured to the left, to the origin) to ensure
+        # that existing components stay as before.
+        if glyph_name in composite_graph:
+            left_after = glyph.getLeftMargin(ufo)
+            assert left_after is not None
+            left_diff = left_before - left_after
+            for composite_name in composite_graph.get(glyph_name, []):
+                composite = ufo[composite_name]
+                for c in composite.components:
+                    if c.baseGlyph != glyph_name:
+                        continue
+                    c.transformation = c.transformation.translate(left_diff, 0)
 
 
 if __name__ == "__main__":
