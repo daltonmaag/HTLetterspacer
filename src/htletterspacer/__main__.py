@@ -91,7 +91,9 @@ def space_ufo(args: argparse.Namespace) -> None:
                 glyph.name,
             )
             continue
-        if glyph.width == 0 and any(a.name.startswith("_") for a in glyph.anchors):
+        if glyph.width == 0 and any(
+            a.name.startswith("_") for a in glyph.anchors if a.name is not None
+        ):
             LOGGER.warning("Skipping glyph %s because it is a mark.", glyph.name)
             continue
 
@@ -99,7 +101,7 @@ def space_ufo(args: argparse.Namespace) -> None:
 
         try:
             glyph_ref = ufo[ref_name]
-        except KeyError as e:
+        except KeyError:
             LOGGER.warning(
                 "Reference glyph %s does not exist, spacing %s with own bounds.",
                 ref_name,
