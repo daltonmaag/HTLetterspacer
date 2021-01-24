@@ -7,7 +7,6 @@ from pathlib import Path
 from typing import Optional
 
 import ufoLib2
-import fontTools.misc.transform
 
 import htletterspacer.config
 import htletterspacer.core
