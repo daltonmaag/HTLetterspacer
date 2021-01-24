@@ -1,7 +1,9 @@
+import argparse
+
 import pytest
 import ufoLib2
-from ufoLib2.objects.misc import BoundingBox
 
+import htletterspacer.__main__
 import htletterspacer.config
 import htletterspacer.core
 
@@ -167,3 +169,57 @@ def test_spacer_merriweather(datadir):
             glyph_ref,
             factor,
         )
+
+
+def test_spacer_components(datadir):
+    """Test that spacing glyphs leaves their components in other glyphs where
+    they are."""
+
+    ufo = ufoLib2.Font.open(datadir / "NestedComponents.ufo")
+
+    glyph_C = ufo["C"]
+    glyph_D = ufo["D"]
+    glyph_E = ufo["E"]
+
+    bbox_C_1 = glyph_C.components[0].getBounds(ufo)
+    bbox_C_2 = glyph_C.components[1].getBounds(ufo)
+    bbox_C_x_offset = bbox_C_1.xMin - bbox_C_2.xMin
+
+    bbox_D = glyph_D.getBounds(ufo)
+    bbox_D_length = bbox_D.xMax - bbox_D.xMin
+
+    bbox_E_1 = glyph_E.components[0].getBounds(ufo)
+    bbox_E_2 = glyph_E.components[1].getBounds(ufo)
+    bbox_E_3 = glyph_E.components[2].getBounds(ufo)
+    bbox_E_4 = glyph_E.components[3].getBounds(ufo)
+    bbox_E_x_offset1 = bbox_E_1.xMin - bbox_E_2.xMin
+    bbox_E_x_offset2 = bbox_E_1.xMin - bbox_E_3.xMin
+    bbox_E_x_offset3 = bbox_E_1.xMin - bbox_E_4.xMin
+
+    htletterspacer.__main__.space_ufo(
+        argparse.Namespace(ufo=ufo, area=400, depth=15, overshoot=0, config=None)
+    )
+
+    # C: test offset of components from each other stays the same.
+    bbox_C_1_new = glyph_C.components[0].getBounds(ufo)
+    bbox_C_2_new = glyph_C.components[1].getBounds(ufo)
+    bbox_C_x_offset_new = bbox_C_1_new.xMin - bbox_C_2_new.xMin
+    assert bbox_C_x_offset == bbox_C_x_offset_new
+
+    # D: test glyph bbox x-length stays the same to test x-moving of flipped
+    # component.
+    bbox_D_new = glyph_D.getBounds(ufo)
+    bbox_D_new_length = bbox_D_new.xMax - bbox_D_new.xMin
+    assert bbox_D_length == bbox_D_new_length
+
+    # E: test offset of components from each other stays the same.
+    bbox_E_new_1 = glyph_E.components[0].getBounds(ufo)
+    bbox_E_new_2 = glyph_E.components[1].getBounds(ufo)
+    bbox_E_new_3 = glyph_E.components[2].getBounds(ufo)
+    bbox_E_new_4 = glyph_E.components[3].getBounds(ufo)
+    bbox_E_new_x_offset1 = bbox_E_new_1.xMin - bbox_E_new_2.xMin
+    bbox_E_new_x_offset2 = bbox_E_new_1.xMin - bbox_E_new_3.xMin
+    bbox_E_new_x_offset3 = bbox_E_new_1.xMin - bbox_E_new_4.xMin
+    assert bbox_E_x_offset1 == bbox_E_new_x_offset1
+    assert bbox_E_x_offset2 == bbox_E_new_x_offset2
+    assert bbox_E_x_offset3 == bbox_E_new_x_offset3
