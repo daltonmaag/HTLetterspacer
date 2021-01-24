@@ -102,7 +102,7 @@ woff = ["zopfli (>=0.1.4)", "brotlicffi (>=0.8.0)", "brotli (>=1.0.1)"]
 
 [[package]]
 name = "fs"
-version = "2.4.11"
+version = "2.4.12"
 description = "Python's filesystem abstraction layer"
 category = "main"
 optional = false
@@ -114,7 +114,7 @@ pytz = "*"
 six = ">=1.10,<2.0"
 
 [package.extras]
-scandir_ = ["scandir (>=1.5,<2.0)"]
+scandir = ["scandir (>=1.5,<2.0)"]
 
 [[package]]
 name = "glyphslib"
@@ -151,7 +151,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 
 [[package]]
 name = "importlib-resources"
-version = "5.0.0"
+version = "5.1.0"
 description = "Read resources from Python packages"
 category = "main"
 optional = false
@@ -393,8 +393,8 @@ fonttools = [
     {file = "fonttools-4.18.2.zip", hash = "sha256:5c50af6fb9b4de4609c0e5558f3444c20f8632aa319319a7ef14fd5ba677c9f8"},
 ]
 fs = [
-    {file = "fs-2.4.11-py2.py3-none-any.whl", hash = "sha256:cd6b178f373a0370feac8612fd3c142aa6a5cadd3d471b525b08db4d3b511c9c"},
-    {file = "fs-2.4.11.tar.gz", hash = "sha256:cc99d476b500f993df8ef697b96dc70928ca2946a455c396a566efe021126767"},
+    {file = "fs-2.4.12-py2.py3-none-any.whl", hash = "sha256:da6cc360677712ae27ac4be8a3ef404dd7970dbd1c3eebe87a25bebd94e84b4c"},
+    {file = "fs-2.4.12.tar.gz", hash = "sha256:c10ba188b14d6213a1ca950efd004931abbfa64b294c80bbf1045753831bf42f"},
 ]
 glyphslib = [
     {file = "glyphsLib-5.3.1-py3-none-any.whl", hash = "sha256:2e7982584bc725e55f25db56f90109db0bca6d9b6b4d27286b31b88d47c2025d"},
@@ -405,8 +405,8 @@ importlib-metadata = [
     {file = "importlib_metadata-3.4.0.tar.gz", hash = "sha256:fa5daa4477a7414ae34e95942e4dd07f62adf589143c875c133c1e53c4eff38d"},
 ]
 importlib-resources = [
-    {file = "importlib_resources-5.0.0-py3-none-any.whl", hash = "sha256:ea17df80a0ff04b5dbd3d96dbeab1842acfd1c6c902eaeb8c8858abf2720161e"},
-    {file = "importlib_resources-5.0.0.tar.gz", hash = "sha256:4743f090ed8946e713745ec0e660249ef9fb0b9843eacc5b5ff931d2fd5aa67f"},
+    {file = "importlib_resources-5.1.0-py3-none-any.whl", hash = "sha256:885b8eae589179f661c909d699a546cf10d83692553e34dca1bf5eb06f7f6217"},
+    {file = "importlib_resources-5.1.0.tar.gz", hash = "sha256:bfdad047bce441405a49cf8eb48ddce5e56c696e185f59147a8b79e75e9e6380"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
