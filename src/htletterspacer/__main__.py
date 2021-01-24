@@ -18,7 +18,6 @@ AREA_KEY = "com.ht.spacer.area"
 DEPTH_KEY = "com.ht.spacer.depth"
 OVERSHOOT_KEY = "com.ht.spacer.overshoot"
 
-# TODO: build graph of composite dependencies and space everything, including composites
 # TODO: respect metrics keys by skipping that side or by interpreting them?
 # TODO: pull in glyphConstruction to rebuild components?
 def main(args: Optional[list[str]] = None) -> Optional[int]:
