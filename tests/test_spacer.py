@@ -180,6 +180,7 @@ def test_spacer_components(datadir):
     glyph_C = ufo["C"]
     glyph_D = ufo["D"]
     glyph_E = ufo["E"]
+    glyph_F = ufo["F"]
 
     bbox_C_1 = glyph_C.components[0].getBounds(ufo)
     bbox_C_2 = glyph_C.components[1].getBounds(ufo)
@@ -195,6 +196,10 @@ def test_spacer_components(datadir):
     bbox_E_x_offset1 = bbox_E_1.xMin - bbox_E_2.xMin
     bbox_E_x_offset2 = bbox_E_1.xMin - bbox_E_3.xMin
     bbox_E_x_offset3 = bbox_E_1.xMin - bbox_E_4.xMin
+
+    bbox_F_1 = glyph_F.contours[0].getBounds()
+    bbox_F_2 = glyph_F.components[0].getBounds(ufo)
+    bbox_F_x_offset = bbox_F_1.xMin - bbox_F_2.xMin
 
     htletterspacer.__main__.space_ufo(
         argparse.Namespace(ufo=ufo, area=400, depth=15, overshoot=0, config=None)
@@ -223,3 +228,9 @@ def test_spacer_components(datadir):
     assert bbox_E_x_offset1 == bbox_E_new_x_offset1
     assert bbox_E_x_offset2 == bbox_E_new_x_offset2
     assert bbox_E_x_offset3 == bbox_E_new_x_offset3
+
+    # F: test offset of component and outline from each other stays the same.
+    bbox_F_new_1 = glyph_F.contours[0].getBounds()
+    bbox_F_new_2 = glyph_F.components[0].getBounds(ufo)
+    bbox_F_new_x_offset = bbox_F_new_1.xMin - bbox_F_new_2.xMin
+    assert bbox_F_x_offset == bbox_F_new_x_offset
