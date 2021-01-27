@@ -110,8 +110,8 @@ def calculate_spacing(
 
     # The reference glyph provides the lower and upper bound of the vertical
     # zone to use for spacing.
-    min_yref = reference_layer_bounds.yMin - overshoot
-    max_yref = reference_layer_bounds.yMax + overshoot
+    ref_ymin = reference_layer_bounds.yMin - overshoot
+    ref_ymax = reference_layer_bounds.yMax + overshoot
 
     # bounds
     margins_left_full, margins_right_full = margin_list(layer, param_freq)
@@ -119,27 +119,28 @@ def calculate_spacing(
         margins_left_full = deslant(margins_left_full, angle, xheight)
         margins_right_full = deslant(margins_right_full, angle, xheight)
 
-    margins_left = [p for p in margins_left_full if min_yref <= p.y <= max_yref]
-    margins_right = [p for p in margins_right_full if min_yref <= p.y <= max_yref]
+    margins_left = [p for p in margins_left_full if ref_ymin <= p.y <= ref_ymax]
+    margins_right = [p for p in margins_right_full if ref_ymin <= p.y <= ref_ymax]
 
     # create a closed polygon
     polygon_left, polygon_right = process_margins(
         margins_left,
         margins_right,
         xheight,
-        min_yref,
-        max_yref,
+        ref_ymin,
+        ref_ymax,
         param_depth,
         param_freq,
     )
 
+    # TODO: call max_points once?
     layer_bounds = layer.getBounds()
     assert layer_bounds is not None
     extreme_left_full, extreme_right_full = max_points(
         margins_left_full + margins_right_full, layer_bounds.yMin, layer_bounds.yMax
     )
     extreme_left, extreme_right = max_points(
-        margins_left + margins_right, min_yref, max_yref
+        margins_left + margins_right, ref_ymin, ref_ymax
     )
 
     # dif between extremes full and zone
@@ -152,8 +153,8 @@ def calculate_spacing(
         - distance_left
         + calculate_sidebearing_value(
             factor,
-            max_yref,
-            min_yref,
+            ref_ymax,
+            ref_ymin,
             param_area,
             polygon_left,
             upm,
@@ -165,8 +166,8 @@ def calculate_spacing(
         - distance_right
         + calculate_sidebearing_value(
             factor,
-            max_yref,
-            min_yref,
+            ref_ymax,
+            ref_ymin,
             param_area,
             polygon_right,
             upm,
@@ -266,14 +267,14 @@ def set_right_margin_rounded(
 
 def calculate_sidebearing_value(
     factor: float,
-    max_yref: float,
-    min_yref: float,
+    ref_ymax: float,
+    ref_ymin: float,
     param_area: int,
     polygon: list[NSPoint],
     upm: int,
     xheight: int,
 ) -> float:
-    amplitude_y = max_yref - min_yref
+    amplitude_y = ref_ymax - ref_ymin
 
     # recalculates area based on UPM
     area_upm = param_area * ((upm / 1000) ** 2)
@@ -296,11 +297,11 @@ def deslant(margin: list[NSPoint], angle: float, xheight: int) -> list[NSPoint]:
 
 
 def close_open_counters(
-    margin: list[NSPoint], extreme: NSPoint, max_yref: float, min_yref: float
+    margin: list[NSPoint], extreme: NSPoint, ref_ymax: float, ref_ymin: float
 ) -> list[NSPoint]:
     """close counterforms, creating a polygon"""
-    init_point = NSPoint(extreme.x, min_yref)
-    end_point = NSPoint(extreme.x, max_yref)
+    init_point = NSPoint(extreme.x, ref_ymin)
+    end_point = NSPoint(extreme.x, ref_ymax)
     margin.insert(0, init_point)
     margin.append(end_point)
     return margin
@@ -332,8 +333,8 @@ def set_depth(
     extreme_left: NSPoint,
     extreme_right: NSPoint,
     xheight: int,
-    min_yref: float,
-    max_yref: float,
+    ref_ymin: float,
+    ref_ymax: float,
     param_depth: int,
     param_freq: int,
 ) -> tuple[list[NSPoint], list[NSPoint]]:
@@ -346,13 +347,13 @@ def set_depth(
 
     # add all the points at maximum depth if glyph is shorter than overshoot
     y = margins_left[0].y - param_freq
-    while y > min_yref:
+    while y > ref_ymin:
         margins_left.insert(0, NSPoint(max_depth, y))
         margins_right.insert(0, NSPoint(min_depth, y))
         y -= param_freq
 
     y = margins_left[-1].y + param_freq
-    while y < max_yref:
+    while y < ref_ymax:
         margins_left.append(NSPoint(max_depth, y))
         margins_right.append(NSPoint(min_depth, y))
         y += param_freq
@@ -406,14 +407,14 @@ def process_margins(
     margins_left: list[NSPoint],
     margins_right: list[NSPoint],
     xheight: int,
-    min_yref: float,
-    max_yref: float,
+    ref_ymin: float,
+    ref_ymax: float,
     param_depth: int,
     param_freq: int,
 ) -> tuple[list[NSPoint], list[NSPoint]]:
     # get extremes
     extreme_left, extreme_right = max_points(
-        margins_left + margins_right, min_yref, max_yref
+        margins_left + margins_right, ref_ymin, ref_ymax
     )
 
     # set depth
@@ -423,17 +424,17 @@ def process_margins(
         extreme_left,
         extreme_right,
         xheight,
-        min_yref,
-        max_yref,
+        ref_ymin,
+        ref_ymax,
         param_depth,
         param_freq,
     )
 
     # close open counterforms at 45 degrees
     margins_left, margins_right = diagonize(margins_left, margins_right, param_freq)
-    margins_left = close_open_counters(margins_left, extreme_left, max_yref, min_yref)
+    margins_left = close_open_counters(margins_left, extreme_left, ref_ymax, ref_ymin)
     margins_right = close_open_counters(
-        margins_right, extreme_right, max_yref, min_yref
+        margins_right, extreme_right, ref_ymax, ref_ymin
     )
 
     return margins_left, margins_right
