@@ -11,17 +11,14 @@ from fontTools.pens.recordingPen import DecomposingRecordingPen
 from fontTools.pens.transformPen import TransformPointPen
 from ufoLib2.objects import Font, Glyph, Layer
 from ufoLib2.objects.misc import BoundingBox
-from ufoLib2.objects.point import Point
+from ufoLib2.objects.point import Point as UfoPoint
 from ufoLib2.typing import GlyphSet
 
 LOGGER = logging.Logger(__name__)
 
-GLYPHS_LEFT_METRICS_KEY = "com.schriftgestaltung.Glyphs.glyph.leftMetricsKey"
-GLYPHS_RIGHT_METRICS_KEY = "com.schriftgestaltung.Glyphs.glyph.rightMetricsKey"
-
 
 @dataclass
-class NSPoint:
+class Point:
     __slots__ = "x", "y"
     x: float
     y: float
@@ -270,7 +267,7 @@ def calculate_sidebearing_value(
     ref_ymax: float,
     ref_ymin: float,
     param_area: int,
-    polygon: list[NSPoint],
+    polygon: list[Point],
     upm: int,
     xheight: int,
 ) -> float:
@@ -287,29 +284,26 @@ def calculate_sidebearing_value(
     return valor / amplitude_y
 
 
-def deslant(margin: list[NSPoint], angle: float, xheight: int) -> list[NSPoint]:
+def deslant(margin: list[Point], angle: float, xheight: int) -> list[Point]:
     """De-slant a list of points (contour) at angle with the point of origin at half the xheight."""
     mline = xheight / 2
     return [
-        NSPoint(p.x - (p.y - mline) * math.tan(math.radians(angle)), p.y)
-        for p in margin
+        Point(p.x - (p.y - mline) * math.tan(math.radians(angle)), p.y) for p in margin
     ]
 
 
 def close_open_counters(
-    margin: list[NSPoint], extreme: NSPoint, ref_ymax: float, ref_ymin: float
-) -> list[NSPoint]:
+    margin: list[Point], extreme: Point, ref_ymax: float, ref_ymin: float
+) -> list[Point]:
     """close counterforms, creating a polygon"""
-    init_point = NSPoint(extreme.x, ref_ymin)
-    end_point = NSPoint(extreme.x, ref_ymax)
+    init_point = Point(extreme.x, ref_ymin)
+    end_point = Point(extreme.x, ref_ymax)
     margin.insert(0, init_point)
     margin.append(end_point)
     return margin
 
 
-def max_points(
-    points: list[NSPoint], min_y: float, max_y: float
-) -> tuple[NSPoint, NSPoint]:
+def max_points(points: list[Point], min_y: float, max_y: float) -> tuple[Point, Point]:
     right = -10000
     righty = None
     left = 10000
@@ -324,48 +318,48 @@ def max_points(
                 lefty = p.y
     assert lefty is not None
     assert righty is not None
-    return NSPoint(left, lefty), NSPoint(right, righty)
+    return Point(left, lefty), Point(right, righty)
 
 
 def set_depth(
-    margins_left: list[NSPoint],
-    margins_right: list[NSPoint],
-    extreme_left: NSPoint,
-    extreme_right: NSPoint,
+    margins_left: list[Point],
+    margins_right: list[Point],
+    extreme_left: Point,
+    extreme_right: Point,
     xheight: int,
     ref_ymin: float,
     ref_ymax: float,
     param_depth: int,
     param_freq: int,
-) -> tuple[list[NSPoint], list[NSPoint]]:
+) -> tuple[list[Point], list[Point]]:
     """process lists with depth, proportional to xheight"""
     depth = xheight * param_depth / 100
     max_depth = extreme_left.x + depth
     min_depth = extreme_right.x - depth
-    margins_left = [NSPoint(min(p.x, max_depth), p.y) for p in margins_left]
-    margins_right = [NSPoint(max(p.x, min_depth), p.y) for p in margins_right]
+    margins_left = [Point(min(p.x, max_depth), p.y) for p in margins_left]
+    margins_right = [Point(max(p.x, min_depth), p.y) for p in margins_right]
 
     # add all the points at maximum depth if glyph is shorter than overshoot
     y = margins_left[0].y - param_freq
     while y > ref_ymin:
-        margins_left.insert(0, NSPoint(max_depth, y))
-        margins_right.insert(0, NSPoint(min_depth, y))
+        margins_left.insert(0, Point(max_depth, y))
+        margins_right.insert(0, Point(min_depth, y))
         y -= param_freq
 
     y = margins_left[-1].y + param_freq
     while y < ref_ymax:
-        margins_left.append(NSPoint(max_depth, y))
-        margins_right.append(NSPoint(min_depth, y))
+        margins_left.append(Point(max_depth, y))
+        margins_right.append(Point(min_depth, y))
         y += param_freq
 
     return margins_left, margins_right
 
 
 def diagonize(
-    margins_left: list[NSPoint],
-    margins_right: list[NSPoint],
+    margins_left: list[Point],
+    margins_right: list[Point],
     param_freq: int,
-) -> tuple[list[NSPoint], list[NSPoint]]:
+) -> tuple[list[Point], list[Point]]:
     """close counters at 45 degrees"""
     # TODO: Use https://github.com/huertatipografica/HTLetterspacer/issues/45
     total = len(margins_left) - 1
@@ -404,16 +398,16 @@ def diagonize(
 
 
 def process_margins(
-    margins_left: list[NSPoint],
-    margins_right: list[NSPoint],
-    extreme_left: NSPoint,
-    extreme_right: NSPoint,
+    margins_left: list[Point],
+    margins_right: list[Point],
+    extreme_left: Point,
+    extreme_right: Point,
     xheight: int,
     ref_ymin: float,
     ref_ymax: float,
     param_depth: int,
     param_freq: int,
-) -> tuple[list[NSPoint], list[NSPoint]]:
+) -> tuple[list[Point], list[Point]]:
     # set depth
     margins_left, margins_right = set_depth(
         margins_left,
@@ -484,7 +478,7 @@ def skew_matrix(
 
 
 # point list area
-def area(points: list[NSPoint]) -> float:
+def area(points: list[Point]) -> float:
     s = 0
     for ii in range(-1, len(points) - 1):
         s = s + (points[ii].x * points[ii + 1].y - points[ii + 1].x * points[ii].y)
@@ -518,9 +512,9 @@ def margin_list(layer: Glyph, param_freq: int) -> tuple[list[Any], list[Any]]:
         measurement_line = layer_bounds.xMin, y, layer_bounds.xMax, y
         lpos, rpos = get_margins(layer, measurement_line)
         if lpos is not None:
-            list_left.append(NSPoint(lpos, y))
+            list_left.append(Point(lpos, y))
         if rpos is not None:
-            list_right.append(NSPoint(rpos, y))
+            list_right.append(Point(rpos, y))
         y += param_freq
     return list_left, list_right
 
@@ -528,7 +522,7 @@ def margin_list(layer: Glyph, param_freq: int) -> tuple[list[Any], list[Any]]:
 ####
 
 
-def segments(contour: list[Point]) -> list[list[Point]]:
+def segments(contour: list[UfoPoint]) -> list[list[UfoPoint]]:
     if not contour:
         return []
     segments = [[]]
@@ -583,10 +577,10 @@ def curve_intersections(
     y1: float,
     x2: float,
     y2: float,
-    p1: Point,
-    p2: Point,
-    p3: Point,
-    p4: Point,
+    p1: UfoPoint,
+    p2: UfoPoint,
+    p3: UfoPoint,
+    p4: UfoPoint,
 ) -> list[tuple[float, float]]:
     """
     Computes intersection between a line and a cubic curve.
@@ -624,7 +618,7 @@ def curve_intersections(
 
 
 def qcurve_intersections(
-    x1: float, y1: float, x2: float, y2: float, *pts: Point
+    x1: float, y1: float, x2: float, y2: float, *pts: UfoPoint
 ) -> list[tuple[float, float]]:
     """
     Computes intersection between a quadratic spline and a line segment.
@@ -673,7 +667,7 @@ def qcurve_intersections(
 
 
 def line_intersection(
-    x1: float, y1: float, x2: float, y2: float, p3: Point, p4: Point
+    x1: float, y1: float, x2: float, y2: float, p3: UfoPoint, p4: UfoPoint
 ) -> Optional[tuple[float, float]]:
     """
     Computes intersection between two lines.
