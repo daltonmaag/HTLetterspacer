@@ -25,17 +25,17 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
     parser.add_argument(
         "--area",
         type=int,
-        help="Set the UFO-wide area parameter (can be overriden on the glyph level).",
+        help="Set the UFO-wide area parameter (can be overridden on the glyph level).",
     )
     parser.add_argument(
         "--depth",
         type=int,
-        help="Set the UFO-wide depth parameter (can be overriden on the glyph level).",
+        help="Set the UFO-wide depth parameter (can be overridden on the glyph level).",
     )
     parser.add_argument(
         "--overshoot",
         type=int,
-        help="Set the UFO-wide overshoot parameter (can be overriden on the glyph level).",
+        help="Set the UFO-wide overshoot parameter (can be overridden on the glyph level).",
     )
     parser.add_argument("--config", type=Path)
     parser.add_argument("--output")
