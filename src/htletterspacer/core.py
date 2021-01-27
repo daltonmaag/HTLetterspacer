@@ -118,29 +118,29 @@ def calculate_spacing(
     if angle:
         margins_left_full = deslant(margins_left_full, angle, xheight)
         margins_right_full = deslant(margins_right_full, angle, xheight)
-
-    margins_left = [p for p in margins_left_full if ref_ymin <= p.y <= ref_ymax]
-    margins_right = [p for p in margins_right_full if ref_ymin <= p.y <= ref_ymax]
-
-    # create a closed polygon
-    polygon_left, polygon_right = process_margins(
-        margins_left,
-        margins_right,
-        xheight,
-        ref_ymin,
-        ref_ymax,
-        param_depth,
-        param_freq,
-    )
-
-    # TODO: call max_points once?
     layer_bounds = layer.getBounds()
     assert layer_bounds is not None
     extreme_left_full, extreme_right_full = max_points(
         margins_left_full + margins_right_full, layer_bounds.yMin, layer_bounds.yMax
     )
+
+    margins_left = [p for p in margins_left_full if ref_ymin <= p.y <= ref_ymax]
+    margins_right = [p for p in margins_right_full if ref_ymin <= p.y <= ref_ymax]
     extreme_left, extreme_right = max_points(
         margins_left + margins_right, ref_ymin, ref_ymax
+    )
+
+    # create a closed polygon
+    polygon_left, polygon_right = process_margins(
+        margins_left,
+        margins_right,
+        extreme_left,
+        extreme_right,
+        xheight,
+        ref_ymin,
+        ref_ymax,
+        param_depth,
+        param_freq,
     )
 
     # dif between extremes full and zone
@@ -406,17 +406,14 @@ def diagonize(
 def process_margins(
     margins_left: list[NSPoint],
     margins_right: list[NSPoint],
+    extreme_left: NSPoint,
+    extreme_right: NSPoint,
     xheight: int,
     ref_ymin: float,
     ref_ymax: float,
     param_depth: int,
     param_freq: int,
 ) -> tuple[list[NSPoint], list[NSPoint]]:
-    # get extremes
-    extreme_left, extreme_right = max_points(
-        margins_left + margins_right, ref_ymin, ref_ymax
-    )
-
     # set depth
     margins_left, margins_right = set_depth(
         margins_left,
