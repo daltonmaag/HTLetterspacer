@@ -113,10 +113,9 @@ def calculate_spacing(
     ref_ymax = reference_layer_bounds.yMax + overshoot
 
     # bounds
-    margins_left_full, margins_right_full = margin_list(layer, param_freq)
-    if angle:
-        margins_left_full = deslant(margins_left_full, angle, xheight)
-        margins_right_full = deslant(margins_right_full, angle, xheight)
+    margins_left_full, margins_right_full = margin_list(
+        layer, param_freq, angle, xheight
+    )
     layer_bounds = layer.getBounds()
     assert layer_bounds is not None
     extreme_left_full, extreme_right_full = max_points(
@@ -284,14 +283,6 @@ def calculate_sidebearing_value(
     prop_area = (amplitude_y * white_area) / xheight
     valor = prop_area - area(polygon)
     return valor / amplitude_y
-
-
-def deslant(margin: list[Point], angle: float, xheight: int) -> list[Point]:
-    """De-slant a list of points (contour) at angle with the point of origin at half the xheight."""
-    mline = xheight / 2
-    return [
-        Point(p.x - (p.y - mline) * math.tan(math.radians(angle)), p.y) for p in margin
-    ]
 
 
 def close_open_counters(
@@ -485,9 +476,14 @@ def area(points: list[Point]) -> float:
     return abs(s) * 0.5
 
 
-def margin_list(layer: Glyph, param_freq: int) -> tuple[list[Point], list[Point]]:
+def margin_list(
+    layer: Glyph, param_freq: int, angle: float, xheight: int
+) -> tuple[list[Point], list[Point]]:
     """Returns the left and right outline of the glyph, vertically scanned at param_freq
     intervals."""
+
+    mline = xheight / 2
+    tan_angle = math.tan(math.radians(angle))
 
     bounds = layer.getBounds()
     assert bounds is not None
@@ -497,8 +493,13 @@ def margin_list(layer: Glyph, param_freq: int) -> tuple[list[Point], list[Point]
     while y <= bounds.yMax:
         hits = sorted(intersections(layer, (bounds.xMin, y, bounds.xMax, y)))
         if hits:
-            left.append(Point(hits[0][0], y))
-            right.append(Point(hits[-1][0], y))
+            if angle:
+                # Deslant angled glyphs implicitly.
+                left.append(Point(hits[0][0] - (y - mline) * tan_angle, y))
+                right.append(Point(hits[-1][0] - (y - mline) * tan_angle, y))
+            else:
+                left.append(Point(hits[0][0], y))
+                right.append(Point(hits[-1][0], y))
         y += param_freq
     return left, right
 
