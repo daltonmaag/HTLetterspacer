@@ -480,7 +480,10 @@ def margin_list(
     layer: Glyph, param_freq: int, angle: float, xheight: int
 ) -> tuple[list[Point], list[Point]]:
     """Returns the left and right outline of the glyph, vertically scanned at param_freq
-    intervals."""
+    intervals.
+
+    The italic angle is implicitly deslanted at origin = xheight / 2.
+    """
 
     mline = xheight / 2
     tan_angle = math.tan(math.radians(angle))
