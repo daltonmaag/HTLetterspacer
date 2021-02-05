@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import math
 from dataclasses import dataclass
-from typing import Any, Optional, Union
+from typing import Optional, Union
 
 import fontTools.misc.arrayTools as arrayTools
 import fontTools.misc.bezierTools as bezierTools
@@ -503,7 +503,7 @@ def get_margins(
 
 
 # a list of margins
-def margin_list(layer: Glyph, param_freq: int) -> tuple[list[Any], list[Any]]:
+def margin_list(layer: Glyph, param_freq: int) -> tuple[list[Point], list[Point]]:
     layer_bounds = layer.getBounds()
     assert layer_bounds is not None
     y = layer_bounds.yMin
