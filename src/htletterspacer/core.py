@@ -473,9 +473,7 @@ def skew_matrix(
     dx, dy = offset
     x, y = angle
     x, y = math.radians(x), math.radians(y)
-    sT = Identity.translate(dx, dy)
-    sT = sT.skew(x, y)
-    sT = sT.translate(-dx, -dy)
+    sT = Identity.translate(dx, dy).skew(x, y).translate(-dx, -dy)
     return sT
 
 
