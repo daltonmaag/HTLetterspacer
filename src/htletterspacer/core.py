@@ -487,38 +487,22 @@ def area(points: list[Point]) -> float:
     return abs(s) * 0.5
 
 
-# get margins in Glyphs
-def get_margins(
-    layer: Glyph, measurement_line: tuple[float, float, float, float]
-) -> tuple[Optional[float], Optional[float]]:
-    # TODO: intersection returns a reversed list?
-    result = sorted(intersections(layer, measurement_line))
-    if not result:
-        return (None, None)
-
-    # Only take the outermost hits.
-    left = 0
-    right = -1
-    return (result[left][0], result[right][0])
-
-
-# a list of margins
 def margin_list(layer: Glyph, param_freq: int) -> tuple[list[Point], list[Point]]:
-    layer_bounds = layer.getBounds()
-    assert layer_bounds is not None
-    y = layer_bounds.yMin
-    list_left = []
-    list_right = []
-    # works over glyph copy
-    while y <= layer_bounds.yMax:
-        measurement_line = layer_bounds.xMin, y, layer_bounds.xMax, y
-        lpos, rpos = get_margins(layer, measurement_line)
-        if lpos is not None:
-            list_left.append(Point(lpos, y))
-        if rpos is not None:
-            list_right.append(Point(rpos, y))
+    """Returns the left and right outline of the glyph, vertically scanned at param_freq
+    intervals."""
+
+    bounds = layer.getBounds()
+    assert bounds is not None
+    y = bounds.yMin
+    left = []
+    right = []
+    while y <= bounds.yMax:
+        hits = sorted(intersections(layer, (bounds.xMin, y, bounds.xMax, y)))
+        if hits:
+            left.append(Point(hits[0][0], y))
+            right.append(Point(hits[-1][0], y))
         y += param_freq
-    return list_left, list_right
+    return left, right
 
 
 ####
