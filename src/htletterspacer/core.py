@@ -114,7 +114,7 @@ def calculate_spacing(
     # full and with the lower and upper bounds of the reference glyph). Take the
     # outermost reading as the extreme point from which to "test the depth" of
     # the glyph.
-    margins_left_full, margins_right_full = margin_list(
+    margins_left_full, margins_right_full = sample_margins(
         layer, param_freq, angle, xheight
     )
     assert margins_left_full
@@ -478,7 +478,7 @@ def area(points: list[Point]) -> float:
     return abs(s) * 0.5
 
 
-def margin_list(
+def sample_margins(
     layer: Glyph, param_freq: int, angle: float, xheight: int
 ) -> tuple[list[Point], list[Point]]:
     """Returns the left and right outline of the glyph, vertically scanned at param_freq
