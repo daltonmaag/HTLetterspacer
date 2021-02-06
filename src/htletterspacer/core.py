@@ -120,9 +120,6 @@ def calculate_spacing(
     assert margins_left_full
     assert margins_right_full
 
-    bounds = layer.getBounds()
-    assert bounds is not None
-
     extreme_left_full = None
     extreme_left = None
     margins_left = []
