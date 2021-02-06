@@ -104,29 +104,52 @@ def calculate_spacing(
 ) -> tuple[int, int, int]:
     # TODO: compute lsb/rsb separately?
 
-    # get reference glyph maximum points
-    overshoot = xheight * param_over / 100
-
     # The reference glyph provides the lower and upper bound of the vertical
-    # zone to use for spacing.
+    # zone to use for spacing. Overshoot lets us measure a bit above and below.
+    overshoot = xheight * param_over / 100
     ref_ymin = reference_layer_bounds.yMin - overshoot
     ref_ymax = reference_layer_bounds.yMax + overshoot
 
-    # bounds
+    # Feel out the outer outline of the glyph from the left and the right (both
+    # full and with the lower and upper bounds of the reference glyph). Take the
+    # outermost reading as the extreme point from which to "test the depth" of
+    # the glyph.
     margins_left_full, margins_right_full = margin_list(
         layer, param_freq, angle, xheight
     )
-    layer_bounds = layer.getBounds()
-    assert layer_bounds is not None
-    extreme_left_full, extreme_right_full = max_points(
-        margins_left_full + margins_right_full, layer_bounds.yMin, layer_bounds.yMax
-    )
+    assert margins_left_full
+    assert margins_right_full
 
-    margins_left = [p for p in margins_left_full if ref_ymin <= p.y <= ref_ymax]
-    margins_right = [p for p in margins_right_full if ref_ymin <= p.y <= ref_ymax]
-    extreme_left, extreme_right = max_points(
-        margins_left + margins_right, ref_ymin, ref_ymax
-    )
+    bounds = layer.getBounds()
+    assert bounds is not None
+
+    extreme_left_full = None
+    extreme_left = None
+    margins_left = []
+    for point in margins_left_full:
+        if extreme_left_full is None or point.x < extreme_left_full.x:
+            extreme_left_full = point
+        if ref_ymin <= point.y <= ref_ymax:
+            margins_left.append(point)
+            if extreme_left is None or point.x < extreme_left.x:
+                extreme_left = point
+    assert extreme_left_full is not None
+    assert extreme_left is not None
+    assert margins_left
+
+    extreme_right_full = None
+    extreme_right = None
+    margins_right = []
+    for point in margins_right_full:
+        if extreme_right_full is None or point.x > extreme_right_full.x:
+            extreme_right_full = point
+        if ref_ymin <= point.y <= ref_ymax:
+            margins_right.append(point)
+            if extreme_right is None or point.x > extreme_right.x:
+                extreme_right = point
+    assert extreme_right_full is not None
+    assert extreme_right is not None
+    assert margins_right
 
     # create a closed polygon
     polygon_left, polygon_right = process_margins(
@@ -294,24 +317,6 @@ def close_open_counters(
     margin.insert(0, init_point)
     margin.append(end_point)
     return margin
-
-
-def max_points(points: list[Point], min_y: float, max_y: float) -> tuple[Point, Point]:
-    right = -10000
-    righty = None
-    left = 10000
-    lefty = None
-    for p in points:
-        if p.y >= min_y and p.y <= max_y:
-            if p.x > right:
-                right = p.x
-                righty = p.y
-            if p.x < left:
-                left = p.x
-                lefty = p.y
-    assert lefty is not None
-    assert righty is not None
-    return Point(left, lefty), Point(right, righty)
 
 
 def set_depth(
