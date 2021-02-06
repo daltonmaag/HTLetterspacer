@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import math
 from dataclasses import dataclass
-from typing import Optional, Union
+from typing import Callable, Optional, Union
 
 import fontTools.misc.arrayTools as arrayTools
 import fontTools.misc.bezierTools as bezierTools
@@ -120,33 +120,12 @@ def calculate_spacing(
     assert margins_left_full
     assert margins_right_full
 
-    extreme_left_full = None
-    extreme_left = None
-    margins_left = []
-    for point in margins_left_full:
-        if extreme_left_full is None or point.x < extreme_left_full.x:
-            extreme_left_full = point
-        if ref_ymin <= point.y <= ref_ymax:
-            margins_left.append(point)
-            if extreme_left is None or point.x < extreme_left.x:
-                extreme_left = point
-    assert extreme_left_full is not None
-    assert extreme_left is not None
-    assert margins_left
-
-    extreme_right_full = None
-    extreme_right = None
-    margins_right = []
-    for point in margins_right_full:
-        if extreme_right_full is None or point.x > extreme_right_full.x:
-            extreme_right_full = point
-        if ref_ymin <= point.y <= ref_ymax:
-            margins_right.append(point)
-            if extreme_right is None or point.x > extreme_right.x:
-                extreme_right = point
-    assert extreme_right_full is not None
-    assert extreme_right is not None
-    assert margins_right
+    extreme_left_full, extreme_left, margins_left = extract_from_samples(
+        margins_left_full, float.__lt__, ref_ymin, ref_ymax
+    )
+    extreme_right_full, extreme_right, margins_right = extract_from_samples(
+        margins_right_full, float.__gt__, ref_ymin, ref_ymax
+    )
 
     # create a closed polygon
     polygon_left, polygon_right = process_margins(
@@ -303,6 +282,28 @@ def calculate_sidebearing_value(
     prop_area = (amplitude_y * white_area) / xheight
     valor = prop_area - area(polygon)
     return valor / amplitude_y
+
+
+def extract_from_samples(
+    samples: list[Point],
+    cmp: Callable[[float, float], bool],
+    ref_ymin: float,
+    ref_ymax: float,
+) -> tuple[Point, Point, list[Point]]:
+    extreme_full = None
+    extreme = None
+    margins = []
+    for point in samples:
+        if extreme_full is None or cmp(point.x, extreme_full.x):
+            extreme_full = point
+        if ref_ymin <= point.y <= ref_ymax:
+            margins.append(point)
+            if extreme is None or cmp(point.x, extreme.x):
+                extreme = point
+    assert extreme_full is not None
+    assert extreme is not None
+    assert margins
+    return extreme_full, extreme, margins
 
 
 def close_open_counters(
