@@ -330,10 +330,13 @@ def set_depth(
     depth = xheight * param_depth / 100
     max_depth = extreme_left.x + depth
     min_depth = extreme_right.x - depth
+    # NOTE: lists are ordered bottom y to top y.
     margins_left = [Point(min(p.x, max_depth), p.y) for p in margins_left]
     margins_right = [Point(max(p.x, min_depth), p.y) for p in margins_right]
 
-    # add all the points at maximum depth if glyph is shorter than overshoot
+    # If the glyph is shorter than the reference glyph top or bottom (i.e.
+    # due to the reference having a round overshoot either or both sides),
+    # fill up the margin samples top and bottom at maximum depth to match.
     y = margins_left[0].y - param_freq
     while y > ref_ymin:
         margins_left.insert(0, Point(max_depth, y))
