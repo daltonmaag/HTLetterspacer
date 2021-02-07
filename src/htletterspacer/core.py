@@ -146,8 +146,7 @@ def calculate_spacing(
 
     # set new sidebearings
     new_left: int = math.ceil(
-        0
-        - distance_left
+        -distance_left
         + calculate_sidebearing_value(
             factor,
             ref_ymax,
@@ -159,8 +158,7 @@ def calculate_spacing(
         )
     )
     new_right: int = math.ceil(
-        0
-        - distance_right
+        -distance_right
         + calculate_sidebearing_value(
             factor,
             ref_ymax,
