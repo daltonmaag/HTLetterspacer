@@ -288,7 +288,8 @@ def process_margins(
     param_depth: int,
     param_freq: int,
 ) -> tuple[list[Point], list[Point]]:
-    # Cap the margin samples to a maximum depth to get our depth cut-in.
+    # Cap the margin samples to a maximum depth from the outermost point in to
+    # get our depth cut-in.
     depth = xheight * param_depth / 100
     max_depth = extreme_left.x + depth
     min_depth = extreme_right.x - depth
