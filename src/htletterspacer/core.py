@@ -197,246 +197,6 @@ def calculate_spacing(
     return new_left, new_right, new_width
 
 
-def set_sidebearings(
-    layer: Glyph,
-    glyphset: Union[Font, Layer],
-    new_left: float,
-    new_right: float,
-    width: float,
-    angle: float,
-    xheight: float,
-) -> None:
-    if angle:
-        new_left, new_right = deslant_sidebearings(
-            layer, glyphset, new_left, new_right, angle, xheight
-        )
-    set_left_margin_rounded(layer, new_left, glyphset)
-    set_right_margin_rounded(layer, new_right, glyphset)
-
-    # adjusts the tabular miscalculation
-    if width:
-        layer.width = width
-
-    # TODO: Handle this outside the core.
-    if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
-        layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
-        layer.width = 0
-
-
-def set_left_margin_rounded(
-    glyph: Glyph, value: float, layer: Optional[GlyphSet] = None
-) -> None:
-    """Sets the the rounded space in font units from the point of origin to the
-    left side of the glyph.
-
-    Args:
-        value: The desired left margin in font units.
-        layer: The layer of the glyph to look up components, if any. Not needed for
-            pure-contour glyphs.
-    """
-    bounds = glyph.getBounds(layer)
-    if bounds is None:
-        return None
-    diff = round(value - bounds.xMin)
-    if diff:
-        glyph.width += diff
-        glyph.move((diff, 0))
-
-
-def set_right_margin_rounded(
-    glyph: Glyph, value: float, layer: Optional[GlyphSet] = None
-) -> None:
-    """Sets the the rounded space in font units from the glyph's advance width to
-    the right side of the glyph.
-
-    Args:
-        value: The desired right margin in font units.
-        layer: The layer of the glyph to look up components, if any. Not needed for
-            pure-contour glyphs.
-    """
-    bounds = glyph.getBounds(layer)
-    if bounds is None:
-        return None
-    glyph.width = round(bounds.xMax + value)
-
-
-def calculate_sidebearing_value(
-    factor: float,
-    ref_ymax: float,
-    ref_ymin: float,
-    param_area: int,
-    polygon: list[Point],
-    upm: int,
-    xheight: int,
-) -> float:
-    amplitude_y = ref_ymax - ref_ymin
-
-    # recalculates area based on UPM
-    area_upm = param_area * ((upm / 1000) ** 2)
-
-    # calculates proportional area
-    white_area = area_upm * factor * 100
-
-    prop_area = (amplitude_y * white_area) / xheight
-    valor = prop_area - area(polygon)
-    return valor / amplitude_y
-
-
-def extract_from_samples(
-    samples: list[Point],
-    cmp: Callable[[float, float], bool],
-    ref_ymin: float,
-    ref_ymax: float,
-) -> tuple[Point, Point, list[Point]]:
-    extreme_full = None
-    extreme = None
-    margins = []
-    for point in samples:
-        if extreme_full is None or cmp(point.x, extreme_full.x):
-            extreme_full = point
-        if ref_ymin <= point.y <= ref_ymax:
-            margins.append(point)
-            if extreme is None or cmp(point.x, extreme.x):
-                extreme = point
-    assert extreme_full is not None
-    assert extreme is not None
-    assert margins
-    return extreme_full, extreme, margins
-
-
-def close_open_counters(
-    margin: list[Point], extreme: Point, ref_ymax: float, ref_ymin: float
-) -> list[Point]:
-    """close counterforms, creating a polygon"""
-    init_point = Point(extreme.x, ref_ymin)
-    end_point = Point(extreme.x, ref_ymax)
-    margin.insert(0, init_point)
-    margin.append(end_point)
-    return margin
-
-
-def diagonize(
-    margins_left: list[Point],
-    margins_right: list[Point],
-    param_freq: int,
-) -> tuple[list[Point], list[Point]]:
-    """close counters at 45 degrees"""
-    # TODO: Use https://github.com/huertatipografica/HTLetterspacer/issues/45
-    total = len(margins_left) - 1
-
-    frequency = param_freq * 1.5
-    for index in range(total):
-        # left
-        actual_point = margins_left[index]
-        next_point = margins_left[index + 1]
-        diff = next_point.y - actual_point.y
-        if next_point.x > (actual_point.x + diff) and next_point.y > actual_point.y:
-            margins_left[index + 1].x = actual_point.x + diff
-        # right
-        actual_point = margins_right[index]
-        next_point = margins_right[index + 1]
-        # if nextPoint.x < (actualPoint.x - valueFreq) and nextPoint.y > actualPoint.y:
-        if next_point.x < (actual_point.x - diff) and next_point.y > actual_point.y:
-            margins_right[index + 1].x = actual_point.x - diff
-
-        # left
-        actual_point = margins_left[total - index]
-        next_point = margins_left[total - index - 1]
-        diff = actual_point.y - next_point.y
-        if (
-            next_point.x > (actual_point.x + frequency)
-            and next_point.y < actual_point.y
-        ):
-            margins_left[total - index - 1].x = actual_point.x + diff
-        # right
-        actual_point = margins_right[total - index]
-        next_point = margins_right[total - index - 1]
-        if next_point.x < (actual_point.x - diff) and next_point.y < actual_point.y:
-            margins_right[total - index - 1].x = actual_point.x - diff
-
-    return margins_left, margins_right
-
-
-def process_margins(
-    margins_left: list[Point],
-    margins_right: list[Point],
-    extreme_left: Point,
-    extreme_right: Point,
-    xheight: int,
-    ref_ymin: float,
-    ref_ymax: float,
-    param_depth: int,
-    param_freq: int,
-) -> tuple[list[Point], list[Point]]:
-    # Cap the margin samples to a maximum depth to get our depth cut-in.
-    depth = xheight * param_depth / 100
-    max_depth = extreme_left.x + depth
-    min_depth = extreme_right.x - depth
-    margins_left = [Point(min(p.x, max_depth), p.y) for p in margins_left]
-    margins_right = [Point(max(p.x, min_depth), p.y) for p in margins_right]
-
-    # close open counterforms at 45 degrees
-    margins_left, margins_right = diagonize(margins_left, margins_right, param_freq)
-    margins_left = close_open_counters(margins_left, extreme_left, ref_ymax, ref_ymin)
-    margins_right = close_open_counters(
-        margins_right, extreme_right, ref_ymax, ref_ymin
-    )
-
-    return margins_left, margins_right
-
-
-def deslant_sidebearings(
-    layer: Glyph,
-    glyphset: Union[Font, Layer],
-    l: float,
-    r: float,
-    a: float,
-    xheight: float,
-) -> tuple[int, int]:
-    bounds = layer.getBounds(glyphset)
-    assert bounds is not None
-    left, _, _, _ = bounds
-    m = skew_matrix((-a, 0), offset=(left, xheight / 2))
-    backslant = Glyph()
-    backslant.width = layer.width
-    layer.drawPoints(TransformPointPen(backslant.getPointPen(), m))
-    backslant.setLeftMargin(l, glyphset)
-    backslant.setRightMargin(r, glyphset)
-
-    boundsback = backslant.getBounds(glyphset)
-    assert boundsback is not None
-    left, _, _, _ = boundsback
-    mf = skew_matrix((a, 0), offset=(left, xheight / 2))
-    forwardslant = Glyph()
-    forwardslant.width = backslant.width
-    backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
-
-    left_margin = forwardslant.getLeftMargin(glyphset)
-    assert left_margin is not None
-    right_margin = forwardslant.getRightMargin(glyphset)
-    assert right_margin is not None
-
-    return round(left_margin), round(right_margin)
-
-
-def skew_matrix(
-    angle: tuple[float, float], offset: tuple[float, float] = (0, 0)
-) -> Transform:
-    dx, dy = offset
-    x, y = angle
-    x, y = math.radians(x), math.radians(y)
-    sT = Identity.translate(dx, dy).skew(x, y).translate(-dx, -dy)
-    return sT
-
-
-# point list area
-def area(points: list[Point]) -> float:
-    s = 0
-    for ii in range(-1, len(points) - 1):
-        s = s + (points[ii].x * points[ii + 1].y - points[ii + 1].x * points[ii].y)
-    return abs(s) * 0.5
-
-
 def sample_margins(
     layer: Glyph,
     ref_ymin: float,
@@ -495,6 +255,210 @@ def sample_margins(
     return left, right
 
 
+def extract_from_samples(
+    samples: list[Point],
+    cmp: Callable[[float, float], bool],
+    ref_ymin: float,
+    ref_ymax: float,
+) -> tuple[Point, Point, list[Point]]:
+    extreme_full = None
+    extreme = None
+    margins = []
+    for point in samples:
+        if extreme_full is None or cmp(point.x, extreme_full.x):
+            extreme_full = point
+        if ref_ymin <= point.y <= ref_ymax:
+            margins.append(point)
+            if extreme is None or cmp(point.x, extreme.x):
+                extreme = point
+    assert extreme_full is not None
+    assert extreme is not None
+    assert margins
+    return extreme_full, extreme, margins
+
+
+def process_margins(
+    margins_left: list[Point],
+    margins_right: list[Point],
+    extreme_left: Point,
+    extreme_right: Point,
+    xheight: int,
+    ref_ymin: float,
+    ref_ymax: float,
+    param_depth: int,
+    param_freq: int,
+) -> tuple[list[Point], list[Point]]:
+    # Cap the margin samples to a maximum depth to get our depth cut-in.
+    depth = xheight * param_depth / 100
+    max_depth = extreme_left.x + depth
+    min_depth = extreme_right.x - depth
+    margins_left = [Point(min(p.x, max_depth), p.y) for p in margins_left]
+    margins_right = [Point(max(p.x, min_depth), p.y) for p in margins_right]
+
+    # close open counterforms at 45 degrees
+    margins_left, margins_right = diagonize(margins_left, margins_right, param_freq)
+    margins_left = close_open_counters(margins_left, extreme_left, ref_ymax, ref_ymin)
+    margins_right = close_open_counters(
+        margins_right, extreme_right, ref_ymax, ref_ymin
+    )
+
+    return margins_left, margins_right
+
+
+def diagonize(
+    margins_left: list[Point],
+    margins_right: list[Point],
+    param_freq: int,
+) -> tuple[list[Point], list[Point]]:
+    """close counters at 45 degrees"""
+    # TODO: Use https://github.com/huertatipografica/HTLetterspacer/issues/45
+    total = len(margins_left) - 1
+
+    frequency = param_freq * 1.5
+    for index in range(total):
+        # left
+        actual_point = margins_left[index]
+        next_point = margins_left[index + 1]
+        diff = next_point.y - actual_point.y
+        if next_point.x > (actual_point.x + diff) and next_point.y > actual_point.y:
+            margins_left[index + 1].x = actual_point.x + diff
+        # right
+        actual_point = margins_right[index]
+        next_point = margins_right[index + 1]
+        # if nextPoint.x < (actualPoint.x - valueFreq) and nextPoint.y > actualPoint.y:
+        if next_point.x < (actual_point.x - diff) and next_point.y > actual_point.y:
+            margins_right[index + 1].x = actual_point.x - diff
+
+        # left
+        actual_point = margins_left[total - index]
+        next_point = margins_left[total - index - 1]
+        diff = actual_point.y - next_point.y
+        if (
+            next_point.x > (actual_point.x + frequency)
+            and next_point.y < actual_point.y
+        ):
+            margins_left[total - index - 1].x = actual_point.x + diff
+        # right
+        actual_point = margins_right[total - index]
+        next_point = margins_right[total - index - 1]
+        if next_point.x < (actual_point.x - diff) and next_point.y < actual_point.y:
+            margins_right[total - index - 1].x = actual_point.x - diff
+
+    return margins_left, margins_right
+
+
+def close_open_counters(
+    margin: list[Point], extreme: Point, ref_ymax: float, ref_ymin: float
+) -> list[Point]:
+    """close counterforms, creating a polygon"""
+    init_point = Point(extreme.x, ref_ymin)
+    end_point = Point(extreme.x, ref_ymax)
+    margin.insert(0, init_point)
+    margin.append(end_point)
+    return margin
+
+
+def calculate_sidebearing_value(
+    factor: float,
+    ref_ymax: float,
+    ref_ymin: float,
+    param_area: int,
+    polygon: list[Point],
+    upm: int,
+    xheight: int,
+) -> float:
+    amplitude_y = ref_ymax - ref_ymin
+
+    # recalculates area based on UPM
+    area_upm = param_area * ((upm / 1000) ** 2)
+
+    # calculates proportional area
+    white_area = area_upm * factor * 100
+
+    prop_area = (amplitude_y * white_area) / xheight
+    valor = prop_area - area(polygon)
+    return valor / amplitude_y
+
+
+def area(points: list[Point]) -> float:
+    s = 0
+    for ii in range(-1, len(points) - 1):
+        s = s + (points[ii].x * points[ii + 1].y - points[ii + 1].x * points[ii].y)
+    return abs(s) * 0.5
+
+
+def set_sidebearings(
+    layer: Glyph,
+    glyphset: Union[Font, Layer],
+    new_left: float,
+    new_right: float,
+    width: float,
+    angle: float,
+    xheight: float,
+) -> None:
+    if angle:
+        new_left, new_right = deslant_sidebearings(
+            layer, glyphset, new_left, new_right, angle, xheight
+        )
+    set_left_margin_rounded(layer, new_left, glyphset)
+    set_right_margin_rounded(layer, new_right, glyphset)
+
+    # adjusts the tabular miscalculation
+    if width:
+        layer.width = width
+
+    # TODO: Handle this outside the core.
+    if "com.schriftgestaltung.Glyphs.originalWidth" in layer.lib:
+        layer.lib["com.schriftgestaltung.Glyphs.originalWidth"] = layer.width
+        layer.width = 0
+
+
+def deslant_sidebearings(
+    layer: Glyph,
+    glyphset: Union[Font, Layer],
+    l: float,
+    r: float,
+    a: float,
+    xheight: float,
+) -> tuple[int, int]:
+    bounds = layer.getBounds(glyphset)
+    assert bounds is not None
+    left, _, _, _ = bounds
+    m = skew_matrix((-a, 0), offset=(left, xheight / 2))
+    backslant = Glyph()
+    backslant.width = layer.width
+    layer.drawPoints(TransformPointPen(backslant.getPointPen(), m))
+    backslant.setLeftMargin(l, glyphset)
+    backslant.setRightMargin(r, glyphset)
+
+    boundsback = backslant.getBounds(glyphset)
+    assert boundsback is not None
+    left, _, _, _ = boundsback
+    mf = skew_matrix((a, 0), offset=(left, xheight / 2))
+    forwardslant = Glyph()
+    forwardslant.width = backslant.width
+    backslant.drawPoints(TransformPointPen(forwardslant.getPointPen(), mf))
+
+    left_margin = forwardslant.getLeftMargin(glyphset)
+    assert left_margin is not None
+    right_margin = forwardslant.getRightMargin(glyphset)
+    assert right_margin is not None
+
+    return round(left_margin), round(right_margin)
+
+
+def skew_matrix(
+    angle: tuple[float, float], offset: tuple[float, float] = (0, 0)
+) -> Transform:
+    dx, dy = offset
+    x, y = angle
+    x, y = math.radians(x), math.radians(y)
+    sT = Identity.translate(dx, dy).skew(x, y).translate(-dx, -dy)
+    return sT
+
+
+####
+# Helper functionality that is not part of the spacer algorithm.
 ####
 
 
@@ -669,3 +633,40 @@ def line_intersection(
     if 0 <= s <= 1 and 0 <= t <= 1:
         return (x3 + (t * Bx_Ax), y3 + (t * By_Ay))
     return None
+
+
+def set_left_margin_rounded(
+    glyph: Glyph, value: float, layer: Optional[GlyphSet] = None
+) -> None:
+    """Sets the the rounded space in font units from the point of origin to the
+    left side of the glyph.
+
+    Args:
+        value: The desired left margin in font units.
+        layer: The layer of the glyph to look up components, if any. Not needed for
+            pure-contour glyphs.
+    """
+    bounds = glyph.getBounds(layer)
+    if bounds is None:
+        return None
+    diff = round(value - bounds.xMin)
+    if diff:
+        glyph.width += diff
+        glyph.move((diff, 0))
+
+
+def set_right_margin_rounded(
+    glyph: Glyph, value: float, layer: Optional[GlyphSet] = None
+) -> None:
+    """Sets the the rounded space in font units from the glyph's advance width to
+    the right side of the glyph.
+
+    Args:
+        value: The desired right margin in font units.
+        layer: The layer of the glyph to look up components, if any. Not needed for
+            pure-contour glyphs.
+    """
+    bounds = glyph.getBounds(layer)
+    if bounds is None:
+        return None
+    glyph.width = round(bounds.xMax + value)
