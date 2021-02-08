@@ -115,7 +115,7 @@ def calculate_spacing(
     # outermost reading as the extreme point from which to "test the depth" of
     # the glyph.
     margins_left_full, margins_right_full = sample_margins(
-        layer, param_freq, angle, xheight
+        layer, ref_ymin, ref_ymax, param_freq, angle, xheight
     )
     assert margins_left_full
     assert margins_right_full
@@ -315,43 +315,6 @@ def close_open_counters(
     return margin
 
 
-def set_depth(
-    margins_left: list[Point],
-    margins_right: list[Point],
-    extreme_left: Point,
-    extreme_right: Point,
-    xheight: int,
-    ref_ymin: float,
-    ref_ymax: float,
-    param_depth: int,
-    param_freq: int,
-) -> tuple[list[Point], list[Point]]:
-    """process lists with depth, proportional to xheight"""
-    depth = xheight * param_depth / 100
-    max_depth = extreme_left.x + depth
-    min_depth = extreme_right.x - depth
-    # NOTE: lists are ordered bottom y to top y.
-    margins_left = [Point(min(p.x, max_depth), p.y) for p in margins_left]
-    margins_right = [Point(max(p.x, min_depth), p.y) for p in margins_right]
-
-    # If the glyph is shorter than the reference glyph top or bottom (i.e.
-    # due to the reference having a round overshoot either or both sides),
-    # fill up the margin samples top and bottom at maximum depth to match.
-    y = margins_left[0].y - param_freq
-    while y > ref_ymin:
-        margins_left.insert(0, Point(max_depth, y))
-        margins_right.insert(0, Point(min_depth, y))
-        y -= param_freq
-
-    y = margins_left[-1].y + param_freq
-    while y < ref_ymax:
-        margins_left.append(Point(max_depth, y))
-        margins_right.append(Point(min_depth, y))
-        y += param_freq
-
-    return margins_left, margins_right
-
-
 def diagonize(
     margins_left: list[Point],
     margins_right: list[Point],
@@ -405,18 +368,12 @@ def process_margins(
     param_depth: int,
     param_freq: int,
 ) -> tuple[list[Point], list[Point]]:
-    # set depth
-    margins_left, margins_right = set_depth(
-        margins_left,
-        margins_right,
-        extreme_left,
-        extreme_right,
-        xheight,
-        ref_ymin,
-        ref_ymax,
-        param_depth,
-        param_freq,
-    )
+    # Cap the margin samples to a maximum depth to get our depth cut-in.
+    depth = xheight * param_depth / 100
+    max_depth = extreme_left.x + depth
+    min_depth = extreme_right.x - depth
+    margins_left = [Point(min(p.x, max_depth), p.y) for p in margins_left]
+    margins_right = [Point(max(p.x, min_depth), p.y) for p in margins_right]
 
     # close open counterforms at 45 degrees
     margins_left, margins_right = diagonize(margins_left, margins_right, param_freq)
@@ -481,7 +438,12 @@ def area(points: list[Point]) -> float:
 
 
 def sample_margins(
-    layer: Glyph, param_freq: int, angle: float, xheight: int
+    layer: Glyph,
+    ref_ymin: float,
+    ref_ymax: float,
+    param_freq: int,
+    angle: float,
+    xheight: int,
 ) -> tuple[list[Point], list[Point]]:
     """Returns the left and right outline of the glyph, vertically scanned at param_freq
     intervals.
@@ -508,6 +470,28 @@ def sample_margins(
                 left.append(Point(hits[0][0], y))
                 right.append(Point(hits[-1][0], y))
         y += param_freq
+
+    # If the glyph is shorter than the reference glyph top or bottom (i.e.
+    # due to the reference having a round overshoot either or both sides),
+    # fill up the margin samples top and bottom at maximum depth (infinity
+    # into the opposite direction) to match.
+    #
+    # TODO: Integrate into loop above by using ref_ymin..ref_ymax as the range
+    # and interpret "no intersection" as a infinity on the other side. Will also
+    # solve the problem of accidental "no intersections" in glyphs with nothing
+    # in the middle, like in `equal`.
+    y = left[0].y - param_freq
+    while y > ref_ymin:
+        left.insert(0, Point(math.inf, y))
+        right.insert(0, Point(-math.inf, y))
+        y -= param_freq
+
+    y = left[-1].y + param_freq
+    while y < ref_ymax:
+        left.append(Point(math.inf, y))
+        right.append(Point(-math.inf, y))
+        y += param_freq
+
     return left, right
 
 
