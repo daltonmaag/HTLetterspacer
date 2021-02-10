@@ -134,8 +134,10 @@ def space_ufo(args: argparse.Namespace) -> None:
         left_before = glyph.getLeftMargin(ufo)
         assert left_before is not None
 
-        if args.debug_polygons_in_background and background is not None:
+        if args.debug_polygons_in_background:
+            assert background is not None
             debug_glyph = background.get(glyph_name, background.newGlyph(glyph_name))
+            assert debug_glyph is not None
             debug_draw = functools.partial(draw_samples, debug_glyph)
         else:
             debug_draw = None
