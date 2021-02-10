@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import functools
 import graphlib
 import logging
 import sys
@@ -9,6 +10,7 @@ from pathlib import Path
 from typing import Optional
 
 import ufoLib2
+import ufoLib2.objects
 
 import htletterspacer.config
 import htletterspacer.core
@@ -38,6 +40,11 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
         "--overshoot",
         type=int,
         help="Set the UFO-wide overshoot parameter (can be overridden on the glyph level).",
+    )
+    parser.add_argument(
+        "--debug-polygons-in-background",
+        action="store_true",
+        help="Draw the spacing polygons into the glyph background.",
     )
     parser.add_argument("--config", type=Path)
     parser.add_argument("--output")
@@ -81,6 +88,12 @@ def space_ufo(args: argparse.Namespace) -> None:
             glyph_graph[g.name].add(c.baseGlyph)
             composite_graph[c.baseGlyph].add(g.name)
 
+    background = None
+    if args.debug_polygons_in_background:
+        background = ufo.layers.get(
+            "public.background", ufo.newLayer("public.background")
+        )
+
     # Composites come last because their spacing depends on their components.
     ts = graphlib.TopologicalSorter(glyph_graph)
     for glyph_name in tuple(ts.static_order()):
@@ -121,6 +134,12 @@ def space_ufo(args: argparse.Namespace) -> None:
         left_before = glyph.getLeftMargin(ufo)
         assert left_before is not None
 
+        if args.debug_polygons_in_background and background is not None:
+            debug_glyph = background.get(glyph_name, background.newGlyph(glyph_name))
+            debug_draw = functools.partial(draw_samples, debug_glyph)
+        else:
+            debug_draw = None
+
         htletterspacer.core.space_main(
             glyph,
             ref_bounds,
@@ -136,6 +155,7 @@ def space_ufo(args: argparse.Namespace) -> None:
             tabular_width=None,
             upm=ufo.info.unitsPerEm,
             xheight=ufo.info.xHeight,
+            debug_draw=debug_draw,
         )
 
         # If the glyph is used as a component in any other glyph, move that component
@@ -151,6 +171,23 @@ def space_ufo(args: argparse.Namespace) -> None:
                     if c.baseGlyph != glyph_name:
                         continue
                     c.transformation = c.transformation.translate(left_diff, 0)
+
+
+def draw_samples(
+    glyph: ufoLib2.objects.Glyph,
+    margins_left: list[htletterspacer.core.Point],
+    margins_right: list[htletterspacer.core.Point],
+) -> None:
+    glyph.clear()
+    pen = glyph.getPointPen()
+    pen.beginPath()
+    for p in margins_left:
+        pen.addPoint((p.x, p.y), segmentType="line")
+    pen.endPath()
+    pen.beginPath()
+    for p in margins_right:
+        pen.addPoint((p.x, p.y), segmentType="line")
+    pen.endPath()
 
 
 if __name__ == "__main__":

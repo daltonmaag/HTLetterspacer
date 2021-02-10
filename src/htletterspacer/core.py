@@ -41,6 +41,7 @@ def space_main(
     tabular_width: Optional[int],
     upm: int,
     xheight: int,
+    debug_draw: Optional[Callable[[list[Point], list[Point]], None]],
 ) -> None:
     if not layer.contours and not layer.components:
         LOGGER.warning("No paths in glyph %s.", layer.name)
@@ -75,6 +76,7 @@ def space_main(
         tabular_width,
         upm,
         xheight,
+        debug_draw,
     )
     set_sidebearings(
         layer,
@@ -101,6 +103,7 @@ def calculate_spacing(
     tabular_width: Optional[int],
     upm: int,
     xheight: int,
+    debug_draw: Optional[Callable[[list[Point], list[Point]], None]],
 ) -> tuple[int, int, int]:
     # TODO: compute lsb/rsb separately?
 
@@ -139,6 +142,8 @@ def calculate_spacing(
         param_depth,
         param_freq,
     )
+    if debug_draw is not None:
+        debug_draw(polygon_left, polygon_right)
 
     # dif between extremes full and zone
     distance_left = math.ceil(extreme_left.x - extreme_left_full.x)
