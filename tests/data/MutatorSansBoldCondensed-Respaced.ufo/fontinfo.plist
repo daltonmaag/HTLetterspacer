@@ -12,18 +12,14 @@
     <integer>-200</integer>
     <key>familyName</key>
     <string>MutatorMathTest</string>
-    <key>openTypeHeadCreated</key>
-    <string>2020/11/15 23:55:02</string>
+    <key>guidelines</key>
+    <array/>
+    <key>italicAngle</key>
+    <integer>0</integer>
     <key>openTypeNameLicense</key>
     <string>License same as MutatorMath. BSD 3-clause. [test-token: A]</string>
-    <key>openTypeNamePreferredSubfamilyName</key>
-    <string>BoldCondensed</string>
     <key>openTypeOS2VendorID</key>
     <string>LTTR</string>
-    <key>openTypeOS2WeightClass</key>
-    <integer>400</integer>
-    <key>openTypeOS2WidthClass</key>
-    <integer>5</integer>
     <key>postscriptBlueValues</key>
     <array>
       <integer>-10</integer>
@@ -33,6 +29,10 @@
     </array>
     <key>postscriptDefaultWidthX</key>
     <integer>500</integer>
+    <key>postscriptFamilyBlues</key>
+    <array/>
+    <key>postscriptFamilyOtherBlues</key>
+    <array/>
     <key>postscriptFontName</key>
     <string>MutatorMathTest-BoldCondensed</string>
     <key>postscriptFullName</key>
@@ -43,7 +43,11 @@
       <integer>520</integer>
     </array>
     <key>postscriptSlantAngle</key>
-    <real>0.0</real>
+    <integer>0</integer>
+    <key>postscriptStemSnapH</key>
+    <array/>
+    <key>postscriptStemSnapV</key>
+    <array/>
     <key>postscriptWindowsCharacterSet</key>
     <integer>1</integer>
     <key>styleMapFamilyName</key>

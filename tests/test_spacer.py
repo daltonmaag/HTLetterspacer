@@ -50,55 +50,26 @@ def test_spacer_mutatorsans(datadir):
     assert isinstance(ufo_orig.info.xHeight, int)
     ufo_rspc = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed-Respaced.ufo")
 
-    config = htletterspacer.config.parse_config(
-        htletterspacer.config.DEFAULT_CONFIGURATION
+    htletterspacer.__main__.space_ufo(
+        argparse.Namespace(
+            ufo=ufo_orig,
+            area=120,
+            depth=5,
+            overshoot=0,
+            config=None,
+            debug_polygons_in_background=None,
+        )
     )
 
-    # Composites come last because their spacing depends on their components.
-    for glyph_orig in sorted((g for g in ufo_orig), key=lambda g: len(g.components)):
-        assert glyph_orig.name is not None
-        if not glyph_orig.contours and not glyph_orig.components:
-            continue
-
-        if glyph_orig.name == "Aacute":
-            continue  # "Automatic Alignment, space not set."
-
-        glyph_ref, factor = htletterspacer.config.reference_and_factor(
-            config, glyph_orig
-        )
-        glyph_ref_orig = ufo_orig[glyph_ref]
-        assert glyph_ref_orig.name is not None
-        ref_bounds = glyph_ref_orig.getBounds(ufo_orig)
-        assert ref_bounds is not None
-
-        # Manual fixups because our get_data works differently from Glyphs.app's...
-        if glyph_ref == "dot":
-            factor = 1.5
-
-        htletterspacer.core.space_main(
-            glyph_orig,
-            ref_bounds,
-            ufo_orig,
-            angle=ufo_orig.info.italicAngle,
-            compute_lsb=True,
-            compute_rsb=True,
-            factor=factor,
-            param_area=120,
-            param_depth=5,
-            param_freq=5,
-            param_over=0,
-            tabular_width=None,
-            upm=ufo_orig.info.unitsPerEm,
-            xheight=ufo_orig.info.xHeight,
-        )
-
-        glyph_rspc = ufo_rspc[glyph_orig.name]
-        assert glyph_orig.getLeftMargin(ufo_orig) == glyph_rspc.getLeftMargin(
-            ufo_rspc
-        ), (glyph_orig.name, glyph_ref, factor)
-        assert glyph_orig.getRightMargin(ufo_orig) == glyph_rspc.getRightMargin(
-            ufo_rspc
-        ), (glyph_orig.name, glyph_ref, factor)
+    for glyph in ufo_orig:
+        assert glyph.name
+        glyph_rspc = ufo_rspc[glyph.name]
+        left_is = glyph.getLeftMargin(ufo_orig)
+        left_expected = glyph_rspc.getLeftMargin(ufo_rspc)
+        assert left_is == left_expected, glyph.name
+        right_is = glyph.getRightMargin(ufo_orig)
+        right_expected = glyph_rspc.getRightMargin(ufo_rspc)
+        assert right_is == right_expected, glyph.name
 
 
 def test_spacer_merriweather(datadir):

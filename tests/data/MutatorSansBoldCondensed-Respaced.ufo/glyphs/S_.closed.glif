@@ -49,18 +49,4 @@
       <point x="715" y="108"/>
     </contour>
   </outline>
-  <lib>
-    <dict>
-      <key>com.letterror.skateboard.navigator</key>
-      <dict>
-        <key>location</key>
-        <dict>
-          <key>weight</key>
-          <real>1000.0</real>
-          <key>width</key>
-          <real>108.007</real>
-        </dict>
-      </dict>
-    </dict>
-  </lib>
 </glyph>
