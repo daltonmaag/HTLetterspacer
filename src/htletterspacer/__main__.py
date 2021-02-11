@@ -60,7 +60,7 @@ def main(args: Optional[list[str]] = None) -> Optional[int]:
 
 def space_ufo(args: argparse.Namespace) -> None:
     ufo: ufoLib2.Font = args.ufo
-    assert ufo.info.italicAngle is not None
+    italic_angle = ufo.info.italicAngle or 0
     assert isinstance(ufo.info.unitsPerEm, int)
     assert isinstance(ufo.info.xHeight, int)
 
@@ -88,11 +88,11 @@ def space_ufo(args: argparse.Namespace) -> None:
             glyph_graph[g.name].add(c.baseGlyph)
             composite_graph[c.baseGlyph].add(g.name)
 
-    background = None
+    background: Optional[ufoLib2.objects.Layer] = None
     if args.debug_polygons_in_background:
-        background = ufo.layers.get(
-            "public.background", ufo.newLayer("public.background")
-        )
+        background = ufo.layers.get("public.background")  # type: ignore
+        if background is None:
+            background = ufo.newLayer("public.background")
 
     # Composites come last because their spacing depends on their components.
     ts = graphlib.TopologicalSorter(glyph_graph)
@@ -136,7 +136,9 @@ def space_ufo(args: argparse.Namespace) -> None:
 
         if args.debug_polygons_in_background:
             assert background is not None
-            debug_glyph = background.get(glyph_name, background.newGlyph(glyph_name))
+            debug_glyph = background.get(glyph_name)
+            if debug_glyph is None:
+                debug_glyph = background.newGlyph(glyph_name)
             assert debug_glyph is not None
             debug_draw = functools.partial(draw_samples, debug_glyph)
         else:
@@ -146,7 +148,7 @@ def space_ufo(args: argparse.Namespace) -> None:
             glyph,
             ref_bounds,
             ufo,
-            angle=-ufo.info.italicAngle,
+            angle=-italic_angle,
             compute_lsb=True,
             compute_rsb=True,
             factor=factor,
