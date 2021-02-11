@@ -221,10 +221,15 @@ def sample_margins(
 
     bounds = layer.getBounds()
     assert bounds is not None
-    y = bounds.yMin
+
+    # A glyph can over- or undershoot its reference glyph. Measure the tallest
+    # stretch.
+    lower_bound = min(ref_ymin, bounds.yMin)
+    upper_bound = max(ref_ymax, bounds.yMax)
+
     left = []
     right = []
-    while y <= bounds.yMax:
+    for y in range(round(lower_bound), round(upper_bound) + 1, param_freq):
         hits = sorted(intersections(layer, (bounds.xMin, y, bounds.xMax, y)))
         if hits:
             if angle:
@@ -234,28 +239,14 @@ def sample_margins(
             else:
                 left.append(Point(hits[0][0], y))
                 right.append(Point(hits[-1][0], y))
-        y += param_freq
-
-    # If the glyph is shorter than the reference glyph top or bottom (i.e.
-    # due to the reference having a round overshoot either or both sides),
-    # fill up the margin samples top and bottom at maximum depth (infinity
-    # into the opposite direction) to match.
-    #
-    # TODO: Integrate into loop above by using ref_ymin..ref_ymax as the range
-    # and interpret "no intersection" as a infinity on the other side. Will also
-    # solve the problem of accidental "no intersections" in glyphs with nothing
-    # in the middle, like in `equal`.
-    y = left[0].y - param_freq
-    while y > ref_ymin:
-        left.insert(0, Point(math.inf, y))
-        right.insert(0, Point(-math.inf, y))
-        y -= param_freq
-
-    y = left[-1].y + param_freq
-    while y < ref_ymax:
-        left.append(Point(math.inf, y))
-        right.append(Point(-math.inf, y))
-        y += param_freq
+        else:
+            # If the glyph is shorter than the reference glyph top or bottom (i.e.
+            # due to the reference having a round overshoot either or both sides),
+            # fill up the margin samples top and bottom at maximum depth (infinity
+            # into the opposite direction) to match. This also catches glyphs with
+            # nothing in the middle, like "equal".
+            left.append(Point(math.inf, y))
+            right.append(Point(-math.inf, y))
 
     return left, right
 
@@ -315,38 +306,17 @@ def diagonize(
     margins_left: list[Point], margins_right: list[Point], param_freq: int
 ) -> None:
     """close counters at 45 degrees"""
-    # TODO: Use https://github.com/huertatipografica/HTLetterspacer/issues/45
-    total = len(margins_left) - 1
 
-    frequency = param_freq * 1.5
-    for index in range(total):
-        # left
-        actual_point = margins_left[index]
-        next_point = margins_left[index + 1]
-        diff = next_point.y - actual_point.y
-        if next_point.x > (actual_point.x + diff) and next_point.y > actual_point.y:
-            margins_left[index + 1].x = actual_point.x + diff
-        # right
-        actual_point = margins_right[index]
-        next_point = margins_right[index + 1]
-        # if nextPoint.x < (actualPoint.x - valueFreq) and nextPoint.y > actualPoint.y:
-        if next_point.x < (actual_point.x - diff) and next_point.y > actual_point.y:
-            margins_right[index + 1].x = actual_point.x - diff
-
-        # left
-        actual_point = margins_left[total - index]
-        next_point = margins_left[total - index - 1]
-        diff = actual_point.y - next_point.y
-        if (
-            next_point.x > (actual_point.x + frequency)
-            and next_point.y < actual_point.y
-        ):
-            margins_left[total - index - 1].x = actual_point.x + diff
-        # right
-        actual_point = margins_right[total - index]
-        next_point = margins_right[total - index - 1]
-        if next_point.x < (actual_point.x - diff) and next_point.y < actual_point.y:
-            margins_right[total - index - 1].x = actual_point.x - diff
+    for i in range(len(margins_left) - 1):
+        if margins_left[i + 1].x - margins_left[i].x > param_freq:
+            margins_left[i + 1].x = margins_left[i].x + param_freq
+        if margins_right[i + 1].x - margins_right[i].x < -param_freq:
+            margins_right[i + 1].x = margins_right[i].x - param_freq
+    for i in reversed(range(len(margins_left) - 1)):
+        if margins_left[i].x - margins_left[i + 1].x > param_freq:
+            margins_left[i].x = margins_left[i + 1].x + param_freq
+        if margins_right[i].x - margins_right[i + 1].x < -param_freq:
+            margins_right[i].x = margins_right[i + 1].x - param_freq
 
 
 def calculate_sidebearing_value(
