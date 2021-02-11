@@ -211,7 +211,7 @@ def sample_margins(
     xheight: int,
 ) -> tuple[list[Point], list[Point]]:
     """Returns the left and right outline of the glyph, vertically scanned at param_freq
-    intervals.
+    intervals, sorted bottom to top.
 
     The italic angle is implicitly deslanted at origin = xheight / 2.
     """
