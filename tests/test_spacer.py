@@ -202,7 +202,14 @@ def test_spacer_components(datadir):
     bbox_F_x_offset = bbox_F_1.xMin - bbox_F_2.xMin
 
     htletterspacer.__main__.space_ufo(
-        argparse.Namespace(ufo=ufo, area=400, depth=15, overshoot=0, config=None)
+        argparse.Namespace(
+            ufo=ufo,
+            area=400,
+            depth=15,
+            overshoot=0,
+            config=None,
+            debug_polygons_in_background=None,
+        )
     )
 
     # C: test offset of components from each other stays the same.

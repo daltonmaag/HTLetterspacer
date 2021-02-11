@@ -41,7 +41,7 @@ def space_main(
     tabular_width: Optional[int],
     upm: int,
     xheight: int,
-    debug_draw: Optional[Callable[[list[Point], list[Point]], None]],
+    debug_draw: Optional[Callable[[list[Point], list[Point]], None]] = None,
 ) -> None:
     if not layer.contours and not layer.components:
         LOGGER.warning("No paths in glyph %s.", layer.name)
@@ -103,7 +103,7 @@ def calculate_spacing(
     tabular_width: Optional[int],
     upm: int,
     xheight: int,
-    debug_draw: Optional[Callable[[list[Point], list[Point]], None]],
+    debug_draw: Optional[Callable[[list[Point], list[Point]], None]] = None,
 ) -> tuple[int, int, int]:
     # TODO: compute lsb/rsb separately?
 
