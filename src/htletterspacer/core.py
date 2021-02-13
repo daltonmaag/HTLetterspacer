@@ -301,21 +301,19 @@ def process_margins(
     margins_left = [Point(min(p.x, max_depth), p.y) for p in margins_left]
     margins_right = [Point(max(p.x, min_depth), p.y) for p in margins_right]
 
-    # close open counterforms at 45 degrees
-    margins_left, margins_right = diagonize(margins_left, margins_right, param_freq)
-    margins_left = close_open_counters(margins_left, extreme_left, ref_ymax, ref_ymin)
-    margins_right = close_open_counters(
-        margins_right, extreme_right, ref_ymax, ref_ymin
-    )
+    # Close open counterforms at 45 degrees to create a polygon.
+    diagonize(margins_left, margins_right, param_freq)
+    margins_left.insert(0, Point(extreme_left.x, ref_ymin))
+    margins_left.append(Point(extreme_left.x, ref_ymax))
+    margins_right.insert(0, Point(extreme_right.x, ref_ymin))
+    margins_right.append(Point(extreme_right.x, ref_ymax))
 
     return margins_left, margins_right
 
 
 def diagonize(
-    margins_left: list[Point],
-    margins_right: list[Point],
-    param_freq: int,
-) -> tuple[list[Point], list[Point]]:
+    margins_left: list[Point], margins_right: list[Point], param_freq: int
+) -> None:
     """close counters at 45 degrees"""
     # TODO: Use https://github.com/huertatipografica/HTLetterspacer/issues/45
     total = len(margins_left) - 1
@@ -349,19 +347,6 @@ def diagonize(
         next_point = margins_right[total - index - 1]
         if next_point.x < (actual_point.x - diff) and next_point.y < actual_point.y:
             margins_right[total - index - 1].x = actual_point.x - diff
-
-    return margins_left, margins_right
-
-
-def close_open_counters(
-    margin: list[Point], extreme: Point, ref_ymax: float, ref_ymin: float
-) -> list[Point]:
-    """close counterforms, creating a polygon"""
-    init_point = Point(extreme.x, ref_ymin)
-    end_point = Point(extreme.x, ref_ymax)
-    margin.insert(0, init_point)
-    margin.append(end_point)
-    return margin
 
 
 def calculate_sidebearing_value(
