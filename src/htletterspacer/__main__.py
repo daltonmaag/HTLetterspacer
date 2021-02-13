@@ -169,6 +169,8 @@ def space_ufo(args: argparse.Namespace) -> None:
             left_after = glyph.getLeftMargin(ufo)
             assert left_after is not None
             left_diff = left_before - left_after
+            if isinstance(left_diff, float) and left_diff.is_integer():
+                left_diff = round(left_diff)
             if not left_diff:
                 continue
             for composite_name in composite_graph[glyph_name]:
