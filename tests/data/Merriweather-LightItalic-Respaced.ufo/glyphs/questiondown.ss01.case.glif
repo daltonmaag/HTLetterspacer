@@ -2,6 +2,6 @@
 <glyph name="questiondown.ss01.case" format="2">
   <advance width="1036"/>
   <outline>
-    <component base="question.ss01" xScale="-1" yScale="-1" xOffset="1088" yOffset="1493"/>
+    <component base="question.ss01" xScale="-1" yScale="-1" xOffset="1089" yOffset="1493"/>
   </outline>
 </glyph>

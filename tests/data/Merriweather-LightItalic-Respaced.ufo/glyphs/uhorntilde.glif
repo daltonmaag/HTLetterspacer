@@ -4,7 +4,7 @@
   <unicode hex="1EEF"/>
   <outline>
     <component base="u"/>
-    <component base="tildecomb" xOffset="130"/>
-    <component base="horncomb" xOffset="923" yOffset="1122"/>
+    <component base="tildecomb" xOffset="262"/>
+    <component base="horncomb" xOffset="974" yOffset="1122"/>
   </outline>
 </glyph>

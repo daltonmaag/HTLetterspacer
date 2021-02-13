@@ -2,7 +2,7 @@
 <glyph name="uhornacute.sc" format="2">
   <advance width="1360"/>
   <outline>
-    <component base="acutecomb" xOffset="511" yOffset="182"/>
+    <component base="acutecomb" xOffset="525" yOffset="182"/>
     <component base="uhorn.sc"/>
   </outline>
 </glyph>

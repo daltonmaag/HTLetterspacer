@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="commaturnedmod" format="2">
-  <advance width="418"/>
+  <advance width="419"/>
   <unicode hex="02BB"/>
-  <anchor x="76" y="1110" name="_top"/>
+  <anchor x="171" y="1110" name="_top"/>
   <outline>
-    <component base="commaturnedabovecomb"/>
+    <component base="commaturnedabovecomb" xOffset="95"/>
   </outline>
 </glyph>

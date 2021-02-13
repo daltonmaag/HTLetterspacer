@@ -2,7 +2,7 @@
 <glyph name="t" format="2">
   <advance width="671"/>
   <unicode hex="0074"/>
-  <guideline x="653" y="999" angle="81.4692"/>
+  <guideline x="663" y="999" angle="81.4692"/>
   <anchor x="236" y="0" name="bottom"/>
   <anchor x="634" y="1309" name="car"/>
   <anchor x="582" y="1618" name="caron"/>

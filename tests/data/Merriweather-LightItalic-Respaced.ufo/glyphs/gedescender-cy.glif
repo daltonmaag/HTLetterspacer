@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="gedescender-cy" format="2">
-  <advance width="798"/>
+  <advance width="800"/>
   <unicode hex="04F7"/>
-  <anchor x="454" y="1110" name="top"/>
+  <anchor x="412" y="1110" name="top"/>
   <outline>
-    <component base="ge-cy"/>
-    <component base="desccy_part." xOffset="90"/>
+    <component base="ge-cy" xOffset="1"/>
+    <component base="desccy_part." xOffset="177"/>
   </outline>
 </glyph>

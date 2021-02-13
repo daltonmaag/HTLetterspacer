@@ -1,34 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="De-cy.loclBGR" format="2">
-  <advance width="1456"/>
+  <advance width="1455"/>
   <outline>
     <contour>
-      <point x="967" y="1499" type="line"/>
-      <point x="795" y="1499" type="line"/>
-      <point x="113" y="106" type="line"/>
-      <point x="-21" y="106" type="line"/>
-      <point x="-48" y="-32"/>
-      <point x="-83" y="-214"/>
-      <point x="-109" y="-360" type="curve"/>
-      <point x="-15" y="-360" type="line"/>
-      <point x="6" y="-303"/>
-      <point x="106" y="-8"/>
-      <point x="111" y="0" type="curve"/>
-      <point x="1194" y="0" type="line"/>
-      <point x="1200" y="-69"/>
-      <point x="1170" y="-264"/>
-      <point x="1156" y="-360" type="curve"/>
-      <point x="1252" y="-360" type="line"/>
-      <point x="1276" y="-288"/>
-      <point x="1332" y="-95"/>
-      <point x="1359" y="106" type="curve"/>
-      <point x="1207" y="106" type="line"/>
+      <point x="966" y="1499" type="line"/>
+      <point x="794" y="1499" type="line"/>
+      <point x="112" y="106" type="line"/>
+      <point x="-22" y="106" type="line"/>
+      <point x="-49" y="-32"/>
+      <point x="-84" y="-214"/>
+      <point x="-110" y="-360" type="curve"/>
+      <point x="-16" y="-360" type="line"/>
+      <point x="5" y="-303"/>
+      <point x="105" y="-8"/>
+      <point x="110" y="0" type="curve"/>
+      <point x="1193" y="0" type="line"/>
+      <point x="1199" y="-69"/>
+      <point x="1169" y="-264"/>
+      <point x="1155" y="-360" type="curve"/>
+      <point x="1251" y="-360" type="line"/>
+      <point x="1275" y="-288"/>
+      <point x="1331" y="-95"/>
+      <point x="1358" y="106" type="curve"/>
+      <point x="1206" y="106" type="line"/>
     </contour>
     <contour>
-      <point x="255" y="100" type="line"/>
-      <point x="846" y="1366" type="line"/>
-      <point x="859" y="1246" type="line"/>
-      <point x="1046" y="100" type="line"/>
+      <point x="254" y="100" type="line"/>
+      <point x="845" y="1366" type="line"/>
+      <point x="858" y="1246" type="line"/>
+      <point x="1045" y="100" type="line"/>
     </contour>
   </outline>
 </glyph>

@@ -2,7 +2,7 @@
 <glyph name="Softsign-cy" format="2">
   <advance width="1207"/>
   <unicode hex="042C"/>
-  <guideline x="799" y="1115" angle="0"/>
+  <guideline x="816" y="1115" angle="0"/>
   <outline>
     <contour>
       <point x="681" y="924" type="curve" smooth="yes"/>

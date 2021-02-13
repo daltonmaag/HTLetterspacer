@@ -4,6 +4,6 @@
   <unicode hex="04CC"/>
   <outline>
     <component base="che-cy"/>
-    <component base="dzhe_desc.part" xOffset="-20"/>
+    <component base="dzhe_desc.part" xOffset="420"/>
   </outline>
 </glyph>

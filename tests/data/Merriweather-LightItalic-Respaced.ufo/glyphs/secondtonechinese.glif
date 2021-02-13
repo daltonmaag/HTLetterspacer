@@ -2,8 +2,8 @@
 <glyph name="secondtonechinese" format="2">
   <advance width="467"/>
   <unicode hex="02CA"/>
-  <anchor x="78" y="1110" name="_top"/>
+  <anchor x="111" y="1110" name="_top"/>
   <outline>
-    <component base="acutecomb"/>
+    <component base="acutecomb" xOffset="33"/>
   </outline>
 </glyph>

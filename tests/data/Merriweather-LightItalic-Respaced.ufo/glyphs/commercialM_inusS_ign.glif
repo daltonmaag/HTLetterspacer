@@ -3,7 +3,7 @@
   <advance width="1117"/>
   <unicode hex="2052"/>
   <outline>
-    <component base="fraction" xOffset="399"/>
+    <component base="fraction" xOffset="147"/>
     <component base="bullet" xOffset="486" yOffset="-332"/>
     <component base="bullet" xOffset="-42" yOffset="336"/>
   </outline>

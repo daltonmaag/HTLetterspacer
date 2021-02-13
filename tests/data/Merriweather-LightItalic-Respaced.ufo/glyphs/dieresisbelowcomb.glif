@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="dieresisbelowcomb" format="2">
   <unicode hex="0324"/>
-  <anchor x="97" y="0" name="_bottom"/>
+  <anchor x="212" y="0" name="_bottom"/>
   <outline>
-    <component base="dieresisbelowcomb.case" xOffset="-115"/>
+    <component base="dieresisbelowcomb.case"/>
   </outline>
   <lib>
     <dict>
       <key>com.schriftgestaltung.Glyphs.originalWidth</key>
-      <integer>683</integer>
+      <integer>567</integer>
     </dict>
   </lib>
 </glyph>

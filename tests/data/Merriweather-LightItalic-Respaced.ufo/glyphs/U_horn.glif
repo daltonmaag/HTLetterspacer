@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="Uhorn" format="2">
-  <advance width="1438"/>
+  <advance width="1460"/>
   <unicode hex="01AF"/>
   <outline>
     <contour>
-      <point x="1465" y="1735" type="line"/>
-      <point x="1465" y="1575"/>
-      <point x="1406" y="1486"/>
-      <point x="1300" y="1486" type="curve"/>
-      <point x="1263" y="1387" type="line"/>
-      <point x="1584" y="1387"/>
-      <point x="1600" y="1570"/>
-      <point x="1600" y="1735" type="curve"/>
+      <point x="1487" y="1735" type="line"/>
+      <point x="1487" y="1575"/>
+      <point x="1428" y="1486"/>
+      <point x="1322" y="1486" type="curve"/>
+      <point x="1285" y="1387" type="line"/>
+      <point x="1606" y="1387"/>
+      <point x="1622" y="1570"/>
+      <point x="1622" y="1735" type="curve"/>
     </contour>
     <component base="U"/>
   </outline>

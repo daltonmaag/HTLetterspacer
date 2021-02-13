@@ -79,67 +79,26 @@ def test_spacer_merriweather(datadir):
     assert isinstance(ufo_orig.info.xHeight, int)
     ufo_rspc = ufoLib2.Font.open(datadir / "Merriweather-LightItalic-Respaced.ufo")
 
-    config = htletterspacer.config.parse_config(
-        htletterspacer.config.DEFAULT_CONFIGURATION
+    htletterspacer.__main__.space_ufo(
+        argparse.Namespace(
+            ufo=ufo_orig,
+            area=400,
+            depth=15,
+            overshoot=0,
+            config=None,
+            debug_polygons_in_background=None,
+        )
     )
 
-    for glyph_orig in ufo_orig:
-        assert glyph_orig.name is not None
-        if not glyph_orig.contours and not glyph_orig.components:
-            continue
-        if glyph_orig.name == "fraction":
-            continue  # Skipped in original code.
-        if glyph_orig.components:
-            continue  # composites in Merriweather are complicated: change other glyphs, ...
-            # would have to space them first and then all dependents.
-
-        glyph_ref, factor = htletterspacer.config.reference_and_factor(
-            config, glyph_orig
-        )
-        glyph_ref_orig = ufo_orig[glyph_ref]
-        assert glyph_ref_orig.name is not None
-        ref_bounds = glyph_ref_orig.getBounds(ufo_orig)
-        assert ref_bounds is not None
-
-        htletterspacer.core.space_main(
-            glyph_orig,
-            ref_bounds,
-            ufo_orig,
-            angle=-ufo_orig.info.italicAngle,
-            compute_lsb=True,
-            compute_rsb=True,
-            factor=factor,
-            param_area=400,
-            param_depth=15,
-            param_freq=5,
-            param_over=0,
-            tabular_width=None,
-            upm=ufo_orig.info.unitsPerEm,
-            xheight=ufo_orig.info.xHeight,
-        )
-
-        glyph_rspc = ufo_rspc[glyph_orig.name]
-
-        left_should = glyph_rspc.getLeftMargin(ufo_rspc)
-        if left_should is None:
-            continue  # skip emquad, etc.
-        left_is = glyph_orig.getLeftMargin(ufo_orig)
-        assert left_is is not None
-        assert round(left_is) == pytest.approx(round(left_should), abs=1), (
-            glyph_orig.name,
-            glyph_ref,
-            factor,
-        )
-
-        right_should = glyph_rspc.getRightMargin(ufo_rspc)
-        assert right_should is not None
-        right_is = glyph_orig.getRightMargin(ufo_orig)
-        assert right_is is not None
-        assert round(right_is) == pytest.approx(round(right_should), abs=1), (
-            glyph_orig.name,
-            glyph_ref,
-            factor,
-        )
+    for glyph in ufo_orig:
+        assert glyph.name
+        glyph_rspc = ufo_rspc[glyph.name]
+        left_is = glyph.getLeftMargin(ufo_orig)
+        left_expected = glyph_rspc.getLeftMargin(ufo_rspc)
+        assert left_is == left_expected, glyph.name
+        right_is = glyph.getRightMargin(ufo_orig)
+        right_expected = glyph_rspc.getRightMargin(ufo_rspc)
+        assert right_is == right_expected, glyph.name
 
 
 def test_spacer_components(datadir):

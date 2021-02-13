@@ -3,6 +3,6 @@
   <advance width="1172"/>
   <outline>
     <component base="c.sc"/>
-    <component base="cedillacomb.case" xOffset="349"/>
+    <component base="cedillacomb.case" xOffset="396"/>
   </outline>
 </glyph>

@@ -2,8 +2,8 @@
 <glyph name="ohornacute.sc" format="2">
   <advance width="1295"/>
   <outline>
-    <component base="acutecomb" xOffset="532" yOffset="182"/>
+    <component base="acutecomb" xOffset="534" yOffset="182"/>
     <component base="o.sc"/>
-    <component base="horncomb" xOffset="999" yOffset="1234"/>
+    <component base="horncomb" xOffset="1050" yOffset="1234"/>
   </outline>
 </glyph>

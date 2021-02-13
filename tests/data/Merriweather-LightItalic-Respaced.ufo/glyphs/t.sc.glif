@@ -3,7 +3,7 @@
   <advance width="1206"/>
   <anchor x="541" y="0" name="bottom"/>
   <anchor x="861" y="0" name="bottomright"/>
-  <anchor x="634" y="646" name="center"/>
+  <anchor x="634.465" y="646" name="center"/>
   <anchor x="707" y="1292" name="top"/>
   <outline>
     <contour>
