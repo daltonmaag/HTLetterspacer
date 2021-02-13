@@ -307,6 +307,8 @@ def diagonize(
 ) -> None:
     """close counters at 45 degrees"""
 
+    # This works by checking that the delta of point.x to next_point.x is <= param_freq,
+    # which just so happens to work out to 45° angles.
     for i in range(len(margins_left) - 1):
         if margins_left[i + 1].x - margins_left[i].x > param_freq:
             margins_left[i + 1].x = margins_left[i].x + param_freq
