@@ -222,11 +222,12 @@ def sample_margins(
     bounds = layer.getBounds()
     assert bounds is not None
 
-    # A glyph can over- or undershoot its reference glyph. Measure the tallest
+    # A glyph can over- or undershoot its reference bounds. Measure the tallest
     # stretch.
     lower_bound = min(ref_ymin, bounds.yMin)
     upper_bound = max(ref_ymax, bounds.yMax)
 
+    # XXX: handle case where glyph outside ref, e.g. fira sans 'prosgegrammeni'?!
     left = []
     right = []
     for y in range(round(lower_bound), round(upper_bound) + 1, param_freq):
@@ -344,10 +345,13 @@ def calculate_sidebearing_value(
 
 
 def area(points: list[Point]) -> float:
-    s = 0
-    for ii in range(-1, len(points) - 1):
-        s = s + (points[ii].x * points[ii + 1].y - points[ii + 1].x * points[ii].y)
-    return abs(s) * 0.5
+    # https://mathopenref.com/coordpolygonarea2.html
+    return 0.5 * abs(
+        sum(
+            prev.x * next.y - next.x * prev.y
+            for prev, next in ((points[i - 1], points[i]) for i in range(len(points)))
+        )
+    )
 
 
 def set_sidebearings(
