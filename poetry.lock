@@ -77,7 +77,7 @@ python-versions = ">=3.6, <3.7"
 
 [[package]]
 name = "fonttools"
-version = "4.18.2"
+version = "4.21.1"
 description = "Tools to manipulate font files"
 category = "main"
 optional = false
@@ -132,6 +132,34 @@ ufoLib2 = ">=0.6.2"
 [package.extras]
 defcon = ["defcon (>=0.6.0)"]
 ufo_normalization = ["ufonormalizer"]
+
+[[package]]
+name = "hypothesis"
+version = "6.6.0"
+description = "A library for property-based testing"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+attrs = ">=19.2.0"
+sortedcontainers = ">=2.1.0,<3.0.0"
+
+[package.extras]
+all = ["black (>=19.10b0)", "click (>=7.0)", "django (>=2.2)", "dpcontracts (>=0.4)", "lark-parser (>=0.6.5)", "libcst (>=0.3.16)", "numpy (>=1.9.0)", "pandas (>=0.25)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "importlib-resources (>=3.3.0)", "importlib-metadata", "backports.zoneinfo (>=0.2.1)", "tzdata (>=2020.4)"]
+cli = ["click (>=7.0)", "black (>=19.10b0)"]
+codemods = ["libcst (>=0.3.16)"]
+dateutil = ["python-dateutil (>=1.4)"]
+django = ["pytz (>=2014.1)", "django (>=2.2)"]
+dpcontracts = ["dpcontracts (>=0.4)"]
+ghostwriter = ["black (>=19.10b0)"]
+lark = ["lark-parser (>=0.6.5)"]
+numpy = ["numpy (>=1.9.0)"]
+pandas = ["pandas (>=0.25)"]
+pytest = ["pytest (>=4.6)"]
+pytz = ["pytz (>=2014.1)"]
+redis = ["redis (>=3.0.0)"]
+zoneinfo = ["importlib-resources (>=3.3.0)", "backports.zoneinfo (>=0.2.1)", "tzdata (>=2020.4)"]
 
 [[package]]
 name = "importlib-metadata"
@@ -287,6 +315,14 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "sortedcontainers"
+version = "2.3.0"
+description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -349,7 +385,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "d294986bcabaf145b3fde3bc9e9777a47f84cf7283167c7f7e8423a57bee03fe"
+content-hash = "26c46b7575c428d984db6dd6d18559a3a9a36c29ae8b5b6f9a89069cf7ea72d0"
 
 [metadata.files]
 appdirs = [
@@ -381,8 +417,8 @@ dataclasses = [
     {file = "dataclasses-0.8.tar.gz", hash = "sha256:8479067f342acf957dc82ec415d355ab5edb7e7646b90dc6e2fd1d96ad084c97"},
 ]
 fonttools = [
-    {file = "fonttools-4.18.2-py3-none-any.whl", hash = "sha256:645f22e8abd6e2c85d167df98333f5d2f33f9853e59210c93e2dd1574a44e6cf"},
-    {file = "fonttools-4.18.2.zip", hash = "sha256:5c50af6fb9b4de4609c0e5558f3444c20f8632aa319319a7ef14fd5ba677c9f8"},
+    {file = "fonttools-4.21.1-py3-none-any.whl", hash = "sha256:3e990e6de10c2d708fa79f1d0d93022d7e5fae1ff8cb94f69ee8d916e2512df8"},
+    {file = "fonttools-4.21.1.zip", hash = "sha256:d9cf618ab76afb42a79dcc0b4b5e5ee7ec1534f7ad9da3809bb15ddfcedc073d"},
 ]
 fs = [
     {file = "fs-2.4.12-py2.py3-none-any.whl", hash = "sha256:da6cc360677712ae27ac4be8a3ef404dd7970dbd1c3eebe87a25bebd94e84b4c"},
@@ -391,6 +427,10 @@ fs = [
 glyphslib = [
     {file = "glyphsLib-5.3.1-py3-none-any.whl", hash = "sha256:2e7982584bc725e55f25db56f90109db0bca6d9b6b4d27286b31b88d47c2025d"},
     {file = "glyphsLib-5.3.1.zip", hash = "sha256:cbba9bb8379e1e76b6e163fe37abc957e3f7898c80630fc7b1f157274f7e7d08"},
+]
+hypothesis = [
+    {file = "hypothesis-6.6.0-py3-none-any.whl", hash = "sha256:6a23d0c342d01a88f3b30b54ad459246beb01b0ce28d865cf06623a9209aac03"},
+    {file = "hypothesis-6.6.0.tar.gz", hash = "sha256:0f6b970178b7676267029eb5d352ea7ff4fda4533d2d2eaa3adbda660db54b65"},
 ]
 importlib-metadata = [
     {file = "importlib_metadata-3.4.0-py3-none-any.whl", hash = "sha256:ace61d5fc652dc280e7b6b4ff732a9c2d40db2c0f92bc6cb74e07b73d53a1771"},
@@ -486,6 +526,10 @@ regex = [
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
+]
+sortedcontainers = [
+    {file = "sortedcontainers-2.3.0-py2.py3-none-any.whl", hash = "sha256:37257a32add0a3ee490bb170b599e93095eed89a55da91fa9f48753ea12fd73f"},
+    {file = "sortedcontainers-2.3.0.tar.gz", hash = "sha256:59cc937650cf60d677c16775597c89a960658a09cf7c1a668f86e1e4464b10a1"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},

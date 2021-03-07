@@ -432,22 +432,31 @@ def skew_matrix(
 def segments(contour: list[UfoPoint]) -> list[list[UfoPoint]]:
     if not contour:
         return []
-    segments: list[list[UfoPoint]] = [[]]
-    last_was_off_curve = False
-    for point in contour:
-        segments[-1].append(point)
-        if point.segmentType is not None:
-            segments.append([])
-        last_was_off_curve = point.segmentType is None
-    if len(segments[-1]) == 0:
-        del segments[-1]
-    if last_was_off_curve:
-        lastSegment = segments[-1]
-        segment = segments.pop(0)
-        lastSegment.extend(segment)
-    elif segments[0][-1].segmentType != "move":
-        segment = segments.pop(0)
-        segments.append(segment)
+
+    points = list(contour)
+    segments: list[list[UfoPoint]] = []
+
+    # If we have 2 points or more, locate the first on-curve point, and rotate the
+    # point list so that it _ends_ with an on-curve point.
+    if len(points) > 1:
+        first_oncurve = next(
+            (i for i, point in enumerate(points) if point.type is not None), None
+        )
+        if first_oncurve is not None:
+            points = points[first_oncurve + 1 :] + points[: first_oncurve + 1]
+
+    current_segment: list[UfoPoint] = []
+    for point in points:
+        current_segment.append(point)
+        if point.type is None:
+            continue
+        segments.append(current_segment)
+        current_segment = []
+    # If the segment consists of only 1 or more off-curves, the above loop would have
+    # ended without appending it, so append it whole.
+    if current_segment:
+        segments.append(current_segment)
+
     return segments
 
 
