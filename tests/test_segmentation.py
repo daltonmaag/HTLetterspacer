@@ -26,7 +26,8 @@ def test_segmentation(points: list[Point]):
 
     # Invariant 1.5: it's the same points, really.
     point_ids = {id(point) for point in points}
-    assert all(id(point) in point_ids for segment in segments for point in segment)
+    seg_point_ids = {id(point) for segment in segments for point in segment}
+    assert point_ids == seg_point_ids
 
     # Invariant 2:
     assert all(
