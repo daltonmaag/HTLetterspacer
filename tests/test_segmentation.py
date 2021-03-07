@@ -39,3 +39,8 @@ def test_segmentation(points: list[Point]):
         )
         for segment in segments
     )
+
+    # Invariant 3: segments ends with the first on-curve point, if any.
+    first_oncurve = next((point for point in points if point.type is not None), None)
+    if first_oncurve is not None:
+        assert first_oncurve is segments[-1][-1]
