@@ -432,7 +432,7 @@ def skew_matrix(
 def segments(contour: list[UfoPoint]) -> list[list[UfoPoint]]:
     if not contour:
         return []
-    segments = [[]]
+    segments: list[list[UfoPoint]] = [[]]
     last_was_off_curve = False
     for point in contour:
         segments[-1].append(point)
