@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import math
 from dataclasses import dataclass
-from typing import Callable, Optional, Union
+from typing import Callable
 
 import fontTools.misc.arrayTools as arrayTools
 import fontTools.misc.bezierTools as bezierTools
@@ -29,7 +29,7 @@ class Point:
 def space_main(
     layer: Glyph,
     reference_layer_bounds: BoundingBox,
-    glyphset: Union[Font, Layer],
+    glyphset: Font | Layer,
     angle: float,
     compute_lsb: bool,
     compute_rsb: bool,
@@ -38,10 +38,10 @@ def space_main(
     param_depth: int,
     param_freq: int,
     param_over: int,
-    tabular_width: Optional[int],
+    tabular_width: int | None,
     upm: int,
     xheight: int,
-    debug_draw: Optional[Callable[[list[Point], list[Point]], None]] = None,
+    debug_draw: Callable[[list[Point], list[Point]], None] | None = None,
 ) -> None:
     if not layer.contours and not layer.components:
         LOGGER.warning("No paths in glyph %s.", layer.name)
@@ -100,10 +100,10 @@ def calculate_spacing(
     param_depth: int,
     param_freq: int,
     param_over: int,
-    tabular_width: Optional[int],
+    tabular_width: int | None,
     upm: int,
     xheight: int,
-    debug_draw: Optional[Callable[[list[Point], list[Point]], None]] = None,
+    debug_draw: Callable[[list[Point], list[Point]], None] | None = None,
 ) -> tuple[int, int, int]:
     # TODO: compute lsb/rsb separately?
 
@@ -356,7 +356,7 @@ def area(points: list[Point]) -> float:
 
 def set_sidebearings(
     layer: Glyph,
-    glyphset: Union[Font, Layer],
+    glyphset: Font | Layer,
     new_left: float,
     new_right: float,
     width: float,
@@ -382,7 +382,7 @@ def set_sidebearings(
 
 def deslant_sidebearings(
     layer: Glyph,
-    glyphset: Union[Font, Layer],
+    glyphset: Font | Layer,
     l: float,
     r: float,
     a: float,
@@ -584,7 +584,7 @@ def qcurve_intersections(
 
 def line_intersection(
     x1: float, y1: float, x2: float, y2: float, p3: UfoPoint, p4: UfoPoint
-) -> Optional[tuple[float, float]]:
+) -> tuple[float, float] | None:
     """
     Computes intersection between two lines.
     Adapted from Andre LaMothe, "Tricks of the Windows Game Programming Gurus".
@@ -612,7 +612,7 @@ def line_intersection(
 
 
 def set_left_margin_rounded(
-    glyph: Glyph, value: float, layer: Optional[GlyphSet] = None
+    glyph: Glyph, value: float, layer: GlyphSet | None = None
 ) -> None:
     """Sets the the rounded space in font units from the point of origin to the
     left side of the glyph.
@@ -632,7 +632,7 @@ def set_left_margin_rounded(
 
 
 def set_right_margin_rounded(
-    glyph: Glyph, value: float, layer: Optional[GlyphSet] = None
+    glyph: Glyph, value: float, layer: GlyphSet | None = None
 ) -> None:
     """Sets the the rounded space in font units from the glyph's advance width to
     the right side of the glyph.

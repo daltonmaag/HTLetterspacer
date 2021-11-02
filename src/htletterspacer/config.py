@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Optional
-
 import glyphsLib.glyphdata
 from ufoLib2.objects import Glyph
 
@@ -74,7 +72,7 @@ def parse_config(config: str) -> ConfigList:
 
 def find_exception(
     config: ConfigList, script: str, category: str, subcategory: str, glyph_name: str
-) -> Optional[ConfigLine]:
+) -> ConfigLine | None:
     exception = None
     for item in config:
         if script == item[0] or item[0] == "*":

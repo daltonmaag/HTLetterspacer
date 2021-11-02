@@ -7,7 +7,6 @@ import graphlib
 import logging
 import sys
 from pathlib import Path
-from typing import Optional
 
 import ufoLib2
 import ufoLib2.objects
@@ -23,7 +22,7 @@ OVERSHOOT_KEY = "com.ht.spacer.overshoot"
 
 # TODO: respect metrics keys by skipping that side or by interpreting them?
 # TODO: pull in glyphConstruction to rebuild components?
-def main(args: Optional[list[str]] = None) -> Optional[int]:
+def main(args: list[str] | None = None) -> int | None:
     parser = argparse.ArgumentParser(description="Respace all glyphs with contours.")
     parser.add_argument("ufo", type=ufoLib2.Font.open)
     parser.add_argument(
@@ -75,9 +74,7 @@ def space_ufo(args: argparse.Namespace) -> None:
             htletterspacer.config.DEFAULT_CONFIGURATION
         )
 
-    glyph_graph = {
-        g.name: {c.baseGlyph for c in g.components} for g in ufo if g.name is not None
-    }
+    glyph_graph: dict[str, set[str]] = {}
     composite_graph: collections.defaultdict[str, set[str]]
     composite_graph = collections.defaultdict(set)
     for g in ufo:
@@ -88,7 +85,7 @@ def space_ufo(args: argparse.Namespace) -> None:
             glyph_graph[g.name].add(c.baseGlyph)
             composite_graph[c.baseGlyph].add(g.name)
 
-    background: Optional[ufoLib2.objects.Layer] = None
+    background: ufoLib2.objects.Layer | None = None
     if args.debug_polygons_in_background:
         background = ufo.layers.get("public.background")  # type: ignore
         if background is None:
