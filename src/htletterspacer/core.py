@@ -228,8 +228,8 @@ def sample_margins(
     upper_bound = max(ref_ymax, bounds.yMax)
 
     # XXX: handle case where glyph outside ref, e.g. fira sans 'prosgegrammeni'?!
-    left = []
-    right = []
+    left: list[Point] = []
+    right: list[Point] = []
     for y in range(round(lower_bound), round(upper_bound) + 1, param_freq):
         hits = sorted(intersections(layer, (bounds.xMin, y, bounds.xMax, y)))
         if hits:
@@ -260,7 +260,7 @@ def extract_from_samples(
 ) -> tuple[Point, Point, list[Point]]:
     extreme_full = None
     extreme = None
-    margins = []
+    margins: list[Point] = []
     for point in samples:
         if extreme_full is None or cmp(point.x, extreme_full.x):
             extreme_full = point
