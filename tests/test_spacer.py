@@ -98,7 +98,10 @@ def test_spacer_merriweather(datadir):
         assert left_is == left_expected, glyph.name
         right_is = glyph.getRightMargin(ufo_orig)
         right_expected = glyph_rspc.getRightMargin(ufo_rspc)
-        assert right_is == right_expected, glyph.name
+        if isinstance(right_is, float) and isinstance(right_expected, float):
+            assert right_is == pytest.approx(right_expected), glyph.name
+        else:
+            assert right_is == right_expected, glyph.name
 
 
 def test_spacer_components(datadir):

@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import collections
 import functools
-import graphlib
 import logging
 import sys
 from pathlib import Path
@@ -91,10 +90,10 @@ def space_ufo(args: argparse.Namespace) -> None:
         if background is None:
             background = ufo.newLayer("public.background")
 
-    # Composites come last because their spacing depends on their components.
-    ts = graphlib.TopologicalSorter(glyph_graph)
-    for glyph_name in tuple(ts.static_order()):
-        glyph = ufo[glyph_name]
+    # TODO: Make a Hypothesis test to see whether the order we space in makes a
+    #       meaningful difference outside rounding errors for different float
+    #       arithmetic order.
+    for glyph in ufo:
         assert glyph.name is not None
 
         if not glyph.contours and not glyph.components:
@@ -117,7 +116,7 @@ def space_ufo(args: argparse.Namespace) -> None:
             LOGGER.warning(
                 "Reference glyph %s does not exist, spacing %s with own bounds.",
                 ref_name,
-                glyph_name,
+                glyph.name,
             )
             glyph_ref = glyph
         assert glyph_ref.name is not None
@@ -133,9 +132,9 @@ def space_ufo(args: argparse.Namespace) -> None:
 
         if args.debug_polygons_in_background:
             assert background is not None
-            debug_glyph = background.get(glyph_name)
+            debug_glyph = background.get(glyph.name)
             if debug_glyph is None:
-                debug_glyph = background.newGlyph(glyph_name)
+                debug_glyph = background.newGlyph(glyph.name)
             assert debug_glyph is not None
             debug_draw = functools.partial(draw_samples, debug_glyph)
         else:
@@ -162,7 +161,7 @@ def space_ufo(args: argparse.Namespace) -> None:
         # If the glyph is used as a component in any other glyph, move that component
         # in the opposite direction (measured to the left, to the origin) to ensure
         # that existing components stay as before.
-        if glyph_name in composite_graph:
+        if glyph.name in composite_graph:
             left_after = glyph.getLeftMargin(ufo)
             assert left_after is not None
             left_diff = left_before - left_after
@@ -170,10 +169,10 @@ def space_ufo(args: argparse.Namespace) -> None:
                 left_diff = round(left_diff)
             if not left_diff:
                 continue
-            for composite_name in composite_graph[glyph_name]:
+            for composite_name in composite_graph[glyph.name]:
                 composite = ufo[composite_name]
                 for c in composite.components:
-                    if c.baseGlyph != glyph_name:
+                    if c.baseGlyph != glyph.name:
                         continue
                     c.transformation = c.transformation.translate(left_diff, 0)
 
