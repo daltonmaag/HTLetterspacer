@@ -73,16 +73,16 @@ def space_ufo(args: argparse.Namespace) -> None:
             htletterspacer.config.DEFAULT_CONFIGURATION
         )
 
-    glyph_graph: dict[str, set[str]] = {}
+    # Note down which glyphs are used as components in which other glyphs. Moving
+    # them for spacing needs counter-moving them where they are used as components
+    # to have them stay put.
     composite_graph: collections.defaultdict[str, set[str]]
     composite_graph = collections.defaultdict(set)
-    for g in ufo:
-        if g.name is None:
+    for glyph in ufo:
+        if glyph.name is None:
             continue
-        glyph_graph[g.name] = set()
-        for c in g.components:
-            glyph_graph[g.name].add(c.baseGlyph)
-            composite_graph[c.baseGlyph].add(g.name)
+        for c in glyph.components:
+            composite_graph[c.baseGlyph].add(glyph.name)
 
     background: ufoLib2.objects.Layer | None = None
     if args.debug_polygons_in_background:
