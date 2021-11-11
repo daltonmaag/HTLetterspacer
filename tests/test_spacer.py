@@ -1,4 +1,5 @@
 import argparse
+from pathlib import Path
 
 import pytest
 import ufoLib2
@@ -8,7 +9,7 @@ import htletterspacer.config
 import htletterspacer.core
 
 
-def test_spacer(datadir):
+def test_spacer(datadir: Path) -> None:
     ufo_orig = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed.ufo")
     assert ufo_orig.info.italicAngle is not None
     assert isinstance(ufo_orig.info.unitsPerEm, int)
@@ -43,7 +44,7 @@ def test_spacer(datadir):
     assert glyph_O.getRightMargin(ufo_orig) == 13
 
 
-def test_spacer_mutatorsans(datadir):
+def test_spacer_mutatorsans(datadir: Path) -> None:
     ufo_orig = ufoLib2.Font.open(datadir / "MutatorSansBoldCondensed.ufo")
     assert ufo_orig.info.italicAngle is not None
     assert isinstance(ufo_orig.info.unitsPerEm, int)
@@ -72,7 +73,7 @@ def test_spacer_mutatorsans(datadir):
         assert right_is == right_expected, glyph.name
 
 
-def test_spacer_merriweather(datadir):
+def test_spacer_merriweather(datadir: Path) -> None:
     ufo_orig = ufoLib2.Font.open(datadir / "Merriweather-LightItalic.ufo")
     assert ufo_orig.info.italicAngle is not None
     assert isinstance(ufo_orig.info.unitsPerEm, int)
@@ -104,7 +105,7 @@ def test_spacer_merriweather(datadir):
             assert right_is == right_expected, glyph.name
 
 
-def test_spacer_components(datadir):
+def test_spacer_components(datadir: Path) -> None:
     """Test that spacing glyphs leaves their components in other glyphs where
     they are."""
 
