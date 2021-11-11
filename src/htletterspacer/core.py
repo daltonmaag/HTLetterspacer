@@ -484,7 +484,9 @@ def intersections(
                 if i:
                     intersections.extend(i)
             else:
-                raise ValueError(f"Cannot deal with segment type {curr_type}")
+                raise ValueError(
+                    f"Glyph '{layer.name}': Cannot deal with segment type {curr_type}"
+                )
     return intersections
 
 
