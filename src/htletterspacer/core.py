@@ -57,6 +57,7 @@ def space_main(
     else:
         layer_measure = layer
 
+    assert layer.name is not None
     if tabular_width is None and (".tosf" in layer.name or ".tf" in layer.name):
         layer_width = layer.width
         assert layer_width is not None

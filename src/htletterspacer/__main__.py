@@ -21,7 +21,7 @@ OVERSHOOT_KEY = "com.ht.spacer.overshoot"
 
 # TODO: respect metrics keys by skipping that side or by interpreting them?
 # TODO: pull in glyphConstruction to rebuild components?
-def main(args: list[str] | None = None) -> int | None:
+def main(args: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Respace all glyphs with contours.")
     parser.add_argument("ufo", type=ufoLib2.Font.open)
     parser.add_argument(
@@ -55,6 +55,8 @@ def main(args: list[str] | None = None) -> int | None:
     else:
         parsed_args.ufo.save()
 
+    return None
+
 
 def space_ufo(args: argparse.Namespace) -> None:
     ufo: ufoLib2.Font = args.ufo
@@ -86,7 +88,7 @@ def space_ufo(args: argparse.Namespace) -> None:
 
     background: ufoLib2.objects.Layer | None = None
     if args.debug_polygons_in_background:
-        background = ufo.layers.get("public.background")  # type: ignore
+        background = ufo.layers.get("public.background")
         if background is None:
             background = ufo.newLayer("public.background")
 
@@ -195,4 +197,5 @@ def draw_samples(
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
+    sys.exit()
