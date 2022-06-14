@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Tuple, List
+
 import glyphsLib.glyphdata
 from ufoLib2.objects import Glyph
 
@@ -46,8 +48,8 @@ devanagari,Letter,Other,1,devaHeight,*,
 devanagari,Letter,Ligature,1,devaHeight,*,
 """
 
-ConfigLine = tuple[str, str, str, float, str, str]
-ConfigList = list[ConfigLine]
+ConfigLine = Tuple[str, str, str, float, str, str]
+ConfigList = List[ConfigLine]
 
 
 def parse_config(config: str) -> ConfigList:
