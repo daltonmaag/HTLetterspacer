@@ -48,7 +48,14 @@ def main(args: list[str] | None = None) -> None:
     parser.add_argument("--output")
     parsed_args = parser.parse_args(args)
 
-    space_ufo(parsed_args)
+    space_ufo(
+        parsed_args.ufo,
+        area=parsed_args.area,
+        depth=parsed_args.depth,
+        overshoot=parsed_args.overshoot,
+        config_file=parsed_args.config,
+        debug_polygons_in_background=parsed_args.debug_polygons_in_background,
+    )
 
     if parsed_args.output:
         parsed_args.ufo.save(parsed_args.output, overwrite=True)
@@ -58,18 +65,25 @@ def main(args: list[str] | None = None) -> None:
     return None
 
 
-def space_ufo(args: argparse.Namespace) -> None:
-    ufo: ufoLib2.Font = args.ufo
+def space_ufo(
+    ufo: ufoLib2.Font,
+    area: int | None = None,
+    depth: int | None = None,
+    overshoot: int | None = None,
+    config_file: Path | None = None,
+    to_space: set[str] | None = None,
+    debug_polygons_in_background: bool = False,
+) -> None:
     italic_angle = ufo.info.italicAngle or 0
     assert isinstance(ufo.info.unitsPerEm, int)
     assert isinstance(ufo.info.xHeight, int)
 
-    param_area: int = args.area or ufo.lib.get(AREA_KEY, 400)
-    param_depth: int = args.depth or ufo.lib.get(DEPTH_KEY, 15)
-    param_over: int = args.overshoot or ufo.lib.get(OVERSHOOT_KEY, 0)
+    param_area: int = area or ufo.lib.get(AREA_KEY, 400)
+    param_depth: int = depth or ufo.lib.get(DEPTH_KEY, 15)
+    param_over: int = overshoot or ufo.lib.get(OVERSHOOT_KEY, 0)
 
-    if args.config is not None:
-        config = htletterspacer.config.parse_config(args.config.read_text())
+    if config_file is not None:
+        config = htletterspacer.config.parse_config(config_file.read_text())
     else:
         config = htletterspacer.config.parse_config(
             htletterspacer.config.DEFAULT_CONFIGURATION
@@ -87,7 +101,7 @@ def space_ufo(args: argparse.Namespace) -> None:
             composite_graph[c.baseGlyph].add(glyph.name)
 
     background: ufoLib2.objects.Layer | None = None
-    if args.debug_polygons_in_background:
+    if debug_polygons_in_background:
         background = ufo.layers.get("public.background")
         if background is None:
             background = ufo.newLayer("public.background")
@@ -97,6 +111,9 @@ def space_ufo(args: argparse.Namespace) -> None:
     #       arithmetic order.
     for glyph in ufo:
         assert glyph.name is not None
+
+        if to_space is not None and glyph.name not in to_space:
+            continue
 
         if not glyph.contours and not glyph.components:
             LOGGER.warning(
@@ -132,7 +149,7 @@ def space_ufo(args: argparse.Namespace) -> None:
         left_before = glyph.getLeftMargin(ufo)
         assert left_before is not None
 
-        if args.debug_polygons_in_background:
+        if debug_polygons_in_background:
             assert background is not None
             debug_glyph = background.get(glyph.name)
             if debug_glyph is None:
