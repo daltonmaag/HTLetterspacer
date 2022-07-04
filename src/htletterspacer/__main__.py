@@ -5,6 +5,7 @@ import collections
 import functools
 import logging
 import sys
+from os import PathLike
 from pathlib import Path
 
 import ufoLib2
@@ -70,7 +71,7 @@ def space_ufo(
     area: int | None = None,
     depth: int | None = None,
     overshoot: int | None = None,
-    config_file: Path | None = None,
+    config_file: PathLike[str] | None = None,
     to_space: set[str] | None = None,
     debug_polygons_in_background: bool = False,
 ) -> None:
@@ -83,7 +84,7 @@ def space_ufo(
     param_over: int = overshoot or ufo.lib.get(OVERSHOOT_KEY, 0)
 
     if config_file is not None:
-        config = htletterspacer.config.parse_config(config_file.read_text())
+        config = htletterspacer.config.parse_config(Path(config_file).read_text())
     else:
         config = htletterspacer.config.parse_config(
             htletterspacer.config.DEFAULT_CONFIGURATION
