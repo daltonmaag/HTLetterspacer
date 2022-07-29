@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "htletterspacer"
-version = "1.11"
+version = "1.11+dama"
 description = "HT Letterspacer is a tool for spacing fonts"
 authors = ["Your Name <you@example.com>"]
 license = "GPL3"
